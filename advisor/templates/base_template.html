@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>{% if user.is_authenticated %}
+        {{ user.username }}
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+</div>
+<div>
+    <h1>Welcome to Wealthy!</h1>
+    <p>Investing made easy!</p>
+     {% block content %}
+    {% endblock content %}
+
+</div>
+</body>
+</html>
