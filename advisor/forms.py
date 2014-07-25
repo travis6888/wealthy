@@ -9,11 +9,11 @@ class EmailUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     email = forms.EmailField(required=True)
-    phone = forms.CharField(max_length=12, help_text="Format should be: 650-111-2222")
+    income = forms.IntegerField()
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2", "first_name", "last_name", "phone")
+        fields = ("username", "email", "password1", "password2", "first_name", "last_name")
 
     def clean_username(self):
             # Since User.username is unique, this check is redundant,

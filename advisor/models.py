@@ -1,12 +1,20 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
 # Create your models here.
+
+class Investor(AbstractUser):
+    risk_score = models.IntegerField(null=True)
+    income = models.IntegerField(null=True)
+
+    def __unicode__(self):
+        return self.risk_score
 
 
 class AssetType(models.Model):
     name = models.CharField(max_length=100)
     sector = models.CharField(max_length=100)
+    country = models.CharField(max_length=70)
 
     def __unicode__(self):
         return self.name
@@ -14,16 +22,18 @@ class AssetType(models.Model):
 
 class Investment(models.Model):
     name = models.CharField(max_length=100)
-    asset_type = models.CharField(max_length=50)
+    asset_type = models.ForeignKey(AssetType, related_name='investments')
     fees = models.PositiveSmallIntegerField(max_length=10)
-    sector = models.CharField(max_length=100)
-    country = models.CharField(max_length=70)
-    url = models.URLField
+    url = models.URLField()
 
     def __unicode__(self):
         return u"{}".format(self.name, self.asset_type, self.fees, self.sector, self.country)
 
 
 class Portfolio(models.Model):
-    assets = models.ManyToManyField(Investment)
-    user = models.ForeignKey(User)
+    name = models.CharField(max_length=100)
+    investments = models.ManyToManyField(Investment, related_name='portfolios')
+    investor = models.ForeignKey(Investor)
+
+    def __unicode__(self):
+        return self.name
