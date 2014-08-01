@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     url(r'^homeowner/$', 'advisor.views.homeowner', name='homeowner'),
     url(r'^demo_age/$', 'advisor.views.demo_age', name='demo_age'),
 
-    # url(r'^boot/$', 'advisor.views.boot', name='boot'),
+    url(r'^boot/$', 'advisor.views.boot', name='boot'),
     url(r'^find_portfolio/$', 'advisor.views.find_portfolio', name='find_portfolio'),
     url(r'^stock_info/$', 'advisor.views.stock_info', name='stock_info'),
 
