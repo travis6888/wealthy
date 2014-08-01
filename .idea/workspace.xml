@@ -43,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wealthy/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1619" max-vertical-offset="1995">
-              <caret line="127" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.76265824" vertical-offset="1679" max-vertical-offset="2010">
+              <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -83,10 +83,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wealthy/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.23417722" vertical-offset="419" max-vertical-offset="735">
+            <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="735">
               <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
               <folding />
             </state>
@@ -180,10 +180,10 @@
         <option value="$PROJECT_DIR$/advisor/static/js/extras.js" />
         <option value="$PROJECT_DIR$/advisor/static/js/index.js" />
         <option value="$PROJECT_DIR$/advisor/views.py" />
-        <option value="$PROJECT_DIR$/wealthy/settings.py" />
         <option value="$PROJECT_DIR$/wealthy/wsgi.py" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/wealthy/urls.py" />
+        <option value="$PROJECT_DIR$/wealthy/settings.py" />
       </list>
     </option>
   </component>
@@ -1013,14 +1013,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wealthy/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1619" max-vertical-offset="1995">
-          <caret line="127" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wealthy/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
@@ -1055,8 +1047,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wealthy/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.23417722" vertical-offset="419" max-vertical-offset="735">
+        <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="735">
           <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wealthy/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76265824" vertical-offset="1679" max-vertical-offset="2010">
+          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
           <folding />
         </state>
       </provider>
