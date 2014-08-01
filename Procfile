@@ -1,0 +1,1 @@
+web: gunicorn wealthy.wsgi --log-file -

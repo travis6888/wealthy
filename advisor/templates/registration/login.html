@@ -1,0 +1,13 @@
+{% extends "boot4.html" %}
+
+{% block content %}
+    <meta http-equiv="refresh" content="0; url={% url "boot" %}"/>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Log in">
+    </form>
+
+    <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
+{% endblock %}

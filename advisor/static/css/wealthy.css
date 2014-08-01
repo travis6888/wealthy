@@ -1,0 +1,126 @@
+.demoAgeInput  {
+    display: none;
+    margin-bottom: 40px;
+
+}
+.ageInputBtn{
+    display: none;
+    padding-top: 30px ;
+}
+
+.demoHide{
+    display: none;
+}
+@import url(//fonts.googleapis.com/css?family=Oswald:400);
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #ddd;
+  font-family: "Oswald", "Helvetica Newe", Helvetica, sans-serif;
+}
+
+#container{
+    position: relative;
+    margin: auto;
+    min-width: 400px;
+    height: 400px;
+    max-width: 400px
+}
+.highcharts-button{
+    display: none;
+}
+rect.highcharts-background{
+    background-color: #ddd;
+}
+#accordion{
+
+
+}
+.ui-accordion{
+    text-align: center;
+    position: relative;
+    background-color: #ddd;
+
+}
+.ui-state-default{
+    background: none;
+}
+
+.modal{
+    margin: 200px;
+}
+.modal-content{
+    height: 100%;
+    padding: 20px 25px;
+}
+.register-modal-lg{
+    height: 100%;
+}
+ul{
+    list-style-type: none;
+}
+.riskForm{
+    background-color: #ddd;
+    opacity: .70;
+    width: 50%;
+    margin: 3rem auto;
+    border-radius: 10px;
+    text-align: left;
+    padding: 3rem;
+    font-size: 1.5rem;
+    border: black solid 2px;
+
+
+}
+
+.questSetOne p {
+    color: #000000;
+    font-family: sans-serif;
+
+}
+.questSetOne li {
+    color: #000000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.questSetTwo p {
+    color: #000000;
+    font-family: sans-serif;
+
+}
+.questSetTwo li {
+    color: #000000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+.questSetThree p {
+    color: #000000;
+    font-family: sans-serif;
+
+}
+.questSetThree li {
+    color: #000000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.questSetFour p {
+    color: #000000;
+    font-family: sans-serif;
+
+}
+.questSetFour li {
+    color: #000000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.questSetOneNext{
+    margin-left: auto;
+
+}
+.stockPrices{
+    margin-top: 40px;
+    text-align: center;
+}
+.stPrice{
+    text-align: center;
+    display: inline;
+}

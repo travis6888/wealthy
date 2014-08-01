@@ -1,0 +1,75 @@
+{% extends 'base_template.html' %}
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+{#{% block content %}#}
+    <head lang="en">
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+        <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+                <script src="{% static 'js/index.js' %}"></script>
+
+{#    <script type="text/javascript" src="http://www.alpacajs.org/js/alpaca-latest.min.js"></script>#}
+{#    <link type="text/css" href="http://www.alpacajs.org/css/alpaca-latest.min.css" rel="stylesheet"/>#}
+{#    <script src="{% static 'js/index.js' %}"></script>#}
+
+
+
+    <title></title>
+</head>
+<body>
+<p>We are here to help make investing easy and less stressful. One of the biggest failures of all portfolios out
+        there are high fees! Our goal is to limit the fees of every recommended portfolio.</p>
+
+   <div id="form1"></div>
+
+
+
+{#<script type="text/javascript">#}
+{#       var example = function(reponse) {#}
+{#           console.log("fuck");#}
+{#          $("#form1").alpaca({#}
+{#            "schema": {#}
+{#              "title": "User Feedback",#}
+{#              "description": "What do you think about Alpaca?",#}
+{#              "type": "object",#}
+{#              "properties": {#}
+{#                "name": {#}
+{#                  "type": "string",#}
+{#                  "title": "Name"#}
+{#                },#}
+{#                "ranking": {#}
+{#                  "type": "string",#}
+{#                  "title": "Ranking",#}
+{#                  "enum": ['excellent', 'not too shabby', 'alpaca built my hotrod']#}
+{#                }#}
+{#              }#}
+{#            }#}
+{#          });#}
+{#        };#}
+{#        $('.register').on('click', example());#}
+{#</script>#}
+{#    <div id="form"></div>#}'
+{% block content %}
+    <div class="stocks">
+    <input id="searchQuotes">
+<button class="quoteLookup">Quote Look up</button>
+    </div>
+
+  <div class="income">
+  <input class="incomeInput">
+  <button class="incomeSubmit">Submit</button>
+  </div>
+
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-3d.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 400px; height: 400px; max-width: 400px; margin: 0 auto"></div>
+
+{#    <button class="lookup">Lookup</button>#}
+{#    Housing data by Zip#}
+{#    <input id="zipcodeInput">#}
+{#<button class="zipcodeLookup">ZipCode</button>#}
+{% endblock content %}
+</body>

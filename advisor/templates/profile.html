@@ -1,0 +1,5 @@
+{% extends "boot4.html" %}
+{% block content %}
+    <meta http-equiv="refresh" content="0; url={% url "boot" %}"/>
+    <p>Your email address is {{ user.email }}</p>
+{%  endblock content %}
