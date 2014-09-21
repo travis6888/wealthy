@@ -73,7 +73,7 @@ class RiskProfileForm(forms.Form):
                                     label="If your portfolio lost more than 40% of its value in less than "
                                           "six months, what would you do?")
     Twelve = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-                                    label="I prefer to give equal weight to losses and gains")
+                                    label="I give equal weight to losses and gains")
     Thirteen = forms.TypedChoiceField(choices=yes_no, coerce=int, widget=forms.RadioSelect,
                                       label="Do you need to draw a large amount of money out your portfolio within the "
                                             "next ten years")

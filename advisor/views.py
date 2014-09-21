@@ -41,7 +41,6 @@ def profile(request):
 def register(request):
     if request.method == 'POST':
         form = EmailUserCreationForm(request.POST)
-
         if form.is_valid():
             form.save()
             messages.info(request, "Thanks for registering. You are now logged in.")
@@ -100,7 +99,6 @@ def risk_profile(request):
             picked += form.cleaned_data['Sixteen']
             investor.risk_score = int(picked)
             investor.save()
-            print picked
             return redirect("boot")
 
     else:
@@ -113,25 +111,15 @@ def risk_profile(request):
 def stock_lookup(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        print data
-        # form = StockLookUpForm(request.POST)
-        # if form.is_valid():
-        # symbol = form.cleaned_data['one']
         string = data['names']
         stock_list1 = []
         for name in string:
             stock_price = ystockquote.get_price(str(name))
-
-
-            print stock_price
             stock_info = {'stock_price': stock_price}
             stock_list1.append(stock_info)
 
-
         data = {'stock_list1': stock_list1}
         return HttpResponse(json.dumps(data), content_type='application/json')
-        # return render_to_response('stock_lookup.html', stock_info,
-        # context_instance=RequestContext(request))
 
 
 @csrf_exempt
@@ -140,16 +128,12 @@ def mortgage_percentage(request):
     investor = Investor.objects.get(id=request.user.id)
     if request.method == "POST":
         data = json.loads(request.body)
-        print data
         income2 = investor.income
-        print income2
         rent = data['data']
         desposible_monthly = (float(income2) / 12) - float(rent)
-        print desposible_monthly
         investor.housing = rent
         investor.save()
         desposible_monthly = {'desposible_income': desposible_monthly}
-
         return HttpResponse(json.dumps(desposible_monthly), content_type='application/json')
 
 
@@ -160,11 +144,7 @@ def rent_to_median(request):
     if request.method == "GET":
         rent = investor.housing
         after_tax = investor.after_tax
-        print rent
         percentage = '{:20,.2f}'.format(float(rent) / (float(after_tax) / 12))
-
-        print after_tax
-        print percentage
         monthly = (float(after_tax) / 12) - float(rent)
         investor.disposible_monthly = int(monthly)
         investor.save()
@@ -179,7 +159,6 @@ def input_income(request):
     investor = Investor.objects.get(id=request.user.id)
     if request.method == "GET":
         income_input = investor.income
-        print income_input
         if int(income_input) >= 200001:
             taxes = float(income_input) * .26
             after_taxes = float(income_input) - float(taxes)
@@ -190,12 +169,10 @@ def input_income(request):
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         elif 120000 <= int(income_input) <= 200000:
             taxes = float(income_input) * .18
-            print taxes
             after_taxes = (float(income_input) - float(taxes))
             investor.after_tax = int(after_taxes)
             print_tax = '{:20,.2f}'.format(after_taxes)
             json_tax = {'after_tax': print_tax}
-            print after_taxes
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         elif 60000 <= int(income_input) <= 119999:
@@ -204,7 +181,6 @@ def input_income(request):
             investor.after_tax = int(after_taxes)
             print_tax = '{:20,.2f}'.format(after_taxes)
             json_tax = {'after_tax': print_tax}
-            print "f"
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         elif 20000 < int(income_input) <= 59999:
@@ -213,13 +189,11 @@ def input_income(request):
             investor.after_tax = float(after_taxes)
             print_tax = '{:20,.2f}'.format(after_taxes)
             json_tax = {'after_tax': print_tax}
-            print "g"
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         else:
 
             investor.after_tax = income_input
-
             investor.save()
             redirect('home')
             return HttpResponse(json.dumps(income_input), content_type='application/json')
@@ -237,7 +211,6 @@ def demo_age(request):
             investment_return = '{:20,.2f}'.format(float(inv_return))
             vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
                            "percent_mon": percent_month}
-            print investment_month
             return HttpResponse(json.dumps(vistior_age), content_type='application/json')
         elif 45 < int(age) <= 64:
             percent_month = (float(4000) * .70)
@@ -246,7 +219,6 @@ def demo_age(request):
             investment_return = '{:20,.2f}'.format(float(inv_return))
             vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
                            "percent_mon": percent_month}
-            print investment_month
             return HttpResponse(json.dumps(vistior_age), content_type='application/json')
         elif 35 < int(age) <= 44:
             percent_month = (float(4000) * .80)
@@ -255,7 +227,6 @@ def demo_age(request):
             investment_return = '{:20,.2f}'.format(float(inv_return))
             vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
                            "percent_mon": percent_month}
-            print investment_month
             return HttpResponse(json.dumps(vistior_age), content_type='application/json')
         elif 14 < int(age) <= 34:
             percent_month = (float(4000) * .85)
@@ -264,7 +235,6 @@ def demo_age(request):
             investment_return = '{:20,.2f}'.format(float(inv_return))
             vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
                            "percent_mon": percent_month}
-            print investment_month
             return HttpResponse(json.dumps(vistior_age), content_type='application/json')
 
 
@@ -275,11 +245,7 @@ def find_investment_monthly(request):
     if request.method == "GET":
         age = investor.age
         monies = investor.disposible_monthly
-        print age
-        print monies
-
         if int(age) >= 65:
-
             percent_month = (float(monies) * .60)
             investment_month = (float(monies) - float(percent_month))
             investor.monthly_investment = investment_month
@@ -293,17 +259,14 @@ def find_investment_monthly(request):
             investor.monthly_investment = investment_month
             investor.save()
             investment_clean = '{:20,.2f}'.format(investment_month)
-
             investing = {'invest': investment_clean}
             return HttpResponse(json.dumps(investing), content_type='application/json')
         elif 35 <= int(age) <= 44:
             percent_month = (float(monies) * .75)
-
             investment_month = (float(monies) - float(percent_month))
             investor.monthly_investment = investment_month
             investor.save()
             investment_clean = '{:20,.2f}'.format(investment_month)
-
             investing = {'invest': investment_clean}
             return HttpResponse(json.dumps(investing), content_type='application/json')
         else:
@@ -315,12 +278,6 @@ def find_investment_monthly(request):
             investing = {'invest': investment_clean}
             return HttpResponse(json.dumps(investing), content_type='application/json')
 
-
-# @csrf_exempt
-# @login_required()
-# def calculate(request):
-# investor = Investor.objects.get(id=request.user.id)
-#     if request.method == "POST":
 
 def find_investment(request):
     investor = Investor.objects.get(id=request.user.id)
@@ -337,8 +294,6 @@ def find_portfolio(request):
         monthly = investor.disposible_monthly
         age = investor.age
         investment = investor.monthly_investment
-        print investment
-        print risky
         if int(risky) > 40:
             inv_return = numpy.fv((.097 / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
             investment_return = '{:20,.2f}'.format(float(inv_return))
@@ -394,9 +349,7 @@ def boot(request):
 def stock_info(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        print data
         names = data['names']
-        print names
         stock_list = []
         for name in names:
             stock = Stocks.objects.get(name=name)
@@ -406,5 +359,4 @@ def stock_info(request):
             }
             stock_list.append(stock_description)
         data = {'stock_list': stock_list}
-        print stock_list
         return HttpResponse(json.dumps(data), content_type='application/json')

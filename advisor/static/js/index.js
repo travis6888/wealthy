@@ -10,11 +10,7 @@ $(document).ready( function() {
             dataType: 'json',
 
             success: function (stock_response) {
-                console.log(stock_response.after_tax);
                 $('.portfolioResultsTax').html("<h3>Your after tax income is roughly : $" + stock_response.after_tax);
-
-
-                console.log(stock_response)
             },
             error: function (error_response) {
             }
@@ -33,7 +29,6 @@ $(document).ready( function() {
                         "<h3>You spend " + (stock_response.percentage_housing * 100) + " % on housing</h3>");
 
 
-                    console.log(stock_response)
                 },
                 error: function (error_response) {
                 }
@@ -44,7 +39,6 @@ $(document).ready( function() {
                     dataType: 'json',
 
                     success: function (stock_response) {
-                        console.log(stock_response.invest);
 
                         $('.monthInvestment').html("<h3>Your monthly investment should be : $" + stock_response.invest + "</h3>");
                         var stocks = {'names': []};
@@ -65,7 +59,6 @@ $(document).ready( function() {
                         dataType: 'json',
 
                         success: function (stock_response) {
-                            console.log(stock_response);
                             var stocked = stock_response.stocksp;
                             var stockedname = stock_response.stocksn;
                             $('.gtPortfolio').hide('slow');
@@ -75,8 +68,6 @@ $(document).ready( function() {
                             expected.push(stock_response.expected);
                             portfolio.push(stock_response.portfolio);
                             stocks['names'].push(stockedname.stock1n, stockedname.stock2n, stockedname.stock3n, stockedname.stock4n, stockedname.stock5n);
-                            console.log(stocks);
-                            console.log(values);
                             $('.getPortfolio').html('<h3>The expected return of this portfolio when your 65 is: $' + stock_response.return)
 
 
@@ -202,10 +193,8 @@ $(document).ready( function() {
                                 }
                                 $('#accordion2').show();
                                 $('#accordion2').accordion({active: 1});
-                                console.log(stock_response);
                             },
                             error: function (error_response) {
-                                console.log(error_response);
                             }
                         }).complete(function () {
                             var stockInfo = JSON.stringify(stocks);
@@ -224,12 +213,10 @@ $(document).ready( function() {
                                         $(stocks_prices).append('<p class="stPrice">Recent stock price:  ' + stock_list[i].stock_price + '   </p>  ');
 //
 
-                                        console.log(stock_response);
 
                                     }
                                 },
                                 error: function (error_response) {
-                                    console.log(error_response);
                                 }
                             });
                         });
@@ -370,7 +357,6 @@ $(document).ready( function() {
         });
 
         var ageInput = $('.demo_age').val();
-        console.log(ageInput);
         var age = {};
         age['data'] = ageInput;
         var stockInfo = JSON.stringify(age);
@@ -380,11 +366,6 @@ $(document).ready( function() {
             dataType: 'json',
             data: stockInfo,
             success: function (stock_response) {
-                console.log(stock_response);
-                console.log(stock_response.age);
-                console.log(stock_response.investment);
-                console.log(stock_response.return);
-                console.log(stock_response.percent_mon);
                 $('.userAge').html('<h3 class="section-subheading text-muted "> ' + stock_response.age + ' years old and ' +
                     'a medium convservative investor</h3>');
                 $('.demoResults').html("<h3>Here is your outlook for the next " + (70 - stock_response.age) + " years!" +

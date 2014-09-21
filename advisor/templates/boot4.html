@@ -59,7 +59,7 @@
                     </li>
 
                         {% if user.is_authenticated %}
-{#                        <li>
+                        <li>
                         <a href="{% url 'logout' %}">Logout</a>
                             </li>
 
@@ -91,7 +91,7 @@
                 {% endif %}
 
             </div>
-            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal fade bs-example-modal-xs modalsTarget" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content loginModal">
                   <form method="post" action="/login/">
@@ -130,21 +130,19 @@
             <div class="row text-center">
                 <div class="col-md-4">
                 <div id="pieChart"></div>
-{#                    <h4 class="service-heading">E-Commerce</h4>#}
 
 
 
-{#                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>#}
                 </div>
                 <div class="col-md-4">
 
                     <div id="accordion">
                       <h3>VOO</h3>
-                      <div>Vanguard S&P 500 Index Fund</div>
+                      <div>Vanguard S&P 500 Index Fund that tracks the Standard and Poor's 500 Index. WHich is made up of the 500 largest American companies.</div>
                       <h3>VNQ</h3>
-                      <div>Vanguard REIT ETF</div>
+                      <div>Vanguard REIT ETF tracks the Real Estate Investment Trust Index. American REIT's only and has a beta of 1.02. </div>
                       <h3>VPU</h3>
-                      <div>Vanguard Uilities ETF</div>
+                      <div>Vanguard Uilities ETF is made of up of a diversified group of American Utility providers. Dividend yield is often larger than 3% and the beta is under .5.</div>
                       <h3>VGIT</h3>
                       <div>Vanguard ETF</div>
                       <h3>VCLT</h3>
@@ -167,7 +165,7 @@
 
                 <div class="row">
 {#                      <button class=" btn btn-xl makeProfileBtn center-block" data-toggle="modal" data-target=".register-modal-lg">Create Yours!</button>#}
-                    <div class="modal fade register-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal fade register-modal-xs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <form method="post" action="/register/" enctype="form-data">
@@ -176,8 +174,8 @@
                             <div class="userName">
                                 <h4>Hey there! Lets make a username, so I know what to call you</h4>
                                 <input id="id_username" maxlength="30" name="username" type="text" placeholder="Username">
-                                <input id="id_first_name" maxlength="30" name="first_name" type="text" placeholder="Name">
-                                <input id="id_last_name" maxlength="30" name="last_name" type="text" placeholder="Name">
+                                <input id="id_first_name" maxlength="30" name="first_name" type="text" placeholder="First Name">
+                                <input id="id_last_name" maxlength="30" name="last_name" type="text" placeholder="Last Name">
 
                                 <a href="#" class="btn btn-lg btn-primary btn-block usernameNext" id="usernameNext">Next</a>
                             </div>
@@ -189,7 +187,8 @@
                                 <a href="#" class="btn btn-lg btn-primary btn-block emailPasswordNext">Next</a>
                             </div>
                              <div class="demographics" style="display: none;">
-                                 <h4> Almost done, just need your age, income and the monthly housing cost for your entire home or apartment to finish registration!</h4>
+                                 <h4> Almost done, just need your age, income and the monthly housing cost's for your entire home or apartment to finish registration!</h4>
+                                 <h5>Your monthly housing cost should include rent/mortgage, utilities, HOA, etc</h5>
                                  <input id="id_income" name="income" type="text" placeholder="Yearly Income">
                                  <input id="id_age" name="age" type="text" placeholder="Age">
                                  <input id="id_housing" name="housing" type="text" placeholder="Monthly Housing Cost">
