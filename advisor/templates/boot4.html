@@ -93,9 +93,9 @@
             {% endif %}
 
         </div>
-        <div class="modal fade bs-example-modal-xs modalsTarget" tabindex="-1" role="dialog"
+        <div class="modal fade bs-example-modal-sm modalsTarget" tabindex="-1" role="dialog"
              aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-sm">
                 <div class="modal-content loginModal">
                     <form method="post" action="/login/">
                         {% csrf_token %}
@@ -108,6 +108,11 @@
                 </div>
             </div>
         </div>
+    <div class="row">
+        <div class="hidden createAccount">
+
+        </div>
+    </div>
 
     </div>
 </header>
@@ -125,17 +130,23 @@
                 <button class="btn btn-xl center-block ageInputBtn ">Submit</button>
             </div>
         </div>
+
         <div class="demoHide">
             <div class="row">
                 <div class="col-lg-12 text-center">
+                    <div class="row">
                     <h2 class="section-heading">Here's A Demo Portfolio For Someone Your Age!</h2>
 
-                    <h3 class="section-subheading text-muted userAge">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted userAge"></h3>
 
                     <p class="firstPara"></p>
+                        </div>
                 </div>
             </div>
+
             <div class="row text-center">
+                <div class="col-md-12">
+
                 <div class="col-md-4">
                     <div id="pieChart"></div>
 
@@ -178,18 +189,22 @@
 
                 </div>
             </div>
+                </div>
             <button class=" btn btn-xl makeProfileBtn center-block" data-toggle="modal"
                     data-target=".register-modal-lg">Create Yours!
             </button>
         </div>
 
         <div class="row">
-            <div class="modal fade register-modal-xs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            <div class="modal fade register-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form method="post" action="/register/" enctype="form-data">
                             {% csrf_token %}
+                            <div class="modal-header">
+                                <h2>Create Account</h2>
+                            </div>
                             <h2 class="form-signin-heading">Create an account</h2>
 
                             <div class="userName">
@@ -218,7 +233,7 @@
                                 <h5>Your monthly housing cost should include rent/mortgage, utilities, HOA, etc</h5>
                                 <input id="id_income" name="income" type="text" placeholder="Yearly Income">
                                 <input id="id_age" name="age" type="text" placeholder="Age">
-                                <input id="id_housing" name="housing" type="text" placeholder="Monthly Housing Cost">
+                                <input id="id_housing" name="housing" type="text" placeholder="Manadatoy monthly spending">
                                 <input id="id_zipcode" name="zipcode" type="text" placeholder="Zipcode">
                             </div>
 
