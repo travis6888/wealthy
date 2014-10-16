@@ -191,14 +191,14 @@
             </div>
                 </div>
             <button class=" btn btn-xl makeProfileBtn center-block" data-toggle="modal"
-                    data-target=".register-modal-lg">Create Yours!
+                    data-target=".register-modal-sm">Create Yours!
             </button>
         </div>
 
         <div class="row">
-            <div class="modal fade register-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            <div class="modal fade register-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <form method="post" action="/register/" enctype="form-data">
                             {% csrf_token %}
@@ -239,7 +239,7 @@
 
 
                             <button class="btn btn-lg btn-primary btn-block doneButton" style="display: none;"
-                                    type="submit">High-Five For Completion
+                                    type="submit">Yay! You're done!
                             </button>
                         </form>
                     </div>
