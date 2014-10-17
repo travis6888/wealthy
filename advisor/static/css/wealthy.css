@@ -124,3 +124,6 @@ ul{
     text-align: center;
     display: inline;
 }
+.ui-accordion .ui-accordion-content {
+    padding-bottom: 0;
+}
