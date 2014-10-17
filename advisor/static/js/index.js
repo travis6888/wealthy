@@ -288,32 +288,32 @@ $(document).ready( function() {
                 "sortOrder": "value-desc",
                 "content": [
                     {
-                        "label": "VOO",
+                        "label": "S&P500 Index ETF",
                         "value": 30,
                         "color": "#1f7f0e"
                     },
                     {
-                        "label": "VPU",
+                        "label": "REIT ETF",
                         "value": 10,
                         "color": "#2ea217"
                     },
                     {
-                        "label": "VNQ",
+                        "label": "Utilities ETF",
                         "value": 10,
                         "color": "#043a00"
                     },
                     {
-                        "label": "VCLT",
+                        "label": "Government Bonds ETF",
                         "value": 15,
                         "color": "#40cb27"
                     },
                     {
-                        "label": "VGIT",
+                        "label": "Corporate Bond Long Term Bonds",
                         "value": 15,
                         "color": "#155d07"
                     },
                     {
-                        "label": "VCIT",
+                        "label": "Intermediate Term Corporate Bonds",
                         "value": 20,
                         "color": "#0e4904"
                     }
