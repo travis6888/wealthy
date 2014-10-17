@@ -303,17 +303,17 @@ $(document).ready( function() {
                         "color": "#043a00"
                     },
                     {
-                        "label": "Government Bonds ETF",
+                        "label": "Government Bonds",
                         "value": 15,
                         "color": "#40cb27"
                     },
                     {
-                        "label": "Corporate Bond Long Term Bonds",
+                        "label": "LT CRP BNDs",
                         "value": 15,
                         "color": "#155d07"
                     },
                     {
-                        "label": "Intermediate Term Corporate Bonds",
+                        "label": "INT CRP BNDs",
                         "value": 20,
                         "color": "#0e4904"
                     }
@@ -377,7 +377,12 @@ $(document).ready( function() {
             error: function (error_response) {
             }
         }).complete(function () {
-            $('#accordion').accordion({active: 1});
+            $('#accordion').accordion({active: 1,
+    header: "h3",
+    collapsible: true,
+    autoHeight: false,
+    navigation: true
+});
 
         });
 

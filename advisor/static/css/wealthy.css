@@ -126,4 +126,5 @@ ul{
 }
 .ui-accordion .ui-accordion-content {
     padding-bottom: 0;
+    max-height: 150px;
 }
