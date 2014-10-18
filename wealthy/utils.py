@@ -21,3 +21,12 @@ def find_invest_month_calc(investor, monies):
     investment_clean = '{:20,.2f}'.format(investment_month)
     investing = {'invest': investment_clean}
     return investing
+
+
+def input_income_calc(investor, income_input):
+    taxes = float(income_input) * .06
+    after_taxes = float(income_input) - float(taxes)
+    investor.after_tax = float(after_taxes)
+    print_tax = '{:20,.2f}'.format(after_taxes)
+    json_tax = {'after_tax': print_tax}
+    return json_tax
