@@ -23,8 +23,7 @@ def find_invest_month_calc(investor, monies):
     return investing
 
 
-def input_income_calc(investor, income_input):
-    taxes = float(income_input) * .06
+def input_income_calc(investor, income_input, taxes):
     after_taxes = float(income_input) - float(taxes)
     investor.after_tax = float(after_taxes)
     print_tax = '{:20,.2f}'.format(after_taxes)

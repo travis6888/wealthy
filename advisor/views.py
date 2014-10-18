@@ -163,22 +163,27 @@ def input_income(request):
     if request.method == "GET":
         income_input = investor.income
         if int(income_input) >= 200001:
-            json_tax = input_income_calc(investor, income_input)
+            taxes = float(income_input) * .26
+            json_tax = input_income_calc(investor, income_input, taxes)
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         elif 120000 <= int(income_input) <= 200000:
-            json_tax = input_income_calc(investor, income_input)
+            taxes = float(income_input) * .18
+            json_tax = input_income_calc(investor, income_input, taxes)
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         elif 60000 <= int(income_input) <= 119999:
-            json_tax = input_income_calc(investor, income_input)
+            taxes = float(income_input) * .10
+            json_tax = input_income_calc(investor, income_input, taxes)
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         elif 20000 < int(income_input) <= 59999:
-            json_tax = input_income_calc(investor, income_input)
+            taxes = float(income_input) * .06
+            json_tax = input_income_calc(investor, income_input, taxes)
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         else:
+
             investor.after_tax = income_input
             investor.save()
             redirect('home')
