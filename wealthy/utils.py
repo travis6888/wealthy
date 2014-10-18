@@ -13,8 +13,7 @@ def demo_age_calc(age):
     return vistior_age
 
 
-def find_invest_month_calc(investor, monies):
-    percent_month = (float(monies) * .60)
+def find_invest_month_calc(investor, monies, percent_month):
     investment_month = (float(monies) - float(percent_month))
     investor.monthly_investment = investment_month
     investor.save()
