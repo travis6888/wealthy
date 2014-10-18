@@ -13,11 +13,18 @@ def demo_age_calc(age):
     return vistior_age
 
 
-def find_invest_month_calc(investor, monies):
-    percent_month = (float(monies) * .60)
+def find_invest_month_calc(investor, monies, percent_month):
     investment_month = (float(monies) - float(percent_month))
     investor.monthly_investment = investment_month
     investor.save()
     investment_clean = '{:20,.2f}'.format(investment_month)
     investing = {'invest': investment_clean}
     return investing
+
+
+def input_income_calc(investor, income_input, taxes):
+    after_taxes = float(income_input) - float(taxes)
+    investor.after_tax = float(after_taxes)
+    print_tax = '{:20,.2f}'.format(after_taxes)
+    json_tax = {'after_tax': print_tax}
+    return json_tax
