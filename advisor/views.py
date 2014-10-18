@@ -25,6 +25,9 @@ from yahoo import *
 
 
 # @csrf_exempt
+from wealthy.utils import demo_age_calc, find_invest_month_calc
+
+
 def home(request):
     return render(request, 'home.html')
 
@@ -205,36 +208,16 @@ def demo_age(request):
         data = json.loads(request.body)
         age = data['data']
         if int(age) > 65:
-            percent_month = (float(4000) * .60)
-            investment_month = (float(4000) - float(percent_month))
-            inv_return = numpy.fv((.058 / 12), ((65 - (int(age))) * 12), -(int(investment_month)), -investment_month)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
-            vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
-                           "percent_mon": percent_month}
+            vistior_age = demo_age_calc(age)
             return HttpResponse(json.dumps(vistior_age), content_type='application/json')
         elif 45 < int(age) <= 64:
-            percent_month = (float(4000) * .70)
-            investment_month = (float(4000) - float(percent_month))
-            inv_return = numpy.fv((.058 / 12), ((65 - (int(age))) * 12), -(int(investment_month)), -investment_month)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
-            vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
-                           "percent_mon": percent_month}
+            vistior_age = demo_age_calc(age)
             return HttpResponse(json.dumps(vistior_age), content_type='application/json')
         elif 35 < int(age) <= 44:
-            percent_month = (float(4000) * .80)
-            investment_month = (float(4000) - float(percent_month))
-            inv_return = numpy.fv((.058 / 12), ((65 - (int(age))) * 12), -(int(investment_month)), -investment_month)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
-            vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
-                           "percent_mon": percent_month}
+            vistior_age = demo_age_calc(age)
             return HttpResponse(json.dumps(vistior_age), content_type='application/json')
         elif 14 < int(age) <= 34:
-            percent_month = (float(4000) * .85)
-            investment_month = (float(4000) - float(percent_month))
-            inv_return = numpy.fv((.058 / 12), ((65 - (int(age))) * 12), -(int(investment_month)), -investment_month)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
-            vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
-                           "percent_mon": percent_month}
+            vistior_age = demo_age_calc(age)
             return HttpResponse(json.dumps(vistior_age), content_type='application/json')
 
 
@@ -246,36 +229,41 @@ def find_investment_monthly(request):
         age = investor.age
         monies = investor.disposible_monthly
         if int(age) >= 65:
-            percent_month = (float(monies) * .60)
-            investment_month = (float(monies) - float(percent_month))
-            investor.monthly_investment = investment_month
-            investor.save()
-            investment_clean = '{:20,.2f}'.format(investment_month)
-            investing = {'invest': investment_clean}
+            # percent_month = (float(monies) * .60)
+            # investment_month = (float(monies) - float(percent_month))
+            # investor.monthly_investment = investment_month
+            # investor.save()
+            # investment_clean = '{:20,.2f}'.format(investment_month)
+            # investing = {'invest': investment_clean}
+            investing = find_invest_month_calc(investor, monies)
             return HttpResponse(json.dumps(investing), content_type='application/json')
         elif 45 <= int(age) <= 64:
-            percent_month = (float(monies) * .70)
-            investment_month = (float(monies) - float(percent_month))
-            investor.monthly_investment = investment_month
-            investor.save()
-            investment_clean = '{:20,.2f}'.format(investment_month)
-            investing = {'invest': investment_clean}
+            # percent_month = (float(monies) * .70)
+            # investment_month = (float(monies) - float(percent_month))
+            # investor.monthly_investment = investment_month
+            # investor.save()
+            # investment_clean = '{:20,.2f}'.format(investment_month)
+            # investing = {'invest': investment_clean}
+            investing = find_invest_month_calc(investor, monies)
             return HttpResponse(json.dumps(investing), content_type='application/json')
         elif 35 <= int(age) <= 44:
-            percent_month = (float(monies) * .75)
-            investment_month = (float(monies) - float(percent_month))
-            investor.monthly_investment = investment_month
-            investor.save()
-            investment_clean = '{:20,.2f}'.format(investment_month)
-            investing = {'invest': investment_clean}
+            # percent_month = (float(monies) * .75)
+            # investment_month = (float(monies) - float(percent_month))
+            # investor.monthly_investment = investment_month
+            # investor.save()
+            # investment_clean = '{:20,.2f}'.format(investment_month)
+            # investing = {'invest': investment_clean}
+            investing = find_invest_month_calc(investor, monies)
+
             return HttpResponse(json.dumps(investing), content_type='application/json')
         else:
-            percent_month = (float(monies) * .80)
-            investment_month = (float(monies) - float(percent_month))
-            investor.monthly_investment = investment_month
-            investor.save()
-            investment_clean = '{:20,.2f}'.format(investment_month)
-            investing = {'invest': investment_clean}
+            # percent_month = (float(monies) * .80)
+            # investment_month = (float(monies) - float(percent_month))
+            # investor.monthly_investment = investment_month
+            # investor.save()
+            # investment_clean = '{:20,.2f}'.format(investment_month)
+            # investing = {'invest': investment_clean}
+            investing = find_invest_month_calc(investor, monies)
             return HttpResponse(json.dumps(investing), content_type='application/json')
 
 

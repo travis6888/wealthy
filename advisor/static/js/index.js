@@ -288,32 +288,32 @@ $(document).ready( function() {
                 "sortOrder": "value-desc",
                 "content": [
                     {
-                        "label": "VOO",
+                        "label": "S&P500 Index ETF",
                         "value": 30,
                         "color": "#1f7f0e"
                     },
                     {
-                        "label": "VPU",
+                        "label": "REIT ETF",
                         "value": 10,
                         "color": "#2ea217"
                     },
                     {
-                        "label": "VNQ",
+                        "label": "Utilities ETF",
                         "value": 10,
                         "color": "#043a00"
                     },
                     {
-                        "label": "VCLT",
+                        "label": "Government Bonds",
                         "value": 15,
                         "color": "#40cb27"
                     },
                     {
-                        "label": "VGIT",
+                        "label": "LT CRP BNDs",
                         "value": 15,
                         "color": "#155d07"
                     },
                     {
-                        "label": "VCIT",
+                        "label": "INT CRP BNDs",
                         "value": 20,
                         "color": "#0e4904"
                     }
@@ -377,7 +377,12 @@ $(document).ready( function() {
             error: function (error_response) {
             }
         }).complete(function () {
-            $('#accordion').accordion({active: 1});
+            $('#accordion').accordion({active: 1,
+    header: "h3",
+    collapsible: true,
+    autoHeight: false,
+    navigation: true
+});
 
         });
 
