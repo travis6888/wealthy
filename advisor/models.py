@@ -33,6 +33,8 @@ class Investment(models.Model):
     asset_type = models.ForeignKey(AssetType, related_name='investments')
     fees = models.FloatField(max_length=5, default=0)
     url = models.URLField()
+    description = models.TextField(max_length=1000, blank=True, null=True)
+
 
     def __unicode__(self):
         return u"{}".format(self.name, self.asset_type)
@@ -43,6 +45,7 @@ class Portfolio(models.Model):
     investments = models.ManyToManyField(Investment, related_name='portfolios')
     investor = models.OneToOneField(Investor, related_name="portfolio")
     expected_return = models.FloatField(max_length=5, default=0)
+
 
     def __unicode__(self):
         return u"{}".format(self.name)
