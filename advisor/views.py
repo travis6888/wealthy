@@ -25,7 +25,7 @@ from yahoo import *
 
 
 # @csrf_exempt
-from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc
+from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc
 
 
 def home(request):
@@ -250,8 +250,7 @@ def find_portfolio(request):
         age = investor.age
         investment = investor.monthly_investment
         if int(risky) > 40:
-            inv_return = numpy.fv((.097 / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
+            investment_return = portfolio_return_calc(age, investment)
             data2 = {'stocksp': {'stock1p': 25, 'stock2p': 25, 'stock3p': 20, 'stock4p': 20, 'stock5p': 10},
                      'stocksn': {'stock1n': "VOO", 'stock2n': "VWO", 'stock3n': 'VO', 'stock4n': 'VTWO', 'stock5n': 'VTI'},
                     'portfolio': 'Super Aggressive',
@@ -260,8 +259,8 @@ def find_portfolio(request):
             return HttpResponse(json.dumps(data2), content_type='application/json')
 
         elif 32 <= int(risky) <= 40:
-            inv_return = numpy.fv((.083 / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
+            investment_return = portfolio_return_calc(age, investment)
+
             data2 = {'stocksp': {'stock1p': 40, 'stock2p': 20, 'stock3p': 20, 'stock4p': 15, 'stock5p': 5 },
                      'stocksn': {'stock1n': "VOO", 'stock2n': "VWO", 'stock3n': 'VTI', 'stock4n': 'VONE', 'stock5n': 'VTWO'},
                     'portfolio': 'Aggressive',
@@ -269,8 +268,7 @@ def find_portfolio(request):
                     'return': investment_return}
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 24 <= int(risky) <= 31:
-            inv_return = numpy.fv((.067 / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
+            investment_return = portfolio_return_calc(age, investment)
             data2 = {'stocksp': {'stock1p': 30, 'stock2p': 30, 'stock3p': 20, 'stock4p': 15, 'stock5p': 15},
                  'stocksn': {'stock1n': "VOO", 'stock2n': "VCIT", 'stock3n': 'VGK', 'stock4n': 'VTI', 'stock5n': 'VYM'},
                 'portfolio': 'Moderate',
@@ -278,8 +276,7 @@ def find_portfolio(request):
                 'return': investment_return}
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 12 <= int(risky) <= 23:
-            inv_return = numpy.fv((.058 / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
+            investment_return = portfolio_return_calc(age, investment)
             data2 = {'stocksp': {'stock1p': 30, 'stock2p': 30, 'stock3p': 20, 'stock4p': 10, 'stock5p': 10},
                      'stocksn': {'stock1n': "VCIT", 'stock2n': "VOO", 'stock3n': 'VGLT', 'stock4n': 'VNQ', 'stock5n': 'VYM'},
                     'portfolio': 'Conservative',
@@ -287,8 +284,7 @@ def find_portfolio(request):
                     'return': investment_return}
             return HttpResponse(json.dumps(data2), content_type='application/json')
         else:
-            inv_return = numpy.fv((.04 / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
-            investment_return = '{:20,.2f}'.format(float(inv_return))
+            investment_return = portfolio_return_calc(age, investment)
             data2 = {'stocksp': {'stock1p': 40, 'stock2p': 30, 'stock3p': 20, 'stock4p': 10, 'stock5p': 10},
                      'stocksn': {'stock1n': "VCIT", 'stock2n': "VGLT", 'stock3n': 'VOO', 'stock4n': 'VNQ', 'stock5n': 'VYM'},
                     'portfolio': 'Super Conservative',
@@ -304,6 +300,7 @@ def boot(request):
 def stock_info(request):
     if request.method == "POST":
         data = json.loads(request.body)
+        print data
         names = data['names']
         stock_list = []
         for name in names:

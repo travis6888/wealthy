@@ -28,3 +28,9 @@ def input_income_calc(investor, income_input, taxes):
     print_tax = '{:20,.2f}'.format(after_taxes)
     json_tax = {'after_tax': print_tax}
     return json_tax
+
+
+def portfolio_return_calc(age, investment ):
+    inv_return = numpy.fv((.097 / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
+    investment_return = '{:20,.2f}'.format(float(inv_return))
+    return investment_return
