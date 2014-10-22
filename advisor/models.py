@@ -14,7 +14,6 @@ class Investor(AbstractUser):
     after_tax = models.FloatField(null=True, default=0)
     monthly_investment = models.FloatField(null=True, default=0, max_length=20)
 
-
     def __unicode__(self):
         return u"{} {}".format(self.username, self.income)
 
@@ -32,9 +31,8 @@ class Investment(models.Model):
     name = models.CharField(max_length=100)
     asset_type = models.ForeignKey(AssetType, related_name='investments')
     fees = models.FloatField(max_length=5, default=0)
-    url = models.URLField()
+    url = models.URLField(blank=True, null=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
-
 
     def __unicode__(self):
         return u"{}".format(self.name, self.asset_type)
@@ -44,11 +42,10 @@ class Portfolio(models.Model):
     name = models.CharField(max_length=100)
     investments = models.ManyToManyField(Investment, related_name='portfolios')
     investor = models.OneToOneField(Investor, related_name="portfolio")
-    expected_return = models.FloatField(max_length=5, default=0)
-
+    expected_return = models.FloatField(max_length=5, default=0, blank=True, null=True)
 
     def __unicode__(self):
-        return u"{}".format(self.name)
+        return u"{} {}".format(self.name, self.investments)
 
 
 class Stocks(models.Model):
