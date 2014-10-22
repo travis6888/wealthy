@@ -254,9 +254,8 @@ def find_portfolio(request):
             portfolio = Portfolio.objects.filter(name="Super Aggressive")
             stock_list = Investment.objects.filter(portfolios__name="Super Aggressive")
             print stock_list,
-            for stock in portfolio:
-                stock1 = stock.investments.all
-                stocks.append(stock1)
+            for stock in stock_list:
+                print stock
             # print stocks
             investment_return = portfolio_return_calc(age, investment)
             data2 = {'stocksp': {'stock1p': 25, 'stock2p': 25, 'stock3p': 20, 'stock4p': 20, 'stock5p': 10},
