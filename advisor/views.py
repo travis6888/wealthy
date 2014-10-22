@@ -16,7 +16,7 @@ from django.utils import formats
 from django.views.decorators.csrf import csrf_exempt
 from requests import auth
 from advisor.forms import EmailUserCreationForm, RiskProfileForm, StockLookUpForm
-from advisor.models import Investor, Stocks
+from advisor.models import Investor, Stocks, Portfolio, Investment
 from wealthy import settings
 import ystockquote
 import finance
@@ -250,6 +250,14 @@ def find_portfolio(request):
         age = investor.age
         investment = investor.monthly_investment
         if int(risky) > 40:
+            stocks = []
+            portfolio = Portfolio.objects.filter(name="Super Aggressive")
+            stock_list = Investment.objects.filter(portfolios__name="Super Aggressive")
+            print stock_list,
+            for stock in portfolio:
+                stock1 = stock.investments.all
+                stocks.append(stock1)
+            # print stocks
             investment_return = portfolio_return_calc(age, investment)
             data2 = {'stocksp': {'stock1p': 25, 'stock2p': 25, 'stock3p': 20, 'stock4p': 20, 'stock5p': 10},
                      'stocksn': {'stock1n': "VOO", 'stock2n': "VWO", 'stock3n': 'VO', 'stock4n': 'VTWO', 'stock5n': 'VTI'},
@@ -300,7 +308,6 @@ def boot(request):
 def stock_info(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        print data
         names = data['names']
         stock_list = []
         for name in names:

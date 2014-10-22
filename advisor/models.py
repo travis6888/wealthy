@@ -31,7 +31,7 @@ class Investment(models.Model):
     name = models.CharField(max_length=100)
     asset_type = models.ForeignKey(AssetType, related_name='investments')
     fees = models.FloatField(max_length=5, default=0)
-    url = models.URLField()
+    url = models.URLField(blank=True, null=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
 
     def __unicode__(self):
@@ -42,10 +42,10 @@ class Portfolio(models.Model):
     name = models.CharField(max_length=100)
     investments = models.ManyToManyField(Investment, related_name='portfolios')
     investor = models.OneToOneField(Investor, related_name="portfolio")
-    expected_return = models.FloatField(max_length=5, default=0)
+    expected_return = models.FloatField(max_length=5, default=0, blank=True, null=True)
 
     def __unicode__(self):
-        return u"{}".format(self.name)
+        return u"{} {}".format(self.name, self.investments)
 
 
 class Stocks(models.Model):
