@@ -1,4 +1,5 @@
 import numpy
+from advisor.models import Portfolio, Investment
 
 __author__ = 'Travis'
 
@@ -30,7 +31,31 @@ def input_income_calc(investor, income_input, taxes):
     return json_tax
 
 
-def portfolio_return_calc(age, investment ):
-    inv_return = numpy.fv((.097 / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
+def portfolio_return_calc(age, investment, risk_portfolio ):
+    portfolio_attr= []
+    portfolio_list = Portfolio.objects.filter(name=risk_portfolio)
+    stock_list = Investment.objects.filter(portfolios__name=risk_portfolio)
+    stock_name = []
+    stock_info_list = []
+    for stock in stock_list:
+        stock_name.append(stock.name)
+        stock_description = {
+                'name': stock.name,
+                'info': stock.description}
+
+        stock_info_list.append(stock_description)
+    print stock_info_list
+    for portfolio in portfolio_list:
+        portfolio_attr.append(portfolio.name)
+        portfolio_attr.append(portfolio.expected_return)
+        print portfolio.investments
+        print portfolio.expected_return
+    inv_return = numpy.fv((int(portfolio_attr[1]) / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
     investment_return = '{:20,.2f}'.format(float(inv_return))
-    return investment_return
+
+    data2 = {'stocksp': {'stock1p': 25, 'stock2p': 25, 'stock3p': 20, 'stock4p': 20, 'stock5p': 10},
+                     'stocksn': {'stock1n': stock_name[0], 'stock2n': stock_name[1], 'stock3n': stock_name[2], 'stock4n': stock_name[3], 'stock5n': stock_name[4]},
+                    'portfolio': portfolio_attr[0],
+                    'expected': portfolio_attr[1],
+                    'return': investment_return, 'stock_list': stock_info_list}
+    return data2

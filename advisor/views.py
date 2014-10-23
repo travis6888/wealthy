@@ -250,53 +250,24 @@ def find_portfolio(request):
         age = investor.age
         investment = investor.monthly_investment
         if int(risky) > 40:
-            stocks = []
-            portfolio = Portfolio.objects.filter(name="Super Aggressive")
-            stock_list = Investment.objects.filter(portfolios__name="Super Aggressive")
-            print stock_list,
-            for stock in stock_list:
-                print stock
-            # print stocks
-            investment_return = portfolio_return_calc(age, investment)
-            data2 = {'stocksp': {'stock1p': 25, 'stock2p': 25, 'stock3p': 20, 'stock4p': 20, 'stock5p': 10},
-                     'stocksn': {'stock1n': "VOO", 'stock2n': "VWO", 'stock3n': 'VO', 'stock4n': 'VTWO', 'stock5n': 'VTI'},
-                    'portfolio': 'Super Aggressive',
-                    'expected': 9.7,
-                    'return': investment_return}
+            risk_portfolio = "Super Aggressive"
+            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
-
         elif 32 <= int(risky) <= 40:
-            investment_return = portfolio_return_calc(age, investment)
-
-            data2 = {'stocksp': {'stock1p': 40, 'stock2p': 20, 'stock3p': 20, 'stock4p': 15, 'stock5p': 5 },
-                     'stocksn': {'stock1n': "VOO", 'stock2n': "VWO", 'stock3n': 'VTI', 'stock4n': 'VONE', 'stock5n': 'VTWO'},
-                    'portfolio': 'Aggressive',
-                    'expected': 8.3,
-                    'return': investment_return}
+            risk_portfolio = "Super Aggressive"
+            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 24 <= int(risky) <= 31:
-            investment_return = portfolio_return_calc(age, investment)
-            data2 = {'stocksp': {'stock1p': 30, 'stock2p': 30, 'stock3p': 20, 'stock4p': 15, 'stock5p': 15},
-                 'stocksn': {'stock1n': "VOO", 'stock2n': "VCIT", 'stock3n': 'VGK', 'stock4n': 'VTI', 'stock5n': 'VYM'},
-                'portfolio': 'Moderate',
-                'expected': 6.7,
-                'return': investment_return}
+            risk_portfolio = "Super Aggressive"
+            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 12 <= int(risky) <= 23:
-            investment_return = portfolio_return_calc(age, investment)
-            data2 = {'stocksp': {'stock1p': 30, 'stock2p': 30, 'stock3p': 20, 'stock4p': 10, 'stock5p': 10},
-                     'stocksn': {'stock1n': "VCIT", 'stock2n': "VOO", 'stock3n': 'VGLT', 'stock4n': 'VNQ', 'stock5n': 'VYM'},
-                    'portfolio': 'Conservative',
-                    'expected': 5.8,
-                    'return': investment_return}
+            risk_portfolio = "Super Aggressive"
+            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         else:
-            investment_return = portfolio_return_calc(age, investment)
-            data2 = {'stocksp': {'stock1p': 40, 'stock2p': 30, 'stock3p': 20, 'stock4p': 10, 'stock5p': 10},
-                     'stocksn': {'stock1n': "VCIT", 'stock2n': "VGLT", 'stock3n': 'VOO', 'stock4n': 'VNQ', 'stock5n': 'VYM'},
-                    'portfolio': 'Super Conservative',
-                    'expected': 4.0,
-                    'return': investment_return}
+            risk_portfolio = "Super Aggressive"
+            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
 
 
