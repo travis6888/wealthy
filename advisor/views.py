@@ -254,19 +254,19 @@ def find_portfolio(request):
             data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 32 <= int(risky) <= 40:
-            risk_portfolio = "Super Aggressive"
+            risk_portfolio = "Aggressive"
             data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 24 <= int(risky) <= 31:
-            risk_portfolio = "Super Aggressive"
+            risk_portfolio = "Moderate"
             data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 12 <= int(risky) <= 23:
-            risk_portfolio = "Super Aggressive"
+            risk_portfolio = "Conservative"
             data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         else:
-            risk_portfolio = "Super Aggressive"
+            risk_portfolio = "Super Conservative"
             data2 = portfolio_return_calc(age, investment, risk_portfolio,)
             return HttpResponse(json.dumps(data2), content_type='application/json')
 
@@ -274,18 +274,3 @@ def find_portfolio(request):
 def boot(request):
     return render(request, 'boot4.html')
 
-@csrf_exempt
-def stock_info(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        names = data['names']
-        stock_list = []
-        for name in names:
-            stock = Stocks.objects.get(name=name)
-            stock_description = {
-                'name': stock.name,
-                'info': stock.info
-            }
-            stock_list.append(stock_description)
-        data = {'stock_list': stock_list}
-        return HttpResponse(json.dumps(data), content_type='application/json')
