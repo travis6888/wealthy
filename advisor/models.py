@@ -45,7 +45,7 @@ class Portfolio(models.Model):
     expected_return = models.FloatField(max_length=5, default=0, blank=True, null=True)
 
     def __unicode__(self):
-        return u"{} {}".format(self.name, self.investments)
+        return u"{}".format(self.name)
 
 
 class Stocks(models.Model):

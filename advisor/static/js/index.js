@@ -69,7 +69,12 @@ $(document).ready( function() {
                             portfolio.push(stock_response.portfolio);
                             stocks['names'].push(stockedname.stock1n, stockedname.stock2n, stockedname.stock3n, stockedname.stock4n, stockedname.stock5n);
                             $('.getPortfolio').html('<h3>The expected return of this portfolio when your 65 is: $' + stock_response.return)
-
+                            var stock_list = stock_response.stock_list;
+                                for (i = 0; i < stock_list.length; i++) {
+                                    $('#accordion2').append('<h3>' + stock_list[i].name + '</h3><div>' + stock_list[i].info + '</div>');
+                                }
+                                $('#accordion2').show();
+                                $('#accordion2').accordion({active: 1});
 
                         },
                         error: function (error_response) {
@@ -177,54 +182,39 @@ $(document).ready( function() {
                                 }
                             }
 
-                        })
-
-                    }).complete(function () {
-                        var stockInfo = JSON.stringify(stocks);
-                        $.ajax({
-                            url: '/stock_info/',
-                            type: 'POST',
-                            dataType: 'json',
-                            data: stockInfo,
-                            success: function (stock_response) {
-                                var stock_list = stock_response.stock_list;
-                                for (i = 0; i < stock_list.length; i++) {
-                                    $('#accordion2').append('<h3>' + stock_list[i].name + '</h3><div>' + stock_list[i].info + '</div>');
-                                }
-                                $('#accordion2').show();
-                                $('#accordion2').accordion({active: 1});
-                            },
-                            error: function (error_response) {
-                            }
-                        }).complete(function () {
-                            var stockInfo = JSON.stringify(stocks);
-                            $.ajax({
-                                url: '/stock_lookup/',
-                                type: 'POST',
-                                dataType: 'json',
-                                data: stockInfo,
-                                success: function (stock_response) {
-                                    var stock_list = stock_response.stock_list1;
-                                    for (i = 0; i < stock_list.length; i++) {
-
-
-                                        var stocks_prices = $('.stockPrices');
-                                        $(stocks_prices).append('<h3 class="stPrice">   ' + stocks['names'][i] + '   </h3>  ');
-                                        $(stocks_prices).append('<p class="stPrice">Recent stock price:  ' + stock_list[i].stock_price + '   </p>  ');
-//
-
-
-                                    }
-                                },
-                                error: function (error_response) {
-                                }
-                            });
                         });
+
+
+                    });
+//                        ;.complete(function () {
+//                            var stockInfo = JSON.stringify(stocks);
+//                            $.ajax({
+//                                url: '/stock_lookup/',
+//                                type: 'POST',
+//                                dataType: 'json',
+//                                data: stockInfo,
+//                                success: function (stock_response) {
+//                                    var stock_list = stock_response.stock_list1;
+//                                    for (i = 0; i < stock_list.length; i++) {
+//
+//
+//                                        var stocks_prices = $('.stockPrices');
+//                                        $(stocks_prices).append('<h3 class="stPrice">   ' + stocks['names'][i] + '   </h3>  ');
+//                                        $(stocks_prices).append('<p class="stPrice">Recent stock price:  ' + stock_list[i].stock_price + '   </p>  ');
+////
+//
+//
+//                                    }
+//                                },
+//                                error: function (error_response) {
+//                                }
+//                            });
+//                        });
                     });
                 });
             });
         });
-    });
+//    });
 
 //    Toggle buttons for questions
     $('.questSetOneNext').on('click', function () {
