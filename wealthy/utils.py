@@ -44,7 +44,6 @@ def portfolio_return_calc(age, investment, risk_portfolio ):
                 'name': stock.name,
                 'info': stock.description}
         stock_info_list.append(stock_description)
-    print stock_info_list
     for portfolio in portfolio_list:
         portfolio_attr.append(portfolio.name)
         portfolio_attr.append(portfolio.expected_return)
