@@ -26,7 +26,7 @@ $(document).ready( function() {
                     console.log(stock_response.disposible);
 
                     $('.portfolioResultsMonth').html("<h3>Your disposible income is : $" + stock_response.disposible + "</h3>" +
-                        "<h3>You spend " + (stock_response.percentage_housing * 100) + " % on housing</h3>");
+                        "<h3>You spend " + (stock_response.percentage_housing * 100).toFixed(2) + " % on housing</h3>");
 
 
                 },
@@ -68,7 +68,7 @@ $(document).ready( function() {
                             expected.push(stock_response.expected);
                             portfolio.push(stock_response.portfolio);
                             stocks['names'].push(stockedname.stock1n, stockedname.stock2n, stockedname.stock3n, stockedname.stock4n, stockedname.stock5n);
-                            $('.getPortfolio').html('<h3>The expected return of this portfolio when your 65 is: $' + stock_response.return)
+                            $('.getPortfolio').html('<h3>The expected return of this portfolio when your 65 is: $' + stock_response.return);
                             var stock_list = stock_response.stock_list;
                                 for (i = 0; i < stock_list.length; i++) {
                                     $('#accordion2').append('<h3>' + stock_list[i].name + '</h3><div>' + stock_list[i].info + '</div>');
@@ -94,7 +94,7 @@ $(document).ready( function() {
                                     "font": "open sans"
                                 },
                                 "subtitle": {
-                                    "text": "Expected return of " + expected + " % ",
+                                    "text": "Expected return of " + (expected * 100).toFixed(2)+ " % ",
 
                                     //                    "color": "#fec503",
                                     "fontSize": 15,

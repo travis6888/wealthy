@@ -163,17 +163,17 @@ def input_income(request):
     if request.method == "GET":
         income_input = investor.income
         if int(income_input) >= 200001:
+            taxes = float(income_input) * .33
+            json_tax = input_income_calc(investor, income_input, taxes)
+
+            return HttpResponse(json.dumps(json_tax), content_type='application/json')
+        elif 120000 <= int(income_input) <= 200000:
             taxes = float(income_input) * .26
             json_tax = input_income_calc(investor, income_input, taxes)
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
-        elif 120000 <= int(income_input) <= 200000:
-            taxes = float(income_input) * .18
-            json_tax = input_income_calc(investor, income_input, taxes)
-            investor.save()
-            return HttpResponse(json.dumps(json_tax), content_type='application/json')
         elif 60000 <= int(income_input) <= 119999:
-            taxes = float(income_input) * .10
+            taxes = float(income_input) * .17
             json_tax = input_income_calc(investor, income_input, taxes)
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
@@ -217,19 +217,19 @@ def find_investment_monthly(request):
         age = investor.age
         monies = investor.disposible_monthly
         if int(age) >= 65:
-            percent_month = (float(monies) * .60)
+            percent_month = (float(monies) * .40)
             investing = find_invest_month_calc(investor, monies, percent_month)
             return HttpResponse(json.dumps(investing), content_type='application/json')
         elif 45 <= int(age) <= 64:
-            percent_month = (float(monies) * .45)
+            percent_month = (float(monies) * .55)
             investing = find_invest_month_calc(investor, monies, percent_month)
             return HttpResponse(json.dumps(investing), content_type='application/json')
         elif 35 <= int(age) <= 44:
-            percent_month = (float(monies) * .25)
+            percent_month = (float(monies) * .65)
             investing = find_invest_month_calc(investor, monies, percent_month)
             return HttpResponse(json.dumps(investing), content_type='application/json')
         else:
-            percent_month = (float(monies) * .15)
+            percent_month = (float(monies) * .75)
             investing = find_invest_month_calc(investor, monies, percent_month)
             return HttpResponse(json.dumps(investing), content_type='application/json')
 
