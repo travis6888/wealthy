@@ -4,6 +4,7 @@
 $(document).ready( function() {
 
     $('.gtPortfolio').on('click', function () {
+        $('.homeDataBtn').toggle('slow');
 //        Calculate an estimated after tax income amount
         $.ajax({
             url: '/income/',
@@ -362,6 +363,14 @@ $(document).ready( function() {
             $('.doneButton').fadeIn('slow');
         });
     });
+    $('.homeDataBtn').on('click', function(){
+        $('.housing').toggle();
+    });
+
+        $('.getHomePrice').on('click', function(){
+            $('.zestimateWidget').toggle();
+        });
+
 });
 
 

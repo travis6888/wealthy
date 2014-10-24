@@ -295,45 +295,30 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <div class="stockPrices" style="display: inline-block">
+                    <a class="btn btn-default btn-xl homeDataBtn page-scroll" href="#homeData">More</a>
 
                     </div>
                 </div>
             </div>
-            <div class="housing">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading housingQuest" style="display: none;">Do you own or rent?</h2>
-                </div>
-                <div class="col-lg-6">
-                    <button class="btn btn-xl centered getRentPrice" style="display: none;">Rent</button>
-                    <div class="zestimateWidget"
-                         style="display:none;width:300px;height:auto;padding:0 6px;font:normal normal normal 13px verdana,arial,sans-serif;overflow: hidden;background-color:#dbdbdb;border-radius: 5px;webkit-border-radius:5px;text-transform:none;text-indent:0;letter-spacing:0;text-align:center;">
-                        <div id="title" style="text-align:center;padding:6px 5px 6px 5px;background-color:#dbdbdb;"><a
-                                href="http://www.zillow.com/los-gatos-ca/home-values/" target="_blank"
-                                style="font-weight:bold;font-style:normal;font-size:13px;padding:0;text-decoration:none;color:#666666;text-decoration:none;line-height:1.2em;text-shadow: 0 1px #fff;">Home
-                            Value Estimate</a></div>
-                        <div style="position:relative;text-align:center;font-family:verdana,arial,sans-serif;font-size:10px;background-color:#f4f4f4;border-radius: 5px; border: 1px solid;border-color:#cccccc;webkit-border-radius: 5px;padding: 1px;">
-                            <iframe frameborder="0"
-                                    src="http://www.zillow.com/widgets/zestimate/ZestimateLargeWidget.htm?did=zillow-shv-large-iframe-widget&type=iframe&address=15310+Kennedy+Rd+Los+Gatos+CA+95030&searchbox=yes&region=Los+Gatos&skinnyWidget=true&tc=666666&bgc=f4f4f4"
-                                    height="360" scrolling="no" width="296"></iframe>
-                        </div>
-                        <div id="footer-links-container"
-                             style="height:auto;padding-bottom:5px;margin:5px 5px 0;text-align:center;">
-                            <div style="height:auto;display:block;overflow:hidden;"><a
-                                    href="http://www.zillow.com/los-gatos-ca/" target="_blank"
-                                    style="font-size:11px;padding:0;width:285px;color:#666666;text-decoration:none;"
-                                    scen="s1"><span class="region">Los Gatos</span> on Zillow</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <button class="btn btn-xl centered getHomePrice" style="display: none;">Own</button>
-                </div>
-            </div>
-        </div>
+
+
 
 
     </section>
+<section id="homeData">
+    <div class="housing">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading housingQuest">Do you own or rent?</h2>
+
+                <div class="col-lg-6">
+                    <button class="btn btn-xl centered getRentPrice" >Rent</button>
+                    </div>
+                    <div class="col-lg-6">
+                    <button class="btn btn-xl centered getHomePrice" >Own</button>
+                        </div>
+                    </div>
+                </div>
+</section>
 {% endif %}
 
 <section id="contact">
