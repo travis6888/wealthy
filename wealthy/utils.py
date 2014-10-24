@@ -5,7 +5,7 @@ __author__ = 'Travis'
 
 
 def demo_age_calc(age):
-    percent_month = (float(4000) * .60)
+    percent_month = (float(4000) * .30)
     investment_month = (float(4000) - float(percent_month))
     inv_return = numpy.fv((.058 / 12), ((65 - (int(age))) * 12), -(int(investment_month)), -investment_month)
     investment_return = '{:20,.2f}'.format(float(inv_return))
@@ -28,6 +28,7 @@ def input_income_calc(investor, income_input, taxes):
     investor.after_tax = float(after_taxes)
     print_tax = '{:20,.2f}'.format(after_taxes)
     json_tax = {'after_tax': print_tax}
+    investor.save()
     return json_tax
 
 
@@ -43,11 +44,10 @@ def portfolio_return_calc(age, investment, risk_portfolio ):
                 'name': stock.name,
                 'info': stock.description}
         stock_info_list.append(stock_description)
-    print stock_info_list
     for portfolio in portfolio_list:
         portfolio_attr.append(portfolio.name)
         portfolio_attr.append(portfolio.expected_return)
-    inv_return = numpy.fv((int(portfolio_attr[1]) / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
+    inv_return = numpy.fv((float(portfolio_attr[1]) / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
     investment_return = '{:20,.2f}'.format(float(inv_return))
     data2 = {'stocksp': {'stock1p': 25, 'stock2p': 25, 'stock3p': 20, 'stock4p': 20, 'stock5p': 10},
                      'stocksn': {'stock1n': stock_name[0], 'stock2n': stock_name[1], 'stock3n': stock_name[2], 'stock4n':stock_name[3], 'stock5n': stock_name[4]},

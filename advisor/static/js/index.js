@@ -4,6 +4,7 @@
 $(document).ready( function() {
 
     $('.gtPortfolio').on('click', function () {
+//        Calculate an estimated after tax income amount
         $.ajax({
             url: '/income/',
             type: 'GET',
@@ -15,29 +16,26 @@ $(document).ready( function() {
             error: function (error_response) {
             }
         }).complete(function () {
-
+//              Figure out the percentage spent on housing and the disposable income for each user
             $.ajax({
                 url: '/rent_to_median/',
                 type: 'GET',
                 dataType: 'json',
 
                 success: function (stock_response) {
-                    console.log(stock_response.percentage_housing);
-                    console.log(stock_response.disposible);
-
-                    $('.portfolioResultsMonth').html("<h3>Your disposible income is : $" + stock_response.disposible + "</h3>" +
-                        "<h3>You spend " + (stock_response.percentage_housing * 100) + " % on housing</h3>");
+                    $('.portfolioResultsMonth').html("<h3>Your disposable income is : $" + stock_response.disposible + "</h3>" +
+                        "<h3>You spend " + (stock_response.percentage_housing * 100).toFixed(2) + " % on housing</h3>");
 
 
                 },
                 error: function (error_response) {
                 }
             }).complete(function () {
+//                Get the monthly investment amount the user can afford
                 $.ajax({
                     url: '/find_investment_monthly/',
                     type: 'GET',
                     dataType: 'json',
-
                     success: function (stock_response) {
 
                         $('.monthInvestment').html("<h3>Your monthly investment should be : $" + stock_response.invest + "</h3>");
@@ -53,6 +51,7 @@ $(document).ready( function() {
                     var names = [];
                     var portfolio = [];
                     var expected = [];
+//                    Get all the portfolio information after the user has a risk score
                     $.ajax({
                         url: '/find_portfolio/',
                         type: 'GET',
@@ -68,7 +67,7 @@ $(document).ready( function() {
                             expected.push(stock_response.expected);
                             portfolio.push(stock_response.portfolio);
                             stocks['names'].push(stockedname.stock1n, stockedname.stock2n, stockedname.stock3n, stockedname.stock4n, stockedname.stock5n);
-                            $('.getPortfolio').html('<h3>The expected return of this portfolio when your 65 is: $' + stock_response.return)
+                            $('.getPortfolio').html('<h3>The expected return of this portfolio when your 65 is: $' + stock_response.return);
                             var stock_list = stock_response.stock_list;
                                 for (i = 0; i < stock_list.length; i++) {
                                     $('#accordion2').append('<h3>' + stock_list[i].name + '</h3><div>' + stock_list[i].info + '</div>');
@@ -83,7 +82,7 @@ $(document).ready( function() {
 
                     }).complete(function () {
 
-
+///                     Create custom pie graph for each portfolio
                         $('.riskScore').hide();
                         var pie = new d3pie("pieChart2", {
                             "header": {
@@ -94,7 +93,7 @@ $(document).ready( function() {
                                     "font": "open sans"
                                 },
                                 "subtitle": {
-                                    "text": "Expected return of " + expected + " % ",
+                                    "text": "Expected return of " + (expected * 100).toFixed(2)+ " % ",
 
                                     //                    "color": "#fec503",
                                     "fontSize": 15,
@@ -183,49 +182,24 @@ $(document).ready( function() {
                             }
 
                         });
-
-
                     });
-//                        ;.complete(function () {
-//                            var stockInfo = JSON.stringify(stocks);
-//                            $.ajax({
-//                                url: '/stock_lookup/',
-//                                type: 'POST',
-//                                dataType: 'json',
-//                                data: stockInfo,
-//                                success: function (stock_response) {
-//                                    var stock_list = stock_response.stock_list1;
-//                                    for (i = 0; i < stock_list.length; i++) {
-//
-//
-//                                        var stocks_prices = $('.stockPrices');
-//                                        $(stocks_prices).append('<h3 class="stPrice">   ' + stocks['names'][i] + '   </h3>  ');
-//                                        $(stocks_prices).append('<p class="stPrice">Recent stock price:  ' + stock_list[i].stock_price + '   </p>  ');
-////
-//
-//
-//                                    }
-//                                },
-//                                error: function (error_response) {
-//                                }
-//                            });
-//                        });
                     });
                 });
             });
         });
 //    });
 
-//    Toggle buttons for questions
+//    Toggle buttons for questions to not overwhelm users
     $('.questSetOneNext').on('click', function () {
         $('.questSetOne').hide('slow');
         $('.questSetTwo').show('slow');
     });
-
+//    Second set questions
     $('.questSetTwoNext').on('click', function () {
         $('.questSetTwo').hide('slow');
         $('.questSetThree').show('slow');
     });
+//    Last set of questions
     $('.questSetThreeNext').on('click', function () {
         $('.questSetThree').hide('slow');
         $('.questSetFour').show('slow');
@@ -234,11 +208,14 @@ $(document).ready( function() {
 
 
 // Demo setup ajax
+//    Opens Age input and Submit divs
     $('.demo').on('click', function () {
         $('.demoAgeInput').toggle();
         $('.ageInputBtn').toggle();
 
     });
+
+//    Creates hardcoded demo portfolio
     $('.ageInputBtn').on('click', function () {
 
         $('.demoHide').toggle('slow');
@@ -345,7 +322,7 @@ $(document).ready( function() {
                 }
             }
         });
-
+// Uses the user's age to personalize the demo portfolio
         var ageInput = $('.demo_age').val();
         var age = {};
         age['data'] = ageInput;
@@ -373,25 +350,17 @@ $(document).ready( function() {
     autoHeight: false,
     navigation: true
 });
-
         });
-
-//Register modal switches
+//Register modal toggles to avoid overwhelming users
         $(document).on('click', '#usernameNext', function () {
             $('.userName').hide();
             $('.emailPassword').fadeIn('slow');
-
-
         });
         $(document).on('click', '.emailPasswordNext', function () {
             $('.emailPasswordNext').hide();
             $('.demographics').fadeIn('slow');
             $('.doneButton').fadeIn('slow');
-
-
         });
-
-
     });
 });
 

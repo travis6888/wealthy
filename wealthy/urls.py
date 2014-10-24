@@ -27,7 +27,7 @@ urlpatterns = patterns('',
 
     url(r'^boot/$', 'advisor.views.boot', name='boot'),
     url(r'^find_portfolio/$', 'advisor.views.find_portfolio', name='find_portfolio'),
-    url(r'^stock_info/$', 'advisor.views.stock_info', name='stock_info'),
+    # url(r'^stock_info/$', 'advisor.views.stock_info', name='stock_info'),
 
 
 
