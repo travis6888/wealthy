@@ -368,7 +368,6 @@ $(document).ready( function() {
     });
 
         $('.getHomePrice').on('click', function(){
-            $('.zestimateWidget').toggle();
         });
 
 });

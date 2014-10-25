@@ -178,7 +178,7 @@ def input_income(request):
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
         elif 20000 < int(income_input) <= 59999:
-            taxes = float(income_input) * .06
+            taxes = float(income_input) * .10
             json_tax = input_income_calc(investor, income_input, taxes)
             investor.save()
             return HttpResponse(json.dumps(json_tax), content_type='application/json')
