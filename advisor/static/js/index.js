@@ -389,7 +389,7 @@ $(document).ready( function() {
                    console.log(price2);
                    console.log(price3);
 
-//Possible median price and 
+//Possible median price and
 //function median(values) {
 //
 //    values.sort( function(a,b) {return a - b;} );
@@ -401,9 +401,52 @@ $(document).ready( function() {
 //    else
 //        return (values[half-1] + values[half]) / 2.0;
 //}
+                   $(function () {
+    $('#container').highcharts({
+        title: {
+            text: 'Rental Prices over the Last ',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Source: Zillow and Quandl',
+            x: -20
+        },
+        xAxis: {
+            name: 'Dates',
+            categories: [zip_response.data[0][0], zip_response.data[1][0], zip_response.data[2][0], zip_response.data[3][0],
+                zip_response.data[4][0], zip_response.data[5][0], zip_response.data[6][0], zip_response.data[7][0],
+                zip_response.data[8][0], zip_response.data[9][0], zip_response.data[10][0], zip_response.data[11][0]]
+        },
+        yAxis: {
+            title: {
+                text: 'Median Price of Rentals'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+//        tooltip: {
+//            valueSuffix: '°C'
+//        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: zipcode,
+            data: [zip_response.data[0][1], zip_response.data[1][1], zip_response.data[2][1], zip_response.data[3][1],
+                zip_response.data[4][1], zip_response.data[5][1], zip_response.data[6][1], zip_response.data[7][1],
+                zip_response.data[8][1], zip_response.data[9][1], zip_response.data[10][1], zip_response.data[11][1]]
+        }]
+    });
+});
 
                    var newPrice = (price + price2 + price3 + price4) / 4;
-                   $('.rentalPrice').append('<p> Recent date:' + date + '</p><p>Median price:' + newPrice + '</p>');
+                   $('.rentalPrice').append('<p> Recent date: ' + date + '</p><p>Median price: ' + (price + price2 + price3 + price4) / 4 + '</p>');
                },
                error: function (zip_response) {
                }
