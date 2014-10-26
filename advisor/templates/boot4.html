@@ -312,6 +312,9 @@
 
                 <div class="col-lg-6">
                     <button class="btn btn-xl centered getRentPrice" >Rent</button>
+                    <input type="hidden" id="myVar" name="zip" value="{{ zip|floatformat:"0" }}">
+                    <div class="rentalPrice"></div>
+
                     </div>
                     <div class="col-lg-6">
                     <button class="btn btn-xl centered getHomePrice" >Own</button>

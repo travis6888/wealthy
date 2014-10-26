@@ -99,11 +99,16 @@
                type: 'GET',
                dataType: 'json',
                success: function (zip_response) {
+//                   for(i = 0; i < zip_response.data[0][i].length; i++){
+//
+//                   }
                    var date = zip_response.data[0][0];
                    var price = zip_response.data[0][1];
                    var price2 = zip_response.data[1][1];
                    var price3 = zip_response.data[2][1];
-                   var newPrice = (price + price2 + price3) / 3;
+                   var price4 = zip_response.data[3][1];
+
+                   var newPrice = (price + price2 + price3+ price4) / 4;
                    $('.IWantToMove').append('<p> Recent date:' + date + '</p><p>Median price:' + newPrice + '</p>');
                    medianPrice['median'] = newPrice;
 
