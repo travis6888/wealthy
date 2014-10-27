@@ -128,3 +128,18 @@ ul{
     padding-bottom: 0;
     max-height: 150px;
 }
+.homeDataBtn{
+    display: none;
+}
+.housing{
+    display: none;
+}
+.zestimateWidget{
+    display: none;
+}
+#container{
+    min-width: 300px;
+    max-width: 600px;
+    height: 300px;
+    margin: 0 auto
+}
