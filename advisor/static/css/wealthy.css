@@ -137,3 +137,9 @@ ul{
 .zestimateWidget{
     display: none;
 }
+#container{
+    min-width: 300px;
+    max-width: 600px;
+    height: 300px;
+    margin: 0 auto
+}

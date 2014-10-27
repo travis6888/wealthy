@@ -404,7 +404,7 @@ $(document).ready( function() {
                    $(function () {
     $('#container').highcharts({
         title: {
-            text: 'Rental Prices over the Last ',
+            text: 'Rental Prices Over the Last Year',
             x: -20 //center
         },
         subtitle: {
@@ -413,9 +413,11 @@ $(document).ready( function() {
         },
         xAxis: {
             name: 'Dates',
-            categories: [zip_response.data[0][0], zip_response.data[1][0], zip_response.data[2][0], zip_response.data[3][0],
-                zip_response.data[4][0], zip_response.data[5][0], zip_response.data[6][0], zip_response.data[7][0],
-                zip_response.data[8][0], zip_response.data[9][0], zip_response.data[10][0], zip_response.data[11][0]]
+            categories: [zip_response.data[11][0].slice(5), zip_response.data[10][0].slice(5),
+                zip_response.data[9][0].slice(5), zip_response.data[8][0].slice(5),zip_response.data[7][0].slice(5),
+                zip_response.data[6][0].slice(5),zip_response.data[5][0].slice(5),zip_response.data[4][0].slice(5),
+                zip_response.data[3][0].slice(5), zip_response.data[2][0].slice(5),zip_response.data[1][0].slice(5),
+                zip_response.data[0][0].slice(5) ]
         },
         yAxis: {
             title: {
@@ -423,7 +425,7 @@ $(document).ready( function() {
             },
             plotLines: [{
                 value: 0,
-                width: 1,
+                width: 2,
                 color: '#808080'
             }]
         },
@@ -431,13 +433,13 @@ $(document).ready( function() {
 //            valueSuffix: '°C'
 //        },
         legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
+            layout: 'horizontal',
+//            align: 'right',
+            verticalAlign: 'bottom',
             borderWidth: 0
         },
         series: [{
-            name: zipcode,
+            name: "Zipcode: "+ zipcode,
             data: [zip_response.data[0][1], zip_response.data[1][1], zip_response.data[2][1], zip_response.data[3][1],
                 zip_response.data[4][1], zip_response.data[5][1], zip_response.data[6][1], zip_response.data[7][1],
                 zip_response.data[8][1], zip_response.data[9][1], zip_response.data[10][1], zip_response.data[11][1]]
