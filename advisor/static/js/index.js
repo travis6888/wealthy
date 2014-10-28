@@ -438,9 +438,11 @@ $(document).ready(function () {
                         series: [
                             {
                                 name: "Zipcode: " + zipcode,
-                                data: [zip_response.data[0][1], zip_response.data[1][1], zip_response.data[2][1], zip_response.data[3][1],
-                                    zip_response.data[4][1], zip_response.data[5][1], zip_response.data[6][1], zip_response.data[7][1],
-                                    zip_response.data[8][1], zip_response.data[9][1], zip_response.data[10][1], zip_response.data[11][1]]
+                                data: [zip_response.data[11][1], zip_response.data[10][1],
+                                zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
+                                zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
+                                zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
+                                zip_response.data[0][1]]
                             }
                         ]
                     });
@@ -455,13 +457,12 @@ $(document).ready(function () {
 
     $('.getHomePrice').on('click', function () {
         var zipcode = document.getElementById("myVar").value;
+        var housing = document.getElementById("housingNumber").value;
         $.ajax({
             url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
             type: 'GET',
             dataType: 'json',
             success: function (zip_response) {
-                var date = zip_response.data[0][0];
-                var price = zip_response.data[0][1];
                 $(function () {
                     $('#container').highcharts({
                         title: {
@@ -505,17 +506,20 @@ $(document).ready(function () {
                         series: [
                             {
                                 name: "Zipcode: " + zipcode,
-                                data: [zip_response.data[0][1], zip_response.data[1][1], zip_response.data[2][1], zip_response.data[3][1],
-                                    zip_response.data[4][1], zip_response.data[5][1], zip_response.data[6][1], zip_response.data[7][1],
-                                    zip_response.data[8][1], zip_response.data[9][1], zip_response.data[10][1], zip_response.data[11][1]]
-                            }
+                                data: [zip_response.data[11][1], zip_response.data[10][1],
+                                zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
+                                zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
+                                zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
+                                zip_response.data[0][1]]}
                         ]
                     });
                 });
 
 
                 $('.housingQs').toggle('slow');
+                $(function() {
 
+                });
             },
             error: function (error_response) {
             }
