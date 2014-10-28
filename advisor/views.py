@@ -272,7 +272,7 @@ def find_portfolio(request):
 
 def boot(request):
     investor = Investor.objects.get(id=request.user.id)
-    investor_data ={'zip': investor.zipcode}
+    investor_data ={'zip': investor.zipcode, 'housing': investor.housing}
     return render(request, 'boot4.html', investor_data)
 
 def home(request):
