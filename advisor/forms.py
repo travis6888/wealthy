@@ -16,10 +16,12 @@ class EmailUserCreationForm(UserCreationForm):
     income = forms.IntegerField(required=True)
     age = forms.IntegerField(required=True)
     zipcode = forms.IntegerField(required=True)
+    other_costs = forms.FloatField(required=True)
 
     class Meta:
         model = Investor
-        fields = ("username", "email", "password1", "password2", "first_name", "last_name", 'income', 'housing', 'age', 'zipcode')
+        fields = ("username", "email", "password1", "password2", "first_name", "last_name", 'income', 'housing', 'age',
+                  'zipcode', 'other_costs')
 
     def clean_username(self):
             # Since User.username is unique, this check is redundant,
