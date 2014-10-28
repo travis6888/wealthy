@@ -9,10 +9,11 @@ import advisor
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'advisor.views.boot', name='boot'),
+    url(r'^$', 'advisor.views.home', name='home'),
+    url(r'^home/$', 'advisor.views.home', name='home'),
     url(r'^register/$', 'advisor.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout',  {'next_page': '/home/'}, name="logout"),
     # url(r'^profile/$', 'advisor.views.profile', name='profile'),
     url(r'^risk_profile/$', 'advisor.views.risk_profile', name='risk_profile'),
     url(r'^profile/$', 'advisor.views.profile', name='profile'),
@@ -27,13 +28,8 @@ urlpatterns = patterns('',
 
     url(r'^boot/$', 'advisor.views.boot', name='boot'),
     url(r'^find_portfolio/$', 'advisor.views.find_portfolio', name='find_portfolio'),
-    # url(r'^stock_info/$', 'advisor.views.stock_info', name='stock_info'),
 
 
-
-    # Examples:
-    # url(r'^$', 'wealthy.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^password_reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
     url(r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
     # Support old style base36 password reset links; remove in Django 1.7

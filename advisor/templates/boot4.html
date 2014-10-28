@@ -116,7 +116,7 @@
 
     </div>
 </header>
-
+{% if not user.is_authenticated %}
 <section id="services">
     <div class="container">
         <div class="row">
@@ -248,6 +248,7 @@
 
 
 </section>
+{% endif %}
 
 {% if user.is_authenticated %}
     <section id="portfolio" class="bg-light-gray">

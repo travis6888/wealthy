@@ -28,8 +28,7 @@ from yahoo import *
 from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc
 
 
-def home(request):
-    return render(request, 'home.html')
+
 
 
 def homeowner(request):
@@ -276,3 +275,5 @@ def boot(request):
     investor_data ={'zip': investor.zipcode}
     return render(request, 'boot4.html', investor_data)
 
+def home(request):
+    return render(request, 'boot4.html')
