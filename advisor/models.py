@@ -13,6 +13,7 @@ class Investor(AbstractUser):
     zipcode = models.FloatField(null=True, default=0, max_length=5)
     after_tax = models.FloatField(null=True, default=0)
     monthly_investment = models.FloatField(null=True, default=0, max_length=20)
+    other_costs = models.FloatField(null=True, blank=True, default=0, max_length=20)
 
     def __unicode__(self):
         return u"{} {}".format(self.username, self.income)
