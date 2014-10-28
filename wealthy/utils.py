@@ -5,7 +5,7 @@ __author__ = 'Travis'
 
 
 def demo_age_calc(age):
-    percent_month = (float(4000) * .30)
+    percent_month = (float(4000) * .70)
     investment_month = (float(4000) - float(percent_month))
     inv_return = numpy.fv((.058 / 12), ((65 - (int(age))) * 12), -(int(investment_month)), -investment_month)
     investment_return = '{:20,.2f}'.format(float(inv_return))
