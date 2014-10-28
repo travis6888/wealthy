@@ -1,7 +1,4 @@
-
-
-
-$(document).ready( function() {
+$(document).ready(function () {
 
     $('.gtPortfolio').on('click', function () {
         $('.homeDataBtn').toggle('slow');
@@ -47,7 +44,7 @@ $(document).ready( function() {
                     error: function (error_response) {
                     }
                 }).complete(function () {
-                    var stocks ={'names': []};
+                    var stocks = {'names': []};
                     var values = [];
                     var names = [];
                     var portfolio = [];
@@ -70,11 +67,11 @@ $(document).ready( function() {
                             stocks['names'].push(stockedname.stock1n, stockedname.stock2n, stockedname.stock3n, stockedname.stock4n, stockedname.stock5n);
                             $('.getPortfolio').html('<h3>The expected return of this portfolio when your 65 is: $' + stock_response.return);
                             var stock_list = stock_response.stock_list;
-                                for (i = 0; i < stock_list.length; i++) {
-                                    $('#accordion2').append('<h3>' + stock_list[i].name + '</h3><div>' + stock_list[i].info + '</div>');
-                                }
-                                $('#accordion2').show();
-                                $('#accordion2').accordion({active: 1});
+                            for (i = 0; i < stock_list.length; i++) {
+                                $('#accordion2').append('<h3>' + stock_list[i].name + '</h3><div>' + stock_list[i].info + '</div>');
+                            }
+                            $('#accordion2').show();
+                            $('#accordion2').accordion({active: 1});
 
                         },
                         error: function (error_response) {
@@ -94,7 +91,7 @@ $(document).ready( function() {
                                     "font": "open sans"
                                 },
                                 "subtitle": {
-                                    "text": "Expected return of " + (expected * 100).toFixed(2)+ " % ",
+                                    "text": "Expected return of " + (expected * 100).toFixed(2) + " % ",
 
                                     //                    "color": "#fec503",
                                     "fontSize": 15,
@@ -184,10 +181,10 @@ $(document).ready( function() {
 
                         });
                     });
-                    });
                 });
             });
         });
+    });
 //    });
 
 //    Toggle buttons for questions to not overwhelm users
@@ -205,7 +202,6 @@ $(document).ready( function() {
         $('.questSetThree').hide('slow');
         $('.questSetFour').show('slow');
     });
-
 
 
 // Demo setup ajax
@@ -346,11 +342,11 @@ $(document).ready( function() {
             }
         }).complete(function () {
             $('#accordion').accordion({active: 1,
-    header: "h3",
-    collapsible: true,
-    autoHeight: false,
-    navigation: true
-});
+                header: "h3",
+                collapsible: true,
+                autoHeight: false,
+                navigation: true
+            });
         });
 //Register modal toggles to avoid overwhelming users
         $(document).on('click', '#usernameNext', function () {
@@ -363,31 +359,29 @@ $(document).ready( function() {
             $('.doneButton').fadeIn('slow');
         });
     });
-        $('.homeDataBtn').on('click', function(){
-            $('.housing').toggle();
-        });
+    $('.homeDataBtn').on('click', function () {
+        $('.housing').toggle();
+    });
 
-        $('.getHomePrice').on('click', function(){
-        });
 
-        $('.getRentPrice').on('click', function(){
-           var zipcode = document.getElementById("myVar").value;
-           $.ajax({
-               url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
-               type: 'GET',
-               dataType: 'json',
-               success: function (zip_response) {
+    $('.getRentPrice').on('click', function () {
+        var zipcode = document.getElementById("myVar").value;
+        $.ajax({
+            url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
+            type: 'GET',
+            dataType: 'json',
+            success: function (zip_response) {
 //                   for(i = 0; i < zip_response.data[0][i].length; i++){
 //
 //                   }
-                   var date = zip_response.data[0][0];
-                   var price = zip_response.data[0][1];
-                   var price2 = zip_response.data[1][1];
-                   var price3 = zip_response.data[2][1];
-                   var price4 = zip_response.data[3][1];
-                   console.log(price4);
-                   console.log(price2);
-                   console.log(price3);
+                var date = zip_response.data[0][0];
+                var price = zip_response.data[0][1];
+                var price2 = zip_response.data[1][1];
+                var price3 = zip_response.data[2][1];
+                var price4 = zip_response.data[3][1];
+                console.log(price4);
+                console.log(price2);
+                console.log(price3);
 
 //Possible median price and
 //function median(values) {
@@ -401,60 +395,132 @@ $(document).ready( function() {
 //    else
 //        return (values[half-1] + values[half]) / 2.0;
 //}
-                   $(function () {
-    $('#container').highcharts({
-        title: {
-            text: 'Rental Prices Over the Last Year',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'Source: Zillow and Quandl',
-            x: -20
-        },
-        xAxis: {
-            name: 'Dates',
-            categories: [zip_response.data[11][0].slice(5), zip_response.data[10][0].slice(5),
-                zip_response.data[9][0].slice(5), zip_response.data[8][0].slice(5),zip_response.data[7][0].slice(5),
-                zip_response.data[6][0].slice(5),zip_response.data[5][0].slice(5),zip_response.data[4][0].slice(5),
-                zip_response.data[3][0].slice(5), zip_response.data[2][0].slice(5),zip_response.data[1][0].slice(5),
-                zip_response.data[0][0].slice(5) ]
-        },
-        yAxis: {
-            title: {
-                text: 'Median Price of Rentals'
-            },
-            plotLines: [{
-                value: 0,
-                width: 2,
-                color: '#808080'
-            }]
-        },
-//        tooltip: {
-//            valueSuffix: '°C'
-//        },
-        legend: {
-            layout: 'horizontal',
+                $(function () {
+                    $('#container').highcharts({
+                        title: {
+                            text: 'Rental Prices Over the Last Year',
+                            x: -20 //center
+                        },
+                        subtitle: {
+                            text: 'Source: Zillow and Quandl',
+                            x: -20
+                        },
+                        xAxis: {
+                            name: 'Dates',
+                            categories: [zip_response.data[11][0].slice(5), zip_response.data[10][0].slice(5),
+                                zip_response.data[9][0].slice(5), zip_response.data[8][0].slice(5), zip_response.data[7][0].slice(5),
+                                zip_response.data[6][0].slice(5), zip_response.data[5][0].slice(5), zip_response.data[4][0].slice(5),
+                                zip_response.data[3][0].slice(5), zip_response.data[2][0].slice(5), zip_response.data[1][0].slice(5),
+                                zip_response.data[0][0].slice(5) ]
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Median Price of Rentals'
+                            },
+                            plotLines: [
+                                {
+                                    value: 0,
+                                    width: 2,
+                                    color: '#808080'
+                                }
+                            ]
+                        },
+                        tooltip: {
+                            animation: true
+                        },
+                        legend: {
+                            layout: 'horizontal',
 //            align: 'right',
-            verticalAlign: 'bottom',
-            borderWidth: 0
-        },
-        series: [{
-            name: "Zipcode: "+ zipcode,
-            data: [zip_response.data[0][1], zip_response.data[1][1], zip_response.data[2][1], zip_response.data[3][1],
-                zip_response.data[4][1], zip_response.data[5][1], zip_response.data[6][1], zip_response.data[7][1],
-                zip_response.data[8][1], zip_response.data[9][1], zip_response.data[10][1], zip_response.data[11][1]]
-        }]
-    });
-});
+                            verticalAlign: 'bottom',
+                            borderWidth: 0
 
-                   var newPrice = (price + price2 + price3 + price4) / 4;
-                   $('.rentalPrice').append('<p> Recent date: ' + date + '</p><p>Median price: ' + (price + price2 + price3 + price4) / 4 + '</p>');
-               },
-               error: function (zip_response) {
-               }
-           });
+                        },
+                        series: [
+                            {
+                                name: "Zipcode: " + zipcode,
+                                data: [zip_response.data[0][1], zip_response.data[1][1], zip_response.data[2][1], zip_response.data[3][1],
+                                    zip_response.data[4][1], zip_response.data[5][1], zip_response.data[6][1], zip_response.data[7][1],
+                                    zip_response.data[8][1], zip_response.data[9][1], zip_response.data[10][1], zip_response.data[11][1]]
+                            }
+                        ]
+                    });
+                });
+
+                $('.housingQs').toggle('slow');
+            },
+            error: function (zip_response) {
+            }
         });
+    });
 
+    $('.getHomePrice').on('click', function () {
+        var zipcode = document.getElementById("myVar").value;
+        $.ajax({
+            url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
+            type: 'GET',
+            dataType: 'json',
+            success: function (zip_response) {
+                var date = zip_response.data[0][0];
+                var price = zip_response.data[0][1];
+                $(function () {
+                    $('#container').highcharts({
+                        title: {
+                            text: 'Median Home Prices Over the Last Year',
+                            x: -20 //center
+                        },
+                        subtitle: {
+                            text: 'Source: Zillow and Quandl',
+                            x: -20
+                        },
+                        xAxis: {
+                            name: 'Dates',
+                            categories: [zip_response.data[11][0].slice(5), zip_response.data[10][0].slice(5),
+                                zip_response.data[9][0].slice(5), zip_response.data[8][0].slice(5), zip_response.data[7][0].slice(5),
+                                zip_response.data[6][0].slice(5), zip_response.data[5][0].slice(5), zip_response.data[4][0].slice(5),
+                                zip_response.data[3][0].slice(5), zip_response.data[2][0].slice(5), zip_response.data[1][0].slice(5),
+                                zip_response.data[0][0].slice(5) ]
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Median Price of Homes in ' + zipcode
+                            },
+                            plotLines: [
+                                {
+                                    value: 0,
+                                    width: 2,
+                                    color: '#808080'
+                                }
+                            ]
+                        },
+                        tooltip: {
+                            animation: true
+                        },
+                        legend: {
+                            layout: 'horizontal',
+//            align: 'right',
+                            verticalAlign: 'bottom',
+                            borderWidth: 0
+
+                        },
+                        series: [
+                            {
+                                name: "Zipcode: " + zipcode,
+                                data: [zip_response.data[0][1], zip_response.data[1][1], zip_response.data[2][1], zip_response.data[3][1],
+                                    zip_response.data[4][1], zip_response.data[5][1], zip_response.data[6][1], zip_response.data[7][1],
+                                    zip_response.data[8][1], zip_response.data[9][1], zip_response.data[10][1], zip_response.data[11][1]]
+                            }
+                        ]
+                    });
+                });
+
+
+                $('.housingQs').toggle('slow');
+
+            },
+            error: function (error_response) {
+            }
+        });
+    });
 });
 
 
