@@ -194,18 +194,18 @@ def demo_age(request):
     if request.method == "POST":
         data = json.loads(request.body)
         age = data['data']
-        if int(age) > 65:
-            vistior_age = demo_age_calc(age)
-            return HttpResponse(json.dumps(vistior_age), content_type='application/json')
-        elif 45 < int(age) <= 64:
-            vistior_age = demo_age_calc(age)
-            return HttpResponse(json.dumps(vistior_age), content_type='application/json')
-        elif 35 < int(age) <= 44:
-            vistior_age = demo_age_calc(age)
-            return HttpResponse(json.dumps(vistior_age), content_type='application/json')
-        elif 14 < int(age) <= 34:
-            vistior_age = demo_age_calc(age)
-            return HttpResponse(json.dumps(vistior_age), content_type='application/json')
+        if int(age) >= 65:
+            visitor_age = demo_age_calc(age)
+            return HttpResponse(json.dumps(visitor_age), content_type='application/json')
+        elif 45 <= int(age) <= 64:
+            visitor_age = demo_age_calc(age)
+            return HttpResponse(json.dumps(visitor_age), content_type='application/json')
+        elif 35 <= int(age) <= 44:
+            visitor_age = demo_age_calc(age)
+            return HttpResponse(json.dumps(visitor_age), content_type='application/json')
+        elif 0 < int(age) <= 34:
+            visitor_age = demo_age_calc(age)
+            return HttpResponse(json.dumps(visitor_age), content_type='application/json')
 
 
 @csrf_exempt
