@@ -521,11 +521,16 @@ $(document).ready(function () {
                     var price = zip_response.data[0][1];
                     var price2 = zip_response.data[1][1];
                     var price3 = zip_response.data[2][1];
+                    var price4 = zip_response.data[11][1];
+                    var price5 = zip_response.data[10][1];
+                    var price6 = zip_response.data[9][1];
                     for(i=0; i< zip_response.data[i][1].length <= 12; i++){
                         console.log(zip_response.data[i][1])
 
                     }
                     var last3Average = (price+ price2+price3)/3;
+                    var first3Average = (price4+price5+price6)/3;
+                    
 
                     $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div>");
 
