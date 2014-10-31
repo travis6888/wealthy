@@ -31,8 +31,6 @@ from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_ca
 
 
 
-def homeowner(request):
-    return render(request, 'homeowner.html')
 
 
 @login_required
