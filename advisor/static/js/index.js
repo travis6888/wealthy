@@ -530,9 +530,11 @@ $(document).ready(function () {
                     }
                     var last3Average = (price+ price2+price3)/3;
                     var first3Average = (price4+price5+price6)/3;
-                    
 
-                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div>");
+
+                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The first months " +
+                        "average of home sales were $"+first3Average+"and while the last three month ");
+
 
 
                 });
