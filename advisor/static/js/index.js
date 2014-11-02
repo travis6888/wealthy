@@ -366,6 +366,7 @@ $(document).ready(function () {
 
     $('.getRentPrice').on('click', function () {
         var zipcode = document.getElementById("myVar").value;
+        var housing = document.getElementById("housingNumber").value;
 
         $.ajax({
             url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
@@ -440,10 +441,13 @@ $(document).ready(function () {
 //                    }
                     var last3Average = (price+ price2+price3)/3;
                     var first3Average = (price4+price5+price6)/3;
+                    var percent_change = (((last3Average-first3Average)/last3Average)*100).toFixed(2);
 
 
-                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The first months " +
-                        " of the year average rental price were  $"+first3Average+"and while the last three month average is $" +last3Average+"</div>");
+                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The average " +
+                        " rental price for the first three months of the year was $"+first3Average.toFixed(2)+" and the last three" +
+                        " month average was $" +last3Average.toFixed(2)+"</div><div> Which is a percentage change of "+percent_change+
+                        " %</div>");
 
 
 
@@ -529,11 +533,13 @@ $(document).ready(function () {
 //                    }
                     var last3Average = (price+ price2+price3)/3;
                     var first3Average = (price4+price5+price6)/3;
+                    var percent_change = (((last3Average-first3Average)/last3Average)*100).toFixed(2);
 
 
-                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The first months " +
-                        "of the year average for median home sales were $"+first3Average+"and while the last three month average is $" + last3Average+"</div>");
-
+                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The average" +
+                        " median home sale price for the first three months $"+first3Average.toFixed(2)+" and the most recent " +
+                        "three month average is $" + last3Average.toFixed(2)+"</div><div> Which is a percentage change of "+
+                        percent_change+" %</div>");
 
 
                 });
