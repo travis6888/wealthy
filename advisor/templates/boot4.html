@@ -317,19 +317,20 @@
 
                 <div class="col-lg-6">
                     <button class="btn btn-xl centered getRentPrice" >Rent</button>
-                    <input type="hidden" id="housingNumber" name="housing" value="{{ housing }}">
+                    <input type="hidden" id="housingNumber" name="housing" value="{{ housing|floatformat:"0" }}">
 
                     <input type="hidden" id="myVar" name="zip" value="{{ zip|floatformat:"0" }}">
                     <div class="rentalPrice"></div>
 
-                    </div>
+                </div>
                     <div class="col-lg-6">
                     <button class="btn btn-xl centered getHomePrice" >Own</button>
                         </div>
-                    </div>
+                </div>
                     <div id="container"></div>
-
+                <div class="col-lg-6 col-lg-offset-3">
                     <div class="housingAnalysis"></div>
+                    </div>
                 </div>
         </div>
     </div>
