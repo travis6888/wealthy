@@ -444,9 +444,9 @@ $(document).ready(function () {
                     var percent_change = (((last3Average-first3Average)/last3Average)*100).toFixed(2);
 
 
-                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The first months " +
-                        " of the year average rental price were  $"+first3Average.toFixed(2)+" and while the last three" +
-                        " month average is $" +last3Average.toFixed(2)+"</div><div> Which is percentage change of "+percent_change+
+                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The average " +
+                        " rental price for the first three months of the year was $"+first3Average.toFixed(2)+" and the last three" +
+                        " month average was $" +last3Average.toFixed(2)+"</div><div> Which is a percentage change of "+percent_change+
                         " %</div>");
 
 
@@ -536,8 +536,8 @@ $(document).ready(function () {
                     var percent_change = (((last3Average-first3Average)/last3Average)*100).toFixed(2);
 
 
-                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The first months " +
-                        "of the year average for median home sales were $"+first3Average.toFixed(2)+" and while the last " +
+                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing+ " a month.</div><div>The average" +
+                        " median home sale price for the first three months $"+first3Average.toFixed(2)+" and the most recent " +
                         "three month average is $" + last3Average.toFixed(2)+"</div><div> Which is a percentage change of "+
                         percent_change+" %</div>");
 
