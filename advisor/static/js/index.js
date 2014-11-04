@@ -432,21 +432,27 @@ $(document).ready(function () {
                     var price = zip_response.data[0][1];
                     var price2 = zip_response.data[1][1];
                     var price3 = zip_response.data[2][1];
-                    var price4 = zip_response.data[11][1];
-                    var price5 = zip_response.data[10][1];
-                    var price6 = zip_response.data[9][1];
+                    var price4 = zip_response.data[3][1];
+                    var price5 = zip_response.data[4][1];
+                    var price6 = zip_response.data[5][1];
+                    var price7 = zip_response.data[5][1];
+                    var price8 = zip_response.data[7][1];
+                    var price9 = zip_response.data[8][1];
+                    var price10 = zip_response.data[9][1];
+                    var price11 = zip_response.data[10][1];
+                    var price12 = zip_response.data[11][1];
 //                    for(i=0; i< zip_response.data[i][1].length <= 12; i++){
 //                        console.log(zip_response.data[i][1])
 //
 //                    }
-                    var last3Average = (price+ price2+price3)/3;
-                    var first3Average = (price4+price5+price6)/3;
-                    var percent_change = (((last3Average-first3Average)/last3Average)*100).toFixed(2);
+                    var last6Average = (price+ price2+price3+price4+price5+price6)/6;
+                    var first6Average = (price7+price8+price9+price10+price11+price12)/6;
+                    var percent_change = (((last6Average-first6Average)/last6Average)*100).toFixed(2);
 
 
                     $('.housingAnalysis').html("<div>Your housing cost are $" +housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ " a month.</div><div>The average " +
-                        " rental price for the first three months of the year was $"+first3Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" and the last three" +
-                        " month average was $" +last3Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"</div><div> Which is a percentage change of "+percent_change+
+                        " rental price for the first six months of the year was $"+first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" and the last six" +
+                        " month average was $" +last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"</div><div> Which is a percentage change of "+percent_change+
                         " %</div>");
 
 
@@ -524,21 +530,27 @@ $(document).ready(function () {
                     var price = zip_response.data[0][1];
                     var price2 = zip_response.data[1][1];
                     var price3 = zip_response.data[2][1];
-                    var price4 = zip_response.data[11][1];
-                    var price5 = zip_response.data[10][1];
-                    var price6 = zip_response.data[9][1];
-//                    for(i=0; i< zip_response.data[i][1].length <= 12; i++){
+                    var price4 = zip_response.data[3][1];
+                    var price5 = zip_response.data[4][1];
+                    var price6 = zip_response.data[5][1];
+                    var price7 = zip_response.data[5][1];
+                    var price8 = zip_response.data[7][1];
+                    var price9 = zip_response.data[8][1];
+                    var price10 = zip_response.data[9][1];
+                    var price11 = zip_response.data[10][1];
+                    var price12 = zip_response.data[11][1];
+//                    for(i=0; i< zip_response.data[i][1].length <= zip_response.data[12][1].length; i++){
 //                        console.log(zip_response.data[i][1])
 //
 //                    }
-                    var last3Average = (price+ price2+price3)/3;
-                    var first3Average = (price4+price5+price6)/3;
-                    var percent_change = (((last3Average-first3Average)/last3Average)*100).toFixed(2);
+                    var last6Average = (price+ price2+price3+price4+price5+price6)/6;
+                    var first6Average = (price7+price8+price9+price10+price11+price12)/6;
+                    var percent_change = (((last6Average-first6Average)/last6Average)*100).toFixed(2);
 
 
                     $('.housingAnalysis').html("<div>Your housing cost are $" +housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ " a month.</div><div>The average" +
-                        " median home sale price for the first three months $"+first3Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" and the most recent " +
-                        "three month average is $" + last3Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"</div><div> Which is a percentage change of "+
+                        " median home sale price for the first six months $"+first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" and the most recent " +
+                        "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"</div><div> Which is a percentage change of "+
                         percent_change+" %</div>");
 
 
