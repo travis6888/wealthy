@@ -428,6 +428,8 @@ $(document).ready(function () {
                 });
 
                 $('.housingQs').toggle('slow');
+                $('.housingAnalysisTitle').toggle('slow');
+
                 $(function() {
                     var price = zip_response.data[0][1];
                     var price2 = zip_response.data[1][1];
@@ -526,6 +528,7 @@ $(document).ready(function () {
 
 
                 $('.housingQs').toggle('slow');
+                $('.housingAnalysisTitle').toggle('slow');
                 $(function() {
                     var price = zip_response.data[0][1];
                     var price2 = zip_response.data[1][1];
