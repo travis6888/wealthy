@@ -367,6 +367,7 @@ $(document).ready(function () {
     $('.getRentPrice').on('click', function () {
         var zipcode = document.getElementById("myVar").value;
         var housing = document.getElementById("housingNumber").value;
+        $('.housingQs').toggle('slow');
 
         $.ajax({
             url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
@@ -418,19 +419,18 @@ $(document).ready(function () {
                             {
                                 name: "Zipcode: " + zipcode,
                                 data: [zip_response.data[11][1], zip_response.data[10][1],
-                                zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
-                                zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
-                                zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
-                                zip_response.data[0][1]]
+                                    zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
+                                    zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
+                                    zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
+                                    zip_response.data[0][1]]
                             }
                         ]
                     });
                 });
 
-                $('.housingQs').toggle('slow');
                 $('.housingAnalysisTitle').toggle('slow');
 
-                $(function() {
+                $(function () {
                     var price = zip_response.data[0][1];
                     var price2 = zip_response.data[1][1];
                     var price3 = zip_response.data[2][1];
@@ -447,16 +447,15 @@ $(document).ready(function () {
 //                        console.log(zip_response.data[i][1])
 //
 //                    }
-                    var last6Average = (price+ price2+price3+price4+price5+price6)/6;
-                    var first6Average = (price7+price8+price9+price10+price11+price12)/6;
-                    var percent_change = (((last6Average-first6Average)/last6Average)*100).toFixed(2);
+                    var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
+                    var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
+                    var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
 
 
-                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ " a month.</div><div>The average " +
-                        " rental price for the first six months of the year was $"+first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" and the last six" +
-                        " month average was $" +last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"</div><div> Which is a percentage change of "+percent_change+
+                    $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average " +
+                        " rental price for the first six months of the year was $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the last six" +
+                        " month average was $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div> Which is a percentage change of " + percent_change +
                         " %</div>");
-
 
 
                 });
@@ -467,6 +466,8 @@ $(document).ready(function () {
     });
 
     $('.getHomePrice').on('click', function () {
+        $('.housingQs').toggle('slow');
+
         var zipcode = document.getElementById("myVar").value;
         var housing = document.getElementById("housingNumber").value;
         $.ajax({
@@ -518,18 +519,17 @@ $(document).ready(function () {
                             {
                                 name: "Zipcode: " + zipcode,
                                 data: [zip_response.data[11][1], zip_response.data[10][1],
-                                zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
-                                zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
-                                zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
-                                zip_response.data[0][1]]}
+                                    zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
+                                    zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
+                                    zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
+                                    zip_response.data[0][1]]}
                         ]
                     });
                 });
 
 
-                $('.housingQs').toggle('slow');
                 $('.housingAnalysisTitle').toggle('slow');
-                $(function() {
+                $(function () {
                     var price = zip_response.data[0][1];
                     var price2 = zip_response.data[1][1];
                     var price3 = zip_response.data[2][1];
@@ -546,15 +546,15 @@ $(document).ready(function () {
 //                        console.log(zip_response.data[i][1])
 //
 //                    }
-                    var last6Average = (price+ price2+price3+price4+price5+price6)/6;
-                    var first6Average = (price7+price8+price9+price10+price11+price12)/6;
-                    var percent_change = (((last6Average-first6Average)/last6Average)*100).toFixed(2);
+                    var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
+                    var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
+                    var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
 
 
-                    $('.housingAnalysis').html("<div>Your housing cost are $" +housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ " a month.</div><div>The average" +
-                        " median home sale price for the first six months $"+first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" and the most recent " +
-                        "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"</div><div> Which is a percentage change of "+
-                        percent_change+" %</div>");
+                    $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
+                        " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
+                        "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div> Which is a percentage change of " +
+                        percent_change + " %</div>");
 
 
                 });
