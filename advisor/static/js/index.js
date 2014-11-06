@@ -476,7 +476,10 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'jsonp',
             success: function (response) {
-                console.log(response);
+              var fifteenYear = response.response.today.fifteenYearFixed;
+              var thirtyYear = response.response.today.thirtyYearFixed;
+                console.log(thirtyYear);
+                console.log(fifteenYear);
             },
             error: function (error) {
                                 console.log(error);
