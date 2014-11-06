@@ -465,11 +465,28 @@ $(document).ready(function () {
         });
     });
 
+//Gets home price from zillow and quandl for the zipcode of user, also gets their housing costs to estimate mortgage payment
     $('.getHomePrice').on('click', function () {
         $('.housingQs').toggle('slow');
-
+        var mortgageRates = {'fifteenYear': [],'thirtyYear':[]};
         var zipcode = document.getElementById("myVar").value;
         var housing = document.getElementById("housingNumber").value;
+        $.ajax({
+            url: 'http://www.zillow.com/webservice/GetRateSummary.htm?zws-id=X1-ZWz1b511wdba4r_43hp8&output=json',
+            type: 'GET',
+            dataType: 'jsonp',
+            success: function (response) {
+              var fifteenYear = response.response.today.fifteenYearFixed;
+              var thirtyYear = response.response.today.thirtyYearFixed;
+                mortgageRates['fifteenYear'].push(fifteenYear);
+                mortgageRates['thirtyYear'].push(thirtyYear);
+                console.log(mortgageRates);
+            },
+            error: function (error) {
+                                console.log(error);
+
+            }
+        });
         $.ajax({
             url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
             type: 'GET',
@@ -527,7 +544,7 @@ $(document).ready(function () {
                     });
                 });
 
-
+//
                 $('.housingAnalysisTitle').toggle('slow');
                 $(function () {
                     var price = zip_response.data[0][1];
@@ -550,7 +567,7 @@ $(document).ready(function () {
                     var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
                     var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
 
-
+//                    Takes the first six months median home sale price and last six months, gives a percent change between the averages.
                     $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
                         " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
                         "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div> Which is a percentage change of " +
