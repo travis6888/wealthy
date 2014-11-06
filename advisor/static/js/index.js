@@ -464,7 +464,8 @@ $(document).ready(function () {
             }
         });
     });
-
+    
+//Gets home price from zillow and quandl for the zipcode of user, also gets their housing costs to estimate mortgage payment
     $('.getHomePrice').on('click', function () {
         $('.housingQs').toggle('slow');
 
@@ -527,7 +528,7 @@ $(document).ready(function () {
                     });
                 });
 
-
+//
                 $('.housingAnalysisTitle').toggle('slow');
                 $(function () {
                     var price = zip_response.data[0][1];
@@ -550,7 +551,7 @@ $(document).ready(function () {
                     var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
                     var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
 
-
+//                    Takes the first six months median home sale price and last six months, gives a percent change between the averages.
                     $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
                         " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
                         "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div> Which is a percentage change of " +
