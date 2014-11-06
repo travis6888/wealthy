@@ -464,13 +464,25 @@ $(document).ready(function () {
             }
         });
     });
-    
+
 //Gets home price from zillow and quandl for the zipcode of user, also gets their housing costs to estimate mortgage payment
     $('.getHomePrice').on('click', function () {
         $('.housingQs').toggle('slow');
 
         var zipcode = document.getElementById("myVar").value;
         var housing = document.getElementById("housingNumber").value;
+        $.ajax({
+            url: 'http://www.zillow.com/webservice/GetRateSummary.htm?zws-id=X1-ZWz1b511wdba4r_43hp8&output=json',
+            type: 'GET',
+            dataType: 'jsonp',
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (error) {
+                                console.log(error);
+
+            }
+        });
         $.ajax({
             url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
             type: 'GET',
