@@ -468,7 +468,7 @@ $(document).ready(function () {
 //Gets home price from zillow and quandl for the zipcode of user, also gets their housing costs to estimate mortgage payment
     $('.getHomePrice').on('click', function () {
         $('.housingQs').toggle('slow');
-
+        var mortgageRates = {'fifteenYear': [],'thirtyYear':[]};
         var zipcode = document.getElementById("myVar").value;
         var housing = document.getElementById("housingNumber").value;
         $.ajax({
@@ -478,8 +478,9 @@ $(document).ready(function () {
             success: function (response) {
               var fifteenYear = response.response.today.fifteenYearFixed;
               var thirtyYear = response.response.today.thirtyYearFixed;
-                console.log(thirtyYear);
-                console.log(fifteenYear);
+                mortgageRates['fifteenYear'].push(fifteenYear);
+                mortgageRates['thirtyYear'].push(thirtyYear);
+                console.log(mortgageRates);
             },
             error: function (error) {
                                 console.log(error);
