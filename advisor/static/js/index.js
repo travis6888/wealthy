@@ -566,7 +566,12 @@ $(document).ready(function () {
                     var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
                     var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
                     var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
-
+                    var principle = (last6Average *.20);
+                    var thirty = (mortgageRates.thirtyYear[0]/100)/12;
+                    var fifteen = (mortgageRates.fifteenYear[0]/ 100)/12;
+                    var thirtyYearMortgagePayment = (principle*(thirty*(Math.pow(1+thirty, 360))/Math.pow((1+thirty),360)-1));
+                    console.log(fifteen);
+                    console.log(thirtyYearMortgagePayment)
 //                    Takes the first six months median home sale price and last six months, gives a percent change between the averages.
                     $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
                         " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
