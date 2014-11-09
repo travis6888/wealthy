@@ -566,12 +566,24 @@ $(document).ready(function () {
                     var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
                     var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
                     var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
+                    var principle = (last6Average *.80);
+                    var thirtyMonthly = (mortgageRates.thirtyYear[0]/100)/12;
+                    var thirty = mortgageRates.thirtyYear[0];
+                    var fifteen = mortgageRates.fifteenYear[0];
+                    var fifteenMonthly = (mortgageRates.fifteenYear[0]/ 100)/12;
+                    var thirtyYearMortgagePayment = (principle*(thirtyMonthly*(Math.pow(1+thirtyMonthly, 360))/(Math.pow((1+thirtyMonthly),360)-1))).toFixed(2);
+                    var fifteenYearMortgagePayment = (principle*(fifteenMonthly*(Math.pow(1+fifteenMonthly, 180))/(Math.pow((1+fifteenMonthly),180)-1))).toFixed(2);
+                    var housingVersusThirty = ((housing/thirtyYearMortgagePayment)*100).toFixed(2);
+                    var housingVersusFifteen = ((housing/fifteenYearMortgagePayment)*100).toFixed(2);
+
 
 //                    Takes the first six months median home sale price and last six months, gives a percent change between the averages.
                     $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
                         " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
                         "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div> Which is a percentage change of " +
-                        percent_change + " %</div>");
+                        percent_change + " %</div><div>The most recent 30 Year Fixed Mortgage rate is "+thirty+"% and the 15 year Fixed Mortgage rate is " +fifteen+"%</div><div>" +
+                        "A new mortgage on home in your area would cost either $"+thirtyYearMortgagePayment+" a month for a 30 year, or $"+fifteenYearMortgagePayment +"a month for a 15 year</div><div>"+
+                        "You pay "+housingVersusThirty+"% difference on a 30 year and "+housingVersusFifteen+"% difference on 15 year</div>");
 
 
                 });
