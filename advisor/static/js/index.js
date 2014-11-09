@@ -468,7 +468,7 @@ $(document).ready(function () {
 //Gets home price from zillow and quandl for the zipcode of user, also gets their housing costs to estimate mortgage payment
     $('.getHomePrice').on('click', function () {
         $('.housingQs').toggle('slow');
-        var mortgageRates = {'fifteenYear': [],'thirtyYear':[]};
+        var mortgageRates = {'fifteenYear': [], 'thirtyYear': []};
         var zipcode = document.getElementById("myVar").value;
         var housing = document.getElementById("housingNumber").value;
         $.ajax({
@@ -476,120 +476,120 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'jsonp',
             success: function (response) {
-              var fifteenYear = response.response.today.fifteenYearFixed;
-              var thirtyYear = response.response.today.thirtyYearFixed;
+                var fifteenYear = response.response.today.fifteenYearFixed;
+                var thirtyYear = response.response.today.thirtyYearFixed;
                 mortgageRates['fifteenYear'].push(fifteenYear);
-                mortgageRates['thirtyYear'].push(thirtyYear);
-                console.log(mortgageRates);
+                mortgageRates['thirtyYear'].push(thirtyYear)
             },
             error: function (error) {
-                                console.log(error);
+                console.log(error);
 
             }
-        });
-        $.ajax({
-            url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
-            type: 'GET',
-            dataType: 'json',
-            success: function (zip_response) {
-                $(function () {
-                    $('#container').highcharts({
-                        title: {
-                            text: 'Median Home Prices Over the Last Year',
-                            x: -20 //center
-                        },
-                        subtitle: {
-                            text: 'Source: Zillow and Quandl',
-                            x: -20
-                        },
-                        xAxis: {
-                            name: 'Dates',
-                            categories: [zip_response.data[11][0].slice(5), zip_response.data[10][0].slice(5),
-                                zip_response.data[9][0].slice(5), zip_response.data[8][0].slice(5), zip_response.data[7][0].slice(5),
-                                zip_response.data[6][0].slice(5), zip_response.data[5][0].slice(5), zip_response.data[4][0].slice(5),
-                                zip_response.data[3][0].slice(5), zip_response.data[2][0].slice(5), zip_response.data[1][0].slice(5),
-                                zip_response.data[0][0].slice(5) ]
-                        },
-                        yAxis: {
+        }).complete(function () {
+            $.ajax({
+                url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
+                type: 'GET',
+                dataType: 'json',
+                success: function (zip_response) {
+                    $(function () {
+                        $('#container').highcharts({
                             title: {
-                                text: 'Median Price of Homes in ' + zipcode
+                                text: 'Median Home Prices Over the Last Year',
+                                x: -20 //center
                             },
-                            plotLines: [
-                                {
-                                    value: 0,
-                                    width: 2,
-                                    color: '#808080'
-                                }
-                            ]
-                        },
-                        tooltip: {
-                            animation: true
-                        },
-                        legend: {
-                            layout: 'horizontal',
+                            subtitle: {
+                                text: 'Source: Zillow and Quandl',
+                                x: -20
+                            },
+                            xAxis: {
+                                name: 'Dates',
+                                categories: [zip_response.data[11][0].slice(5), zip_response.data[10][0].slice(5),
+                                    zip_response.data[9][0].slice(5), zip_response.data[8][0].slice(5), zip_response.data[7][0].slice(5),
+                                    zip_response.data[6][0].slice(5), zip_response.data[5][0].slice(5), zip_response.data[4][0].slice(5),
+                                    zip_response.data[3][0].slice(5), zip_response.data[2][0].slice(5), zip_response.data[1][0].slice(5),
+                                    zip_response.data[0][0].slice(5) ]
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Median Price of Homes in ' + zipcode
+                                },
+                                plotLines: [
+                                    {
+                                        value: 0,
+                                        width: 2,
+                                        color: '#808080'
+                                    }
+                                ]
+                            },
+                            tooltip: {
+                                animation: true
+                            },
+                            legend: {
+                                layout: 'horizontal',
 //            align: 'right',
-                            verticalAlign: 'bottom',
-                            borderWidth: 0
+                                verticalAlign: 'bottom',
+                                borderWidth: 0
 
-                        },
-                        series: [
-                            {
-                                name: "Zipcode: " + zipcode,
-                                data: [zip_response.data[11][1], zip_response.data[10][1],
-                                    zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
-                                    zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
-                                    zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
-                                    zip_response.data[0][1]]}
-                        ]
+                            },
+                            series: [
+                                {
+                                    name: "Zipcode: " + zipcode,
+                                    data: [zip_response.data[11][1], zip_response.data[10][1],
+                                        zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
+                                        zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
+                                        zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
+                                        zip_response.data[0][1]]}
+                            ]
+                        });
                     });
-                });
 
 //
-                $('.housingAnalysisTitle').toggle('slow');
-                $(function () {
-                    var price = zip_response.data[0][1];
-                    var price2 = zip_response.data[1][1];
-                    var price3 = zip_response.data[2][1];
-                    var price4 = zip_response.data[3][1];
-                    var price5 = zip_response.data[4][1];
-                    var price6 = zip_response.data[5][1];
-                    var price7 = zip_response.data[5][1];
-                    var price8 = zip_response.data[7][1];
-                    var price9 = zip_response.data[8][1];
-                    var price10 = zip_response.data[9][1];
-                    var price11 = zip_response.data[10][1];
-                    var price12 = zip_response.data[11][1];
+                    $('.housingAnalysisTitle').toggle('slow');
+                    $(function () {
+                        var price = zip_response.data[0][1];
+                        var price2 = zip_response.data[1][1];
+                        var price3 = zip_response.data[2][1];
+                        var price4 = zip_response.data[3][1];
+                        var price5 = zip_response.data[4][1];
+                        var price6 = zip_response.data[5][1];
+                        var price7 = zip_response.data[5][1];
+                        var price8 = zip_response.data[7][1];
+                        var price9 = zip_response.data[8][1];
+                        var price10 = zip_response.data[9][1];
+                        var price11 = zip_response.data[10][1];
+                        var price12 = zip_response.data[11][1];
 //                    for(i=0; i< zip_response.data[i][1].length <= zip_response.data[12][1].length; i++){
 //                        console.log(zip_response.data[i][1])
 //
 //                    }
-                    var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
-                    var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
-                    var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
-                    var principle = (last6Average *.80);
-                    var thirtyMonthly = (mortgageRates.thirtyYear[0]/100)/12;
-                    var thirty = mortgageRates.thirtyYear[0];
-                    var fifteen = mortgageRates.fifteenYear[0];
-                    var fifteenMonthly = (mortgageRates.fifteenYear[0]/ 100)/12;
-                    var thirtyYearMortgagePayment = (principle*(thirtyMonthly*(Math.pow(1+thirtyMonthly, 360))/(Math.pow((1+thirtyMonthly),360)-1))).toFixed(2);
-                    var fifteenYearMortgagePayment = (principle*(fifteenMonthly*(Math.pow(1+fifteenMonthly, 180))/(Math.pow((1+fifteenMonthly),180)-1))).toFixed(2);
-                    var housingVersusThirty = ((housing/thirtyYearMortgagePayment)*100).toFixed(2);
-                    var housingVersusFifteen = ((housing/fifteenYearMortgagePayment)*100).toFixed(2);
+                        var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
+                        var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
+                        var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
+                        var principle = (last6Average * .80);
+                        var thirtyMonthly = (mortgageRates.thirtyYear[0] / 100) / 12;
+                        var thirty = mortgageRates.thirtyYear[0];
+                        var fifteen = mortgageRates.fifteenYear[0];
+                        var fifteenMonthly = (mortgageRates.fifteenYear[0] / 100) / 12;
+                        var thirtyYearMortgagePayment = (principle * (thirtyMonthly * (Math.pow(1 + thirtyMonthly, 360)) / (Math.pow((1 + thirtyMonthly), 360) - 1))).toFixed(2);
+                        var fifteenYearMortgagePayment = (principle * (fifteenMonthly * (Math.pow(1 + fifteenMonthly, 180)) / (Math.pow((1 + fifteenMonthly), 180) - 1))).toFixed(2);
+                        var housingVersusThirty = ((thirtyYearMortgagePayment / housing) * 100).toFixed(2);
+                        var housingVersusFifteen = ((fifteenYearMortgagePayment / housing) * 100).toFixed(2);
 
 
 //                    Takes the first six months median home sale price and last six months, gives a percent change between the averages.
-                    $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
-                        " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
-                        "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div> Which is a percentage change of " +
-                        percent_change + " %</div><div>The most recent 30 Year Fixed Mortgage rate is "+thirty+"% and the 15 year Fixed Mortgage rate is " +fifteen+"%</div><div>" +
-                        "A new mortgage on home in your area would cost either $"+thirtyYearMortgagePayment+" a month for a 30 year, or $"+fifteenYearMortgagePayment +"a month for a 15 year</div><div>"+
-                        "You pay "+housingVersusThirty+"% difference on a 30 year and "+housingVersusFifteen+"% difference on 15 year</div>");
+                        $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
+                            " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
+                            "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ".</div><div> Which is a percentage change of " +
+                            percent_change + " %!</div><div>The most recent 30 Year Fixed Mortgage rate is " + thirty + "% and the 15 year Fixed Mortgage rate is " + fifteen + "%</div><div>" +
+                            "A new mortgage on home in your area would cost either $" + thirtyYearMortgagePayment + " a month for a 30 year, or $" + fifteenYearMortgagePayment + " a month for a 15 year.</div><div>" +
+                            "A new mortgage is  " + housingVersusThirty + "% more/less on a 30 year and " + housingVersusFifteen + "% more/less on 15 year than you pay now!</div>");
 
 
-                });
-            },
-            error: function (error_response) {
-            }
+                    });
+                },
+                error: function (error_response) {
+                }
+            });
         });
     });
 
