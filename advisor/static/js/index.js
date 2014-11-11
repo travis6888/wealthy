@@ -581,7 +581,8 @@ $(document).ready(function () {
                             " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
                             "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ".</div><div> Which is a percentage change of " +
                             percent_change + " %!</div><div>The most recent 30 Year Fixed Mortgage rate is " + thirty + "% and the 15 year Fixed Mortgage rate is " + fifteen + "%</div><div>" +
-                            "A new mortgage on home in your area would cost either $" + thirtyYearMortgagePayment + " a month for a 30 year, or $" + fifteenYearMortgagePayment + " a month for a 15 year.</div><div>" +
+                            "A new mortgage on home in your area would cost either $" + thirtyYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 30 year, or $" +
+                            fifteenYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 15 year.</div><div>" +
                             "A new mortgage is  " + housingVersusThirty + "% more/less on a 30 year and " + housingVersusFifteen + "% more/less on 15 year than you pay now!</div>");
 
 
