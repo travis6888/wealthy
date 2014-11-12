@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="{% static 'js/jquery-ui-1.11.0.custom/jquery-ui.min.css' %}">
     <link href="{% static 'css/agency.css' %}" rel="stylesheet">
     <link href="{% static 'css/wealthy.css' %}" rel="stylesheet">
-
+{% block css %}
+    {% endblock %}
     <!-- Custom Fonts -->
     <link href="{% static 'font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -84,264 +85,264 @@
         <div class="intro-text row">
             {% block content %}
             {% endblock content %}
-            {% if user.is_authenticated %}
-                <a href="#portfolio" class="page-scroll btn btn-xl introJump">Your Portfolio</a>
-            {% else %}
-                <div class="intro-lead-in">Welcome To Wealth Concierge!</div>
-                <div class="intro-heading">Check out a demo</div>
-                <a href="#services" class="page-scroll btn btn-xl demo">Demo</a>
-            {% endif %}
+{#            {% if user.is_authenticated %}#}
+{#                <a href="#portfolio" class="page-scroll btn btn-xl introJump">Your Portfolio</a>#}
+{#            {% else %}#}
+{#                <div class="intro-lead-in">Welcome To Wealth Concierge!</div>#}
+{#                <div class="intro-heading">Check out a demo</div>#}
+{#                <a href="#services" class="page-scroll btn btn-xl demo">Demo</a>#}
+{#            {% endif %}#}
 
-        </div>
-        <div class="modal fade bs-example-modal-sm modalsTarget" tabindex="-1" role="dialog"
-             aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content loginModal">
-                    <form method="post" action="/login/">
-                        {% csrf_token %}
-                        <input id="id_username" maxlength="245" name="username" type="text" class="form-control"
-                               placeholder="Username" required autofocus>
-                        <input id="id_password" name="password" type="password" class="form-control"
-                               placeholder="Password" required>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    <div class="row">
-        <div class="hidden createAccount">
-
-        </div>
-    </div>
+{#        </div>#}
+{#        <div class="modal fade bs-example-modal-sm modalsTarget" tabindex="-1" role="dialog"#}
+{#             aria-labelledby="myLargeModalLabel" aria-hidden="true">#}
+{#            <div class="modal-dialog modal-sm">#}
+{#                <div class="modal-content loginModal">#}
+{#                    <form method="post" action="/login/">#}
+{#                        {% csrf_token %}#}
+{#                        <input id="id_username" maxlength="245" name="username" type="text" class="form-control"#}
+{#                               placeholder="Username" required autofocus>#}
+{#                        <input id="id_password" name="password" type="password" class="form-control"#}
+{#                               placeholder="Password" required>#}
+{#                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    <div class="row">#}
+{#        <div class="hidden createAccount">#}
+{##}
+{#        </div>#}
+{#    </div>#}
 
     </div>
 </header>
 
-<section id="services">
-    <div class="container">
-        <div class="row">
-            <div class=" col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5 demoAgeInput">
-                <input type="text" style="text-align: center;" class=" input-lg form-control demo_age"
-                       placeholder="Enter Age">
-            </div>
-        </div>
-        <div class="row">
-            <div class="ageSubmit col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5">
-                <button class="btn btn-xl center-block ageInputBtn ">Submit</button>
-            </div>
-        </div>
-        
-        <div class="demoHide">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="row">
-                    <h2 class="section-heading">Here's A Demo Portfolio For Someone Your Age!</h2>
-
-                    <h3 class="section-subheading text-muted userAge"></h3>
-
-                    <p class="firstPara"></p>
-                        </div>
-                </div>
-            </div>
-
-            <div class="row text-center">
-                <div class="col-md-12">
-
-                <div class="col-md-4">
-                    <div id="pieChart"></div>
-
-
-                </div>
-                <div class="col-md-4">
-
-                    <div id="accordion">
-                        <h3>VOO</h3>
-
-                        <div>Vanguard S&P 500 Index Fund that tracks the Standard and Poor's 500 Index. WHich is made up
-                            of the 500 largest American companies.
-                        </div>
-                        <h3>VNQ</h3>
-
-                        <div>Vanguard REIT ETF tracks the Real Estate Investment Trust Index. American REIT's only and
-                            has a beta of 1.02.
-                        </div>
-                        <h3>VPU</h3>
-
-                        <div>Vanguard Uilities ETF is made of up of a diversified group of American Utility providers.
-                            Dividend yield is often larger than 3% and the beta is under .5.
-                        </div>
-                        <h3>VGIT</h3>
-
-                        <div>Vanguard ETF</div>
-                        <h3>VCLT</h3>
-
-                        <div>Vanguard ETF</div>
-                        <h3>VCIT</h3>
-
-                        <div>Vanguard ETF</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="demoResults">
-
-                    </div>
-
-
-                </div>
-            </div>
-                </div>
-            <button class=" btn btn-xl makeProfileBtn center-block" data-toggle="modal"
-                    data-target=".register-modal-lg">Create Yours!
-            </button>
-        </div>
-
-        <div class="row">
-            <div class="modal fade register-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <form method="post" action="/register/" enctype="form-data">
-                            {% csrf_token %}
-                            <div class="modal-header">
-                                <h2>Create Account</h2>
-                            </div>
-                            <h2 class="form-signin-heading">Create an account</h2>
-
-                            <div class="userName">
-                                <h4>Hey there! Lets make a username, so I know what to call you</h4>
-                                <input id="id_username" maxlength="30" name="username" type="text"
-                                       placeholder="Username">
-                                <input id="id_first_name" maxlength="30" name="first_name" type="text"
-                                       placeholder="First Name">
-                                <input id="id_last_name" maxlength="30" name="last_name" type="text"
-                                       placeholder="Last Name">
-
-                                <a href="#" class="btn btn-lg btn-primary btn-block usernameNext"
-                                   id="usernameNext">Next</a>
-                            </div>
-                            <div class="emailPassword" style="display: none;">
-                                <h4>Awesome! Could we also get your e-mail and password too?</h4>
-                                <input id="id_email" name="email" type="email" placeholder="E-mail">
-                                <input id="id_password1" name="password1" type="password" placeholder="Password">
-                                <input id="id_password2" name="password2" type="password"
-                                       placeholder="Confirm Password">
-                                <a href="#" class="btn btn-lg btn-primary btn-block emailPasswordNext">Next</a>
-                            </div>
-                            <div class="demographics" style="display: none;">
-                                <h4> Almost done, just need your age, income and the monthly housing cost's for your
-                                    entire home or apartment to finish registration!</h4>
-                                <h5>Your monthly housing cost should include rent/mortgage, utilities, HOA, etc</h5>
-                                <input id="id_income" name="income" type="text" placeholder="Yearly Income">
-                                <input id="id_age" name="age" type="text" placeholder="Age">
-                                <input id="id_housing" name="housing" type="text" placeholder="Manadatoy monthly spending">
-                                <input id="id_zipcode" name="zipcode" type="text" placeholder="Zipcode">
-                            </div>
-
-
-                            <button class="btn btn-lg btn-primary btn-block doneButton" style="display: none;"
-                                    type="submit">High-Five For Completion
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-</section>
-
-{% if user.is_authenticated %}
-    <section id="portfolio" class="bg-light-gray">
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Your Portfolio</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 text-center">
-
-                    <div id="pieChart2"></div>
-                    <div class="hiddenPortfolio"></div>
-                </div>
-
-                <div class="col-lg-4 text-center ">
-
-                    {% if user.risk_score < 1 %}
-                        <a href="{% url 'risk_profile' %}" class="btn btn-xl riskScore">Find Your Risk Score</a>
-
-                    {% else %}
-                        <button class="btn btn-xl centered gtPortfolio">Portfolio</button>
-                    {% endif %}
-                    <div id="accordion2" style="display: none;">
-
-
-                    </div>
-                </div>
-
-                <div class="col-lg-4 text-center">
-                    <div class="portfolioResultsTax">
-
-                    </div>
-                    <div class="portfolioResultsMonth">
-                    </div>
-                    <div class="monthInvestment">
-                    </div>
-                    <div class="getPortfolio">
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="stockPrices" style="display: inline-block">
-
-                    </div>
-                </div>
-            </div>
-            <div class="housing">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading housingQuest" style="display: none;">Do you own or rent?</h2>
-                </div>
-                <div class="col-lg-6">
-                    <button class="btn btn-xl centered getRentPrice" style="display: none;">Rent</button>
-                    <div class="zestimateWidget"
-                         style="display:none;width:300px;height:auto;padding:0 6px;font:normal normal normal 13px verdana,arial,sans-serif;overflow: hidden;background-color:#dbdbdb;border-radius: 5px;webkit-border-radius:5px;text-transform:none;text-indent:0;letter-spacing:0;text-align:center;">
-                        <div id="title" style="text-align:center;padding:6px 5px 6px 5px;background-color:#dbdbdb;"><a
-                                href="http://www.zillow.com/los-gatos-ca/home-values/" target="_blank"
-                                style="font-weight:bold;font-style:normal;font-size:13px;padding:0;text-decoration:none;color:#666666;text-decoration:none;line-height:1.2em;text-shadow: 0 1px #fff;">Home
-                            Value Estimate</a></div>
-                        <div style="position:relative;text-align:center;font-family:verdana,arial,sans-serif;font-size:10px;background-color:#f4f4f4;border-radius: 5px; border: 1px solid;border-color:#cccccc;webkit-border-radius: 5px;padding: 1px;">
-                            <iframe frameborder="0"
-                                    src="http://www.zillow.com/widgets/zestimate/ZestimateLargeWidget.htm?did=zillow-shv-large-iframe-widget&type=iframe&address=15310+Kennedy+Rd+Los+Gatos+CA+95030&searchbox=yes&region=Los+Gatos&skinnyWidget=true&tc=666666&bgc=f4f4f4"
-                                    height="360" scrolling="no" width="296"></iframe>
-                        </div>
-                        <div id="footer-links-container"
-                             style="height:auto;padding-bottom:5px;margin:5px 5px 0;text-align:center;">
-                            <div style="height:auto;display:block;overflow:hidden;"><a
-                                    href="http://www.zillow.com/los-gatos-ca/" target="_blank"
-                                    style="font-size:11px;padding:0;width:285px;color:#666666;text-decoration:none;"
-                                    scen="s1"><span class="region">Los Gatos</span> on Zillow</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <button class="btn btn-xl centered getHomePrice" style="display: none;">Own</button>
-                </div>
-            </div>
-        </div>
-
-
-    </section>
-{% endif %}
-
-<section id="contact">
-</section>
-
+{#<section id="services">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class=" col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5 demoAgeInput">#}
+{#                <input type="text" style="text-align: center;" class=" input-lg form-control demo_age"#}
+{#                       placeholder="Enter Age">#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row">#}
+{#            <div class="ageSubmit col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5">#}
+{#                <button class="btn btn-xl center-block ageInputBtn ">Submit</button>#}
+{#            </div>#}
+{#        </div>#}
+{#        #}
+{#        <div class="demoHide">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-12 text-center">#}
+{#                    <div class="row">#}
+{#                    <h2 class="section-heading">Here's A Demo Portfolio For Someone Your Age!</h2>#}
+{##}
+{#                    <h3 class="section-subheading text-muted userAge"></h3>#}
+{##}
+{#                    <p class="firstPara"></p>#}
+{#                        </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="row text-center">#}
+{#                <div class="col-md-12">#}
+{##}
+{#                <div class="col-md-4">#}
+{#                    <div id="pieChart"></div>#}
+{##}
+{##}
+{#                </div>#}
+{#                <div class="col-md-4">#}
+{##}
+{#                    <div id="accordion">#}
+{#                        <h3>VOO</h3>#}
+{##}
+{#                        <div>Vanguard S&P 500 Index Fund that tracks the Standard and Poor's 500 Index. WHich is made up#}
+{#                            of the 500 largest American companies.#}
+{#                        </div>#}
+{#                        <h3>VNQ</h3>#}
+{##}
+{#                        <div>Vanguard REIT ETF tracks the Real Estate Investment Trust Index. American REIT's only and#}
+{#                            has a beta of 1.02.#}
+{#                        </div>#}
+{#                        <h3>VPU</h3>#}
+{##}
+{#                        <div>Vanguard Uilities ETF is made of up of a diversified group of American Utility providers.#}
+{#                            Dividend yield is often larger than 3% and the beta is under .5.#}
+{#                        </div>#}
+{#                        <h3>VGIT</h3>#}
+{##}
+{#                        <div>Vanguard ETF</div>#}
+{#                        <h3>VCLT</h3>#}
+{##}
+{#                        <div>Vanguard ETF</div>#}
+{#                        <h3>VCIT</h3>#}
+{##}
+{#                        <div>Vanguard ETF</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-4">#}
+{#                    <div class="demoResults">#}
+{##}
+{#                    </div>#}
+{##}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#                </div>#}
+{#            <button class=" btn btn-xl makeProfileBtn center-block" data-toggle="modal"#}
+{#                    data-target=".register-modal-lg">Create Yours!#}
+{#            </button>#}
+{#        </div>#}
+{##}
+{#        <div class="row">#}
+{#            <div class="modal fade register-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"#}
+{#                 aria-hidden="true">#}
+{#                <div class="modal-dialog modal-lg">#}
+{#                    <div class="modal-content">#}
+{#                        <form method="post" action="/register/" enctype="form-data">#}
+{#                            {% csrf_token %}#}
+{#                            <div class="modal-header">#}
+{#                                <h2>Create Account</h2>#}
+{#                            </div>#}
+{#                            <h2 class="form-signin-heading">Create an account</h2>#}
+{##}
+{#                            <div class="userName">#}
+{#                                <h4>Hey there! Lets make a username, so I know what to call you</h4>#}
+{#                                <input id="id_username" maxlength="30" name="username" type="text"#}
+{#                                       placeholder="Username">#}
+{#                                <input id="id_first_name" maxlength="30" name="first_name" type="text"#}
+{#                                       placeholder="First Name">#}
+{#                                <input id="id_last_name" maxlength="30" name="last_name" type="text"#}
+{#                                       placeholder="Last Name">#}
+{##}
+{#                                <a href="#" class="btn btn-lg btn-primary btn-block usernameNext"#}
+{#                                   id="usernameNext">Next</a>#}
+{#                            </div>#}
+{#                            <div class="emailPassword" style="display: none;">#}
+{#                                <h4>Awesome! Could we also get your e-mail and password too?</h4>#}
+{#                                <input id="id_email" name="email" type="email" placeholder="E-mail">#}
+{#                                <input id="id_password1" name="password1" type="password" placeholder="Password">#}
+{#                                <input id="id_password2" name="password2" type="password"#}
+{#                                       placeholder="Confirm Password">#}
+{#                                <a href="#" class="btn btn-lg btn-primary btn-block emailPasswordNext">Next</a>#}
+{#                            </div>#}
+{#                            <div class="demographics" style="display: none;">#}
+{#                                <h4> Almost done, just need your age, income and the monthly housing cost's for your#}
+{#                                    entire home or apartment to finish registration!</h4>#}
+{#                                <h5>Your monthly housing cost should include rent/mortgage, utilities, HOA, etc</h5>#}
+{#                                <input id="id_income" name="income" type="text" placeholder="Yearly Income">#}
+{#                                <input id="id_age" name="age" type="text" placeholder="Age">#}
+{#                                <input id="id_housing" name="housing" type="text" placeholder="Manadatoy monthly spending">#}
+{#                                <input id="id_zipcode" name="zipcode" type="text" placeholder="Zipcode">#}
+{#                            </div>#}
+{##}
+{##}
+{#                            <button class="btn btn-lg btn-primary btn-block doneButton" style="display: none;"#}
+{#                                    type="submit">High-Five For Completion#}
+{#                            </button>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{##}
+{#</section>#}
+{##}
+{#{% if user.is_authenticated %}#}
+{#    <section id="portfolio" class="bg-light-gray">#}
+{##}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-12 text-center">#}
+{#                    <h2 class="section-heading">Your Portfolio</h2>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-lg-4 text-center">#}
+{##}
+{#                    <div id="pieChart2"></div>#}
+{#                    <div class="hiddenPortfolio"></div>#}
+{#                </div>#}
+{##}
+{#                <div class="col-lg-4 text-center ">#}
+{##}
+{#                    {% if user.risk_score < 1 %}#}
+{#                        <a href="{% url 'risk_profile' %}" class="btn btn-xl riskScore">Find Your Risk Score</a>#}
+{##}
+{#                    {% else %}#}
+{#                        <button class="btn btn-xl centered gtPortfolio">Portfolio</button>#}
+{#                    {% endif %}#}
+{#                    <div id="accordion2" style="display: none;">#}
+{##}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <div class="col-lg-4 text-center">#}
+{#                    <div class="portfolioResultsTax">#}
+{##}
+{#                    </div>#}
+{#                    <div class="portfolioResultsMonth">#}
+{#                    </div>#}
+{#                    <div class="monthInvestment">#}
+{#                    </div>#}
+{#                    <div class="getPortfolio">#}
+{##}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-lg-12 text-center">#}
+{#                    <div class="stockPrices" style="display: inline-block">#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="housing">#}
+{#                <div class="col-lg-12 text-center">#}
+{#                    <h2 class="section-heading housingQuest" style="display: none;">Do you own or rent?</h2>#}
+{#                </div>#}
+{#                <div class="col-lg-6">#}
+{#                    <button class="btn btn-xl centered getRentPrice" style="display: none;">Rent</button>#}
+{#                    <div class="zestimateWidget"#}
+{#                         style="display:none;width:300px;height:auto;padding:0 6px;font:normal normal normal 13px verdana,arial,sans-serif;overflow: hidden;background-color:#dbdbdb;border-radius: 5px;webkit-border-radius:5px;text-transform:none;text-indent:0;letter-spacing:0;text-align:center;">#}
+{#                        <div id="title" style="text-align:center;padding:6px 5px 6px 5px;background-color:#dbdbdb;"><a#}
+{#                                href="http://www.zillow.com/los-gatos-ca/home-values/" target="_blank"#}
+{#                                style="font-weight:bold;font-style:normal;font-size:13px;padding:0;text-decoration:none;color:#666666;text-decoration:none;line-height:1.2em;text-shadow: 0 1px #fff;">Home#}
+{#                            Value Estimate</a></div>#}
+{#                        <div style="position:relative;text-align:center;font-family:verdana,arial,sans-serif;font-size:10px;background-color:#f4f4f4;border-radius: 5px; border: 1px solid;border-color:#cccccc;webkit-border-radius: 5px;padding: 1px;">#}
+{#                            <iframe frameborder="0"#}
+{#                                    src="http://www.zillow.com/widgets/zestimate/ZestimateLargeWidget.htm?did=zillow-shv-large-iframe-widget&type=iframe&address=15310+Kennedy+Rd+Los+Gatos+CA+95030&searchbox=yes&region=Los+Gatos&skinnyWidget=true&tc=666666&bgc=f4f4f4"#}
+{#                                    height="360" scrolling="no" width="296"></iframe>#}
+{#                        </div>#}
+{#                        <div id="footer-links-container"#}
+{#                             style="height:auto;padding-bottom:5px;margin:5px 5px 0;text-align:center;">#}
+{#                            <div style="height:auto;display:block;overflow:hidden;"><a#}
+{#                                    href="http://www.zillow.com/los-gatos-ca/" target="_blank"#}
+{#                                    style="font-size:11px;padding:0;width:285px;color:#666666;text-decoration:none;"#}
+{#                                    scen="s1"><span class="region">Los Gatos</span> on Zillow</a></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-6">#}
+{#                    <button class="btn btn-xl centered getHomePrice" style="display: none;">Own</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{##}
+{#    </section>#}
+{#{% endif %}#}
+{##}
+{#<section id="contact">#}
+{#</section>#}
+{##}
 <footer>
     <div class="container">
         <div class="row">
