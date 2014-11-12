@@ -1,0 +1,101 @@
+body {
+    /*background: #fff8f8 fixed no-repeat center center;*/
+    background-size: cover;
+    /*background-image: url(../img/wave.png) ;*/
+
+    text-align: center;
+}
+
+input {
+	border: 0;
+	padding: .8rem;
+	/*font-size: 1rem;*/
+	margin: 1rem .3rem auto;
+	border-radius: 5px;
+	width: 50%;
+	max-width: 50%;
+    background-color: #ffffff;
+    text-align: center;
+    color: #000000;
+}
+select{
+    	border: 0;
+	padding: .8rem;
+	/*font-size: 1rem;*/
+	margin: 1rem .3rem auto;
+	border-radius: 5px;
+	width: 50%;
+	max-width: 50%;
+    background-color: #ffffff;
+    text-align: center;
+    color: #000000;
+
+}
+textarea{
+    color: #000000;
+}
+form {
+    text-align: center;
+}
+
+/*h3 {*/
+    /*text-align: center;*/
+    /*color: #ffffff;*/
+    /*text-shadow: 0 1px 2px rgba(0,0,0,0.5);*/
+    /*font-family: 'Bitter' sans-serif;*/
+    /*font-weight: 100;*/
+    /*font-size: 3rem;*/
+
+/*}*/
+
+.register-button {
+    width: 10%;
+    font-weight: 200;
+    border: 1px solid #ffffff;
+    /*color: #ffffff;*/
+    background-color: rgba(0,0,0,0);
+}
+
+.register-button:hover {
+    box-shadow: 0 0 20px;
+    -webkit-transition: 1s ease;
+    transition: 1s ease;
+}
+
+label {
+    display: block;
+    color: #ffffff;
+    /*text-shadow: 0 1px 2px rgba(0,0,0,0.5);*/
+}
+
+#id_image {
+    margin: auto;
+}
+
+.postForm{
+    margin-top: 100px;
+}
+.form-group-lg{
+    margin: 20px;
+}
+
+.secondPart{
+    display: none;
+}
+.lastPart{
+    display: none;
+}
+h1::before {
+    background: inherit;
+    color: #ffffff;
+   margin-top: 100px;
+}
+h1{
+    background: inherit;
+    color: #ffffff;
+   margin-top: 100px;
+
+}
+.Login{
+    margin-top: 100px;
+}

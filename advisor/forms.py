@@ -8,20 +8,26 @@ from crispy_forms.helper import FormHelper
 
 
 class EmailUserCreationForm(UserCreationForm):
-    username = forms.CharField(max_length=50)
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    email = forms.EmailField(required=True)
-    housing = forms.IntegerField(required=True)
-    income = forms.IntegerField(required=True)
-    age = forms.IntegerField(required=True)
-    zipcode = forms.IntegerField(required=True)
-    other_costs = forms.FloatField(required=True)
+    username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    first_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
+    email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Email'}))
+    housing = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Monthly Housing Costs'}))
+    income = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Income amount'}))
+    age = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Age'}))
+    zipcode = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Zipcode'}))
+    other_costs = forms.FloatField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Other Major Monthly Costs: Debt, etc'}))
 
     class Meta:
         model = Investor
         fields = ("username", "email", "password1", "password2", "first_name", "last_name", 'income', 'housing', 'age',
                   'zipcode', 'other_costs')
+
+    def __init__(self, *args, **kwargs):
+        super(EmailUserCreationForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['password2']:
+            self.fields[fieldname].help_text = None
 
     def clean_username(self):
             # Since User.username is unique, this check is redundant,
