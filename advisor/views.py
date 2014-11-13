@@ -275,3 +275,6 @@ def boot(request):
 
 def home(request):
     return render(request, 'boot4.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
