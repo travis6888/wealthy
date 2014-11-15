@@ -278,3 +278,11 @@ def home(request):
 
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+def price_lookup(request):
+    stocks = Investment.objects.all()
+    for stock in stocks:
+        quote = stock.hidden_symbol
+        print ystockquote.get_price(str(quote))
+
+    return render(request, 'dashboard.html')

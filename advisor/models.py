@@ -34,6 +34,7 @@ class Investment(models.Model):
     fees = models.FloatField(max_length=5, default=0)
     url = models.URLField(blank=True, null=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
+    hidden_symbol = models.TextField(max_length=5, blank=True, null=True)
 
     def __unicode__(self):
         return u"{}".format(self.name, self.asset_type)
