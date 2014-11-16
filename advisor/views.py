@@ -273,14 +273,23 @@ def boot(request):
     investor_data ={'zip': investor.zipcode, 'housing': investor.housing}
     return render(request, 'boot4.html', investor_data)
 
+
 def home(request):
     return render(request, 'boot4.html')
+
 
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+
 def price_lookup(request):
     stocks = Investment.objects.all()
+    stock_list =[]
+    portfolio = Portfolio.objects.get(user=request.user)
+    investements = portfolio.investments.all()
+    for investment in investements:
+        stock_list.append(investment)
+        print stock_list
     for stock in stocks:
         quote = stock.hidden_symbol
         print ystockquote.get_price(str(quote))
