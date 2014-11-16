@@ -281,15 +281,15 @@ def home(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-
+@csrf_exempt
 def price_lookup(request):
     stocks = Investment.objects.all()
     stock_list =[]
-    portfolio = Portfolio.objects.get(user=request.user)
-    investements = portfolio.investments.all()
-    for investment in investements:
-        stock_list.append(investment)
-        print stock_list
+    # portfolio = Portfolio.objects.get(investor=request.user)
+    # investements = portfolio.investments.all()
+    # for investment in investements:
+    #     stock_list.append(investment)
+    #     print stock_list
     for stock in stocks:
         quote = stock.hidden_symbol
         print ystockquote.get_price(str(quote))
