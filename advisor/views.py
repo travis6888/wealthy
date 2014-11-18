@@ -292,6 +292,8 @@ def price_lookup(request):
     #     print stock_list
     for stock in stocks:
         quote = stock.hidden_symbol
-        print ystockquote.get_price(str(quote))
+        price =ystockquote.get_price(str(quote))
+        stock_list[quote] = price
+    data = stock_list
 
-    return render(request, 'dashboard.html')
+    return HttpResponse(json.dumps(data), content_type='application/json')
