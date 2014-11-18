@@ -284,12 +284,8 @@ def dashboard(request):
 @csrf_exempt
 def price_lookup(request):
     stocks = Investment.objects.all()
-    stock_list =[]
-    # portfolio = Portfolio.objects.get(investor=request.user)
-    # investements = portfolio.investments.all()
-    # for investment in investements:
-    #     stock_list.append(investment)
-    #     print stock_list
+    stock_list ={}
+    investor = Investor.objects.get(id=request.user.id)
     for stock in stocks:
         quote = stock.hidden_symbol
         price =ystockquote.get_price(str(quote))
