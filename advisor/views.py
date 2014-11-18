@@ -279,15 +279,23 @@ def home(request):
 
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
-
-@csrf_exempt
-def price_lookup(request):
-    stock_list = {}
+    stock_list = {'stocks':{}}
     investor = Investor.objects.get(id=request.user.id)
     for stock in investor.portfolio.investments.all():
         quote = stock.hidden_symbol
         price = ystockquote.get_price(str(quote))
-        stock_list[quote] = price
-    data = stock_list
-    return HttpResponse(json.dumps(data), content_type='application/json')
+        stock_list['stocks'][quote] = price
+
+    return render(request, 'dashboard.html', stock_list)
+
+@csrf_exempt
+def price_lookup(request):
+    stock_list = {'stocks':{}}
+    investor = Investor.objects.get(id=request.user.id)
+    for stock in investor.portfolio.investments.all():
+        quote = stock.hidden_symbol
+        price = ystockquote.get_price(str(quote))
+        stock_list['stocks'][quote] = price
+
+
+    return HttpResponse(json.dumps(stock_list), content_type='application/json')

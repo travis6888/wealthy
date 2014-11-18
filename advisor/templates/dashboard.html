@@ -11,6 +11,10 @@
                     <button class="btn-xl btn btn-default loadPort">Load Portfolio</button>
                     <button class="btn-xl btn btn-default">Add </button>
 
+                    {% for stock in stocks %}
+                        <h3>{{ stock }}</h3>
+                    {% endfor %}
+
 
 
                 </div>
