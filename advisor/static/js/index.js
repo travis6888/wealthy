@@ -2,6 +2,9 @@ $(document).ready(function () {
 
     $('.gtPortfolio').on('click', function () {
         $('.homeDataBtn').toggle('slow');
+        $('.dashboardBtn').toggle('slow');
+
+
 //        Calculate an estimated after tax income amount
         $.ajax({
             url: '/income/',
