@@ -289,13 +289,13 @@ def dashboard(request):
     return render(request, 'dashboard.html', stock_list)
 
 @csrf_exempt
+@login_required()
 def price_lookup(request):
-    stock_list = {'stocks':{}}
+    stock_list = {}
     investor = Investor.objects.get(id=request.user.id)
     for stock in investor.portfolio.investments.all():
         quote = stock.hidden_symbol
         price = ystockquote.get_price(str(quote))
-        stock_list['stocks'][quote] = price
-
+        stock_list[str(stock.name)] = price
 
     return HttpResponse(json.dumps(stock_list), content_type='application/json')

@@ -12,15 +12,11 @@ $('.loadPort').on('click', function(){
         type: 'GET',
         dataType: 'json',
         success: function(response){
-            console.log(response.stocks);
-//
-//            for(i = 0; i < response.length; i++) {
-//
-//
-for (var key in response) {
- console.log(response[key][Object.keys(response[key])[0]]); // 81.25
-}
-
+            for (var key in response) {
+                var value = response[key];
+                $('.quotesData').append("<h2>Buy shares of "+key+" for $" + value+"</h2><button class='btn-xl btn btn-default'>Buy</button>")
+                $('.loadPort').toggle();
+            }
 
         },
         error: function(error){
