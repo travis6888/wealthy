@@ -157,3 +157,9 @@ ul{
 .dashboardBtn{
     display: none;
 }
+#dashboardBackground{
+    opacity: .85;
+}
+#dashboardContent{
+    /*opacity: .9;*/
+}

@@ -3,12 +3,13 @@
 
 
 {% block content %}
-        <div class="container">
+    <section id='dashboardBackground' class="bg-darkest-gray">
+    <div id='dashboardContent' class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <div class="col-lg-6 portfolioPie"></div>
-                    <div id="pieChartDash"></div>
-
+                    <div class="col-lg-6 portfolioPie">
+                    <div id="pieChart2"></div>
+</div>
                     <button class="btn-xl btn btn-default loadPort">Load Portfolio</button>
                     <div class="col-lg-4">
                         <div class="quotesData">
@@ -17,6 +18,8 @@
                 </div>
             </div>
         </div>
+    </section>
+
 {% endblock %}
 
 

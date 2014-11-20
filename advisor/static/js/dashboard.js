@@ -21,8 +21,6 @@ $('.loadPort').on('click', function(){
                         success: function (stock_response) {
                             var stocked = stock_response.stocksp;
                             var stockedname = stock_response.stocksn;
-                            $('.gtPortfolio').hide('slow');
-                            //
                             values.push(stocked.stock1p, stocked.stock2p, stocked.stock3p, stocked.stock4p, stocked.stock5p);
                             names.push(stockedname.stock1n, stockedname.stock2n, stockedname.stock3n, stockedname.stock4n, stockedname.stock5n);
                             expected.push(stock_response.expected);
@@ -44,8 +42,7 @@ $('.loadPort').on('click', function(){
                     }).complete(function () {
 
 ///                     Create custom pie graph for each portfolio
-                        $('.portfolioPie').hide();
-                        var pie = new d3pie("pieChartDash", {
+                        var pie = new d3pie("pieChart2", {
                             "header": {
                                 "title": {
                                     "text": portfolio,
