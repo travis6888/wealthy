@@ -67,7 +67,7 @@ $('.loadPort').on('click', function(){
                             },
                             "size": {
                                 "canvasHeight": 400,
-                                "canvasWidth": 400,
+                                "canvasWidth": 600,
                                 "pieInnerRadius": "9%",
                                 "pieOuterRadius": "90%"
                             },
