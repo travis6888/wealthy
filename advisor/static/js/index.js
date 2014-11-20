@@ -110,7 +110,7 @@ $(document).ready(function () {
                             },
                             "size": {
                                 "canvasHeight": 400,
-                                "canvasWidth": 600,
+                                "canvasWidth": 400,
                                 "pieInnerRadius": "9%",
                                 "pieOuterRadius": "90%"
                             },
@@ -162,7 +162,7 @@ $(document).ready(function () {
                                 },
                                 "value": {
                                     "color": "#adadad",
-                                    "fontSize": 11
+                                    "fontSize": 10
                                 },
                                 "lines": {
                                     "enabled": true
