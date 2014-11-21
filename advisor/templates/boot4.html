@@ -84,6 +84,7 @@
         <div class="intro-text row">
             {% block content %}
             {% endblock content %}
+        <h3>This Site is for information purpose only and is not actual investment advice!</h3>
             {% if user.is_authenticated %}
                 <a href="#portfolio" class="page-scroll btn btn-xl introJump">Your Portfolio</a>
             {% else %}
@@ -299,7 +300,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
 
-                        <a class="btn btn-default btn-xl dashboardBtn" href={% url 'dashboard' %}>Dashboard</a>
+{#                        <a class="btn btn-default btn-xl dashboardBtn" href={% url 'dashboard' %}>Dashboard</a>#}
 
 
                     <a class="btn btn-default btn-xl homeDataBtn page-scroll" href="#homeData">More</a>

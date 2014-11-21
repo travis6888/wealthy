@@ -152,7 +152,7 @@ $('.loadPort').on('click', function(){
         success: function(response){
             for (var key in response) {
                 var value = response[key];
-                $('.quotesData').append("<h5>"+key+": $" + value+"</h5><button class='btn-md btn btn-default'>Buy</button>")
+                $('.quotesData').append("<div>"+key+": $" + value+"<button class='btn-md btn btn-default'>Buy</button></div>")
             }
 
         },
