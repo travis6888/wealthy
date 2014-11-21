@@ -249,6 +249,8 @@ def find_portfolio(request):
         if int(risky) > 40:
             risk_portfolio = "Super Aggressive"
             data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            investor.portfolio_name = risk_portfolio
+            investor.save()
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 32 <= int(risky) <= 40:
             risk_portfolio = "Aggressive"
@@ -281,10 +283,14 @@ def home(request):
 def dashboard(request):
     stock_list = {'stocks':{}}
     investor = Investor.objects.get(id=request.user.id)
-    for stock in investor.portfolio.investments.all():
-        quote = stock.hidden_symbol
-        price = ystockquote.get_price(str(quote))
-        stock_list['stocks'][quote] = price
+    portfolio = investor.portfolio_name
+    investment = Portfolio.objects.filter(name=portfolio)
+    print investment
+    # for stock in :
+    #
+    #     quote = stock.hidden_symbol
+    #     price = ystockquote.get_price(str(quote))
+    #     stock_list['stocks'][quote] = price
 
     return render(request, 'dashboard.html', stock_list)
 
@@ -293,7 +299,8 @@ def dashboard(request):
 def price_lookup(request):
     stock_list = {}
     investor = Investor.objects.get(id=request.user.id)
-    for stock in investor.portfolio.investments.all():
+    portfolio = investor.portfolio_name
+    for stock in Portfolio.objects.filter(name=portfolio):
         quote = stock.hidden_symbol
         price = ystockquote.get_price(str(quote))
         stock_list[str(stock.name)] = price

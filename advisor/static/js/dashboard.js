@@ -26,14 +26,6 @@ $('.loadPort').on('click', function(){
                             expected.push(stock_response.expected);
                             portfolio.push(stock_response.portfolio);
                             stocks['names'].push(stockedname.stock1n, stockedname.stock2n, stockedname.stock3n, stockedname.stock4n, stockedname.stock5n);
-//                            $('.getPortfolio').html('<h3>The expected return of this portfolio when your 65 is: $' + stock_response.return);
-//                            var stock_list = stock_response.stock_list;
-//                            for (i = 0; i < stock_list.length; i++) {
-//                                $('#accordion2').append('<h3>' + stock_list[i].name + '</h3><div>' + stock_list[i].info + '</div>');
-//                            }
-//                            $('#accordion2').show();
-//                            $('#accordion2').accordion({active: 1});
-
                         },
                         error: function (error_response) {
                         }
@@ -162,9 +154,9 @@ $('.loadPort').on('click', function(){
 
         }
     });
-    var stocks =  {'names': []};
 
 });
+
 
 
 
