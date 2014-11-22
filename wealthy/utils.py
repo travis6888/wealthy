@@ -1,3 +1,5 @@
+from decimal import Decimal
+import decimal
 import math
 import numpy
 import ystockquote
@@ -62,54 +64,62 @@ def portfolio_return_calc(age, investment, risk_portfolio, investor):
     return data2
 
 
+def get_stock_value(data, number_shares, items):
+    price = ystockquote.get_price(str(data))
+    cost = float(price) * float(number_shares)
+    real_cost = decimal.Decimal(cost)
+    items.cost += real_cost
+    return cost
+
+
 def empty_stock_add_shares(data, items, number_shares):
     if items.stock_one_name == str(data):
         items.stock_one_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_one_name is None:
         items.stock_one_name = str(data)
         items.stock_one_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_two_name == str(data):
         items.stock_two_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_two_name is None:
         items.stock_two_name = str(data)
         items.stock_two_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_three_name == str(data):
         items.stock_three_shares += number_shares
-        get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_three_name is None:
         items.stock_three_name = str(data)
         items.stock_three_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_four_name == str(data):
         items.stock_four_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_four_name is None:
         items.stock_four_name = str(data)
         items.stock_four_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_five_name == str(data):
         items.stock_five_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     elif items.stock_five_name is None:
         items.stock_five_name = str(data)
         items.stock_five_shares += number_shares
-        # get_stock_value(data, number_shares)
+        get_stock_value(data, number_shares, items)
         items.save()
     else:
-        print "grrrr"
+        pass
     return
 
 
@@ -125,14 +135,11 @@ def buy_stock_conditionals(data, portfolio, monthly, request):
             empty_stock_add_shares(data, items, number_shares)
 
     else:
+        price = ystockquote.get_price(str(data))
+        cost = float(price) * float(number_shares)
+        real_cost = decimal.Decimal(cost)
         PersonalStockPortfolio.objects.create(name="primary", owner=request.user, stock_one_name=str(data),
-                                         stock_one_shares=number_shares)
+                                         stock_one_shares=number_shares, cost=real_cost)
     data = {data: number_shares}
     return data
 
-
-def get_stock_value(data, number_shares):
-    price = ystockquote.get_price(str(data))
-    cost = (price*number_shares)
-
-    return cost
