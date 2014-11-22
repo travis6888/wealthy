@@ -17,7 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 import math
 from requests import auth
 from advisor.forms import EmailUserCreationForm, RiskProfileForm, StockLookUpForm
-from advisor.models import Investor, Stocks, Portfolio, Investment
+from advisor.models import Investor, Stocks, Portfolio, Investment, PersonalPortfolio
 from wealthy import settings
 import ystockquote
 import finance
@@ -288,9 +288,7 @@ def price_lookup(request):
     investor = Investor.objects.get(id=request.user.id)
     portfolio = investor.portfolio_name
     for stock in Investment.objects.filter(portfolios__name=portfolio):
-        print stock.hidden_symbol
         quote = stock.hidden_symbol
-        # price = ystockquote.get_price(str(quote))
         stock_list[str(stock.name)] = quote
     return HttpResponse(json.dumps(stock_list), content_type='application/json')
 
@@ -298,11 +296,29 @@ def price_lookup(request):
 def buy_stock(request):
     investor = Investor.objects.get(id=request.user.id)
     monthly = investor.monthly_investment
+    portfolio = PersonalPortfolio.objects.filter(owner=request.user)
     if request.method == "POST":
         data = json.loads(request.body)
         price = ystockquote.get_price(str(data))
         number_shares = math.trunc(float(monthly)/float(price))
+        if portfolio:
+            for items in portfolio:
+                if items.stock_one_name == str(data):
+                    print "HELL YEAH one"
+                elif items.stock_two_name == str(data):
+                    print "hell yeah two"
+                elif items.stock_three_name == str(data):
+                    print "hell yeah thh3"
+                elif items.stock_four_name == str(data):
+                    print "hell yeah 4"
+                else:
+                    print "hell"
 
+            print "yes"
+        else:
+            PersonalPortfolio.objects.create(name="primary", owner=request.user, stock_one_name=str(data),
+                                             stock_one_shares=number_shares)
+            print "no"
         print number_shares
 
 
