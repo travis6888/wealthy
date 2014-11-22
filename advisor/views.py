@@ -26,12 +26,8 @@ from yahoo import *
 
 
 # @csrf_exempt
-from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc
-
-
-
-
-
+from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc, \
+    buy_stock_conditionals
 
 
 @login_required
@@ -299,29 +295,8 @@ def buy_stock(request):
     portfolio = PersonalPortfolio.objects.filter(owner=request.user)
     if request.method == "POST":
         data = json.loads(request.body)
-        price = ystockquote.get_price(str(data))
-        number_shares = math.trunc(float(monthly)/float(price))
-        if portfolio:
-            for items in portfolio:
-                if items.stock_one_name == str(data):
-                    print "HELL YEAH one"
-                elif items.stock_two_name == str(data):
-                    print "hell yeah two"
-                elif items.stock_three_name == str(data):
-                    print "hell yeah thh3"
-                elif items.stock_four_name == str(data):
-                    print "hell yeah 4"
-                else:
-                    print "hell"
-
-            print "yes"
-        else:
-            PersonalPortfolio.objects.create(name="primary", owner=request.user, stock_one_name=str(data),
-                                             stock_one_shares=number_shares)
-            print "no"
-        print number_shares
-
-
-
+        buy_stock_conditionals(data, portfolio, monthly, request)
         return HttpResponse(json.dumps(data), content_type='application/json')
+    else:
+        return render(request, 'error.html')
 

@@ -1,5 +1,7 @@
+import math
 import numpy
-from advisor.models import Portfolio, Investment
+import ystockquote
+from advisor.models import Portfolio, Investment, PersonalPortfolio
 
 __author__ = 'Travis'
 
@@ -57,3 +59,30 @@ def portfolio_return_calc(age, investment, risk_portfolio, investor ):
     investor.portfolio_name = risk_portfolio
     investor.save()
     return data2
+
+
+def buy_stock_conditionals(data, portfolio, monthly, request):
+        price = ystockquote.get_price(str(data))
+        number_shares = math.trunc(float(monthly)/float(price))
+        if portfolio:
+            for items in portfolio:
+                if items.stock_one_name == str(data):
+                    items.stock_one_shares += number_shares
+                    items.save()
+                elif items.stock_two_name == str(data):
+                    items.stock_two_shares += number_shares
+                    items.save()
+                elif items.stock_three_name == str(data):
+                    items.stock_three_shares += number_shares
+                    items.save()
+                elif items.stock_four_name == str(data):
+                    items.stock_four_shares += number_shares
+                    items.save()
+                else:
+                    items.stock_five_shares += number_shares
+                    items.save()
+        else:
+            PersonalPortfolio.objects.create(name="primary", owner=request.user, stock_one_name=str(data),
+                                             stock_one_shares=number_shares)
+        data = {data: number_shares}
+        return data
