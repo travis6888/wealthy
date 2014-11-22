@@ -14,6 +14,7 @@ from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from django.utils import formats
 from django.views.decorators.csrf import csrf_exempt
+import math
 from requests import auth
 from advisor.forms import EmailUserCreationForm, RiskProfileForm, StockLookUpForm
 from advisor.models import Investor, Stocks, Portfolio, Investment
@@ -289,14 +290,22 @@ def price_lookup(request):
     for stock in Investment.objects.filter(portfolios__name=portfolio):
         print stock.hidden_symbol
         quote = stock.hidden_symbol
-        price = ystockquote.get_price(str(quote))
+        # price = ystockquote.get_price(str(quote))
         stock_list[str(stock.name)] = quote
     return HttpResponse(json.dumps(stock_list), content_type='application/json')
 
-
+@csrf_exempt
 def buy_stock(request):
     investor = Investor.objects.get(id=request.user.id)
-    monthly = investor.disposible_monthly
+    monthly = investor.monthly_investment
     if request.method == "POST":
-        pass
+        data = json.loads(request.body)
+        price = ystockquote.get_price(str(data))
+        number_shares = math.trunc(float(monthly)/float(price))
+
+        print number_shares
+
+
+
+        return HttpResponse(json.dumps(data), content_type='application/json')
 

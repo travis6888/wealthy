@@ -169,6 +169,21 @@ $('.loadPort').on('click', function(){
 $('.quotesData').on('click','button', function(){
     var stockName = $(this).text();
     var quote = $(this).data('title');
+//    var stockData = { stockName: quote};
+      var stockquote = JSON.stringify(quote);
+                    $.ajax({
+                        url:'/buy_stock/',
+                        type: 'POST',
+                        dataType: 'html',
+                        data: stockquote,
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(response){
+                        console.log(response)}
+                    });
+
+
 
 });
 
