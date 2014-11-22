@@ -34,7 +34,7 @@ $('.loadPort').on('click', function(){
                     }).complete(function () {
 
 ///                     Create custom pie graph for each portfolio
-                        var pie = new d3pie("pieChart2", {
+                        var pie = new d3pie("pieChartPort", {
                             "header": {
                                 "title": {
                                     "text": portfolio,
@@ -63,6 +63,9 @@ $('.loadPort').on('click', function(){
                                 "pieInnerRadius": "9%",
                                 "pieOuterRadius": "90%"
                             },
+
+
+
                             "data": {
                                 "sortOrder": "value-asc",
                                 "content": [
@@ -93,6 +96,8 @@ $('.loadPort').on('click', function(){
                                     }
                                     //
                                 ]
+
+
                             },
                             "labels": {
                                 "outer": {
@@ -132,6 +137,9 @@ $('.loadPort').on('click', function(){
                             }
 
                         });
+                    }).complete(function(){
+//                        $.ajax({
+//                        });
                     });
 
 
@@ -144,7 +152,7 @@ $('.loadPort').on('click', function(){
         success: function(response){
             for (var key in response) {
                 var value = response[key];
-                $('.quotesData').append("<div>"+key+": $" + value+"<button class='btn-md btn btn-default'>Buy</button></div>")
+                $('.quotesData').append("<button class='btn-lg btn btn-default'>"+key+"</button>")
             }
 
         },
@@ -166,3 +174,7 @@ $('.loadPort').on('click', function(){
 
 
 });
+//$(function() {
+//	$("#updateTitleBtn").on("click", function() {
+//		pie.updateProp("header.title.text", $("#title").val());
+//	});

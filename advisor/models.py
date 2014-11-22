@@ -57,3 +57,22 @@ class Stocks(models.Model):
 
     def __unicode__(self):
         return u"{}".format(self.name)
+
+
+class PersonalPortfolio(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+    owner = models.ForeignKey(Investor, related_name='personal_portfolio')
+    cost = models.FloatField(max_length=90, blank=True, null=True)
+    stock_one_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_one_shares = models.FloatField(max_length=100, blank=True, null=True)
+    stock_two_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_two_shares = models.FloatField(max_length=100, blank=True, null=True)
+    stock_three_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_three_shares = models.FloatField(max_length=100, blank=True, null=True)
+    stock_four_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_four_shares = models.FloatField(max_length=100, blank=True, null=True)
+    stock_five_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_five_shares = models.FloatField(max_length=100, blank=True, null=True)
+
+    def __unicode__(self):
+        return u"{}".format(self.name)
