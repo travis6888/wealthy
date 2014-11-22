@@ -290,7 +290,7 @@ def price_lookup(request):
         print stock.hidden_symbol
         quote = stock.hidden_symbol
         price = ystockquote.get_price(str(quote))
-        stock_list[str(stock.name)] = price
+        stock_list[str(stock.name)] = quote
     return HttpResponse(json.dumps(stock_list), content_type='application/json')
 
 

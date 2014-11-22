@@ -152,7 +152,7 @@ $('.loadPort').on('click', function(){
         success: function(response){
             for (var key in response) {
                 var value = response[key];
-                $('.quotesData').append("<button class='btn-lg btn btn-default stocks' data-title="+key+">"+key+"</button>")
+                $('.quotesData').append("<button class='btn-lg btn btn-default stocks' data-title="+value+">"+key+"</button>")
             }
 
         },
@@ -166,9 +166,10 @@ $('.loadPort').on('click', function(){
 });
 
 
-$('.stocks').on('click', function(){
-    var stockName = $(this).data('title');
-    console.log(stockName)
+$('.quotesData').on('click','button', function(){
+    var stockName = $(this).text();
+    var quote = $(this).data('title');
+
 });
 
 
