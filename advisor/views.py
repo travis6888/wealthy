@@ -17,7 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 import math
 from requests import auth
 from advisor.forms import EmailUserCreationForm, RiskProfileForm, StockLookUpForm
-from advisor.models import Investor, Stocks, Portfolio, Investment, PersonalPortfolio
+from advisor.models import Investor, Stocks, Portfolio, Investment, PersonalStockPortfolio
 from wealthy import settings
 import ystockquote
 import finance
@@ -292,7 +292,7 @@ def price_lookup(request):
 def buy_stock(request):
     investor = Investor.objects.get(id=request.user.id)
     monthly = investor.monthly_investment
-    portfolio = PersonalPortfolio.objects.filter(owner=request.user)
+    portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
     if request.method == "POST":
         data = json.loads(request.body)
         buy_stock_conditionals(data, portfolio, monthly, request)

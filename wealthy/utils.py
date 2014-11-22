@@ -1,7 +1,7 @@
 import math
 import numpy
 import ystockquote
-from advisor.models import Portfolio, Investment, PersonalPortfolio
+from advisor.models import Portfolio, Investment, PersonalStockPortfolio
 
 __author__ = 'Travis'
 
@@ -62,48 +62,77 @@ def portfolio_return_calc(age, investment, risk_portfolio, investor):
     return data2
 
 
+def empty_stock_add_shares(data, items, number_shares):
+    if items.stock_one_name == str(data):
+        items.stock_one_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_one_name is None:
+        items.stock_one_name = str(data)
+        items.stock_one_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_two_name == str(data):
+        items.stock_two_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_two_name is None:
+        items.stock_two_name = str(data)
+        items.stock_two_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_three_name == str(data):
+        items.stock_three_shares += number_shares
+        get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_three_name is None:
+        items.stock_three_name = str(data)
+        items.stock_three_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_four_name == str(data):
+        items.stock_four_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_four_name is None:
+        items.stock_four_name = str(data)
+        items.stock_four_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_five_name == str(data):
+        items.stock_five_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    elif items.stock_five_name is None:
+        items.stock_five_name = str(data)
+        items.stock_five_shares += number_shares
+        # get_stock_value(data, number_shares)
+        items.save()
+    else:
+        print "grrrr"
+    return
+
+
+def personal_portfolio_value_calc():
+    return
+
+
 def buy_stock_conditionals(data, portfolio, monthly, request):
     price = ystockquote.get_price(str(data))
     number_shares = math.trunc(float(monthly) / float(price))
     if portfolio:
         for items in portfolio:
-            if items.stock_one_name == str(data):
-                items.stock_one_shares += number_shares
-                items.save()
-            elif items.stock_one_name == "":
-                items.stock_one_name = str(data)
-                items.stock_one_shares += number_shares
-                items.save()
-            elif items.stock_two_name == str(data):
-                items.stock_two_shares += number_shares
-                items.save()
-            elif items.stock_two_name == "":
-                items.stock_two_name = str(data)
-                items.stock_two_shares += number_shares
-                items.save()
-            elif items.stock_three_name == str(data):
-                items.stock_three_shares += number_shares
-                items.save()
-            elif items.stock_three_name == "":
-                items.stock_three_name = str(data)
-                items.stock_three_shares += number_shares
-                items.save()
-            elif items.stock_four_name == str(data):
-                items.stock_four_shares += number_shares
-                items.save()
-            elif items.stock_four_name == "":
-                items.stock_four_name = str(data)
-                items.stock_four_shares += number_shares
-                items.save()
-            elif items.stock_five_name == str(data):
-                items.stock_five_shares += number_shares
-                items.save()
-            elif items.stock_five_name == "":
-                items.stock_five_name = str(data)
-                items.stock_five_shares += number_shares
-                items.save()
+            empty_stock_add_shares(data, items, number_shares)
+
     else:
-        PersonalPortfolio.objects.create(name="primary", owner=request.user, stock_one_name=str(data),
+        PersonalStockPortfolio.objects.create(name="primary", owner=request.user, stock_one_name=str(data),
                                          stock_one_shares=number_shares)
     data = {data: number_shares}
     return data
+
+
+def get_stock_value(data, number_shares):
+    price = ystockquote.get_price(str(data))
+    cost = (price*number_shares)
+
+    return cost
