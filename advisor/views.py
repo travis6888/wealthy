@@ -243,30 +243,27 @@ def find_portfolio(request):
     investor = Investor.objects.get(id=request.user.id)
     if request.method == "GET":
         risky = investor.risk_score
-        monthly = investor.disposible_monthly
         age = investor.age
         investment = investor.monthly_investment
         if int(risky) > 40:
             risk_portfolio = "Super Aggressive"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
-            investor.portfolio_name = risk_portfolio
-            investor.save()
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 32 <= int(risky) <= 40:
             risk_portfolio = "Aggressive"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 24 <= int(risky) <= 31:
             risk_portfolio = "Moderate"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 12 <= int(risky) <= 23:
             risk_portfolio = "Conservative"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         else:
             risk_portfolio = "Super Conservative"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
 
 
@@ -295,3 +292,11 @@ def price_lookup(request):
         price = ystockquote.get_price(str(quote))
         stock_list[str(stock.name)] = price
     return HttpResponse(json.dumps(stock_list), content_type='application/json')
+
+
+def buy_stock(request):
+    investor = Investor.objects.get(id=request.user.id)
+    monthly = investor.disposible_monthly
+    if request.method == "POST":
+        pass
+

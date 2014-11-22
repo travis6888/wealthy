@@ -32,7 +32,7 @@ def input_income_calc(investor, income_input, taxes):
     return json_tax
 
 
-def portfolio_return_calc(age, investment, risk_portfolio ):
+def portfolio_return_calc(age, investment, risk_portfolio, investor ):
     portfolio_attr = []
     portfolio_list = Portfolio.objects.filter(name=risk_portfolio)
     stock_list = Investment.objects.filter(portfolios__name=risk_portfolio)
@@ -54,4 +54,6 @@ def portfolio_return_calc(age, investment, risk_portfolio ):
                     'portfolio': portfolio_attr[0],
                     'expected': portfolio_attr[1],
                     'return': investment_return, 'stock_list': stock_info_list}
+    investor.portfolio_name = risk_portfolio
+    investor.save()
     return data2
