@@ -2,6 +2,9 @@ $(document).ready(function () {
 
     $('.gtPortfolio').on('click', function () {
         $('.homeDataBtn').toggle('slow');
+        $('.dashboardBtn').toggle('slow');
+
+
 //        Calculate an estimated after tax income amount
         $.ajax({
             url: '/income/',
@@ -159,7 +162,7 @@ $(document).ready(function () {
                                 },
                                 "value": {
                                     "color": "#adadad",
-                                    "fontSize": 11
+                                    "fontSize": 10
                                 },
                                 "lines": {
                                     "enabled": true

@@ -14,6 +14,7 @@ class Investor(AbstractUser):
     after_tax = models.FloatField(null=True, default=0)
     monthly_investment = models.FloatField(null=True, default=0, max_length=20)
     other_costs = models.FloatField(null=True, blank=True, default=0, max_length=20)
+    portfolio_name = models.CharField(max_length=25, blank=True, null=True)
 
     def __unicode__(self):
         return u"{} {}".format(self.username, self.income)
@@ -34,6 +35,7 @@ class Investment(models.Model):
     fees = models.FloatField(max_length=5, default=0)
     url = models.URLField(blank=True, null=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
+    hidden_symbol = models.TextField(max_length=5, blank=True, null=True)
 
     def __unicode__(self):
         return u"{}".format(self.name, self.asset_type)
@@ -52,6 +54,26 @@ class Portfolio(models.Model):
 class Stocks(models.Model):
     name = models.CharField(max_length=10)
     info = models.TextField(max_length=3000)
+
+    def __unicode__(self):
+        return u"{}".format(self.name)
+
+
+class PersonalStockPortfolio(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+    owner = models.ForeignKey(Investor, related_name='personal_portfolio')
+    cost = models.DecimalField(max_digits=100, decimal_places=3,  default=0, )
+    current_value = models.DecimalField(max_digits=100, decimal_places=3, default=0)
+    stock_one_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_one_shares = models.DecimalField(max_digits=100, decimal_places=3, default=0)
+    stock_two_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_two_shares = models.DecimalField(max_digits=100, decimal_places=3, default=0)
+    stock_three_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_three_shares = models.DecimalField(max_digits=100, decimal_places=3, default=0)
+    stock_four_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_four_shares = models.DecimalField(max_digits=100, decimal_places=3, default=0)
+    stock_five_name = models.CharField(max_length=6, blank=True, null=True)
+    stock_five_shares = models.DecimalField(max_digits=100, decimal_places=3, default=0)
 
     def __unicode__(self):
         return u"{}".format(self.name)

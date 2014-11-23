@@ -14,9 +14,10 @@ from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from django.utils import formats
 from django.views.decorators.csrf import csrf_exempt
+import math
 from requests import auth
 from advisor.forms import EmailUserCreationForm, RiskProfileForm, StockLookUpForm
-from advisor.models import Investor, Stocks, Portfolio, Investment
+from advisor.models import Investor, Stocks, Portfolio, Investment, PersonalStockPortfolio
 from wealthy import settings
 import ystockquote
 import finance
@@ -25,12 +26,8 @@ from yahoo import *
 
 
 # @csrf_exempt
-from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc
-
-
-
-
-
+from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc, \
+    buy_stock_conditionals
 
 
 @login_required
@@ -243,28 +240,27 @@ def find_portfolio(request):
     investor = Investor.objects.get(id=request.user.id)
     if request.method == "GET":
         risky = investor.risk_score
-        monthly = investor.disposible_monthly
         age = investor.age
         investment = investor.monthly_investment
         if int(risky) > 40:
             risk_portfolio = "Super Aggressive"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 32 <= int(risky) <= 40:
             risk_portfolio = "Aggressive"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 24 <= int(risky) <= 31:
             risk_portfolio = "Moderate"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         elif 12 <= int(risky) <= 23:
             risk_portfolio = "Conservative"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
         else:
             risk_portfolio = "Super Conservative"
-            data2 = portfolio_return_calc(age, investment, risk_portfolio,)
+            data2 = portfolio_return_calc(age, investment, risk_portfolio, investor)
             return HttpResponse(json.dumps(data2), content_type='application/json')
 
 
@@ -273,5 +269,34 @@ def boot(request):
     investor_data ={'zip': investor.zipcode, 'housing': investor.housing}
     return render(request, 'boot4.html', investor_data)
 
+
 def home(request):
     return render(request, 'boot4.html')
+
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+@csrf_exempt
+@login_required()
+def price_lookup(request):
+    stock_list = {}
+    investor = Investor.objects.get(id=request.user.id)
+    portfolio = investor.portfolio_name
+    for stock in Investment.objects.filter(portfolios__name=portfolio):
+        quote = stock.hidden_symbol
+        stock_list[str(stock.name)] = quote
+    return HttpResponse(json.dumps(stock_list), content_type='application/json')
+
+@csrf_exempt
+def buy_stock(request):
+    investor = Investor.objects.get(id=request.user.id)
+    monthly = investor.monthly_investment
+    portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
+    if request.method == "POST":
+        data = json.loads(request.body)
+        buy_stock_conditionals(data, portfolio, monthly, request)
+        return HttpResponse(json.dumps(data), content_type='application/json')
+    else:
+        return render(request, 'error.html')
+

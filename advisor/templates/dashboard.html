@@ -1,0 +1,36 @@
+{% extends 'boot3.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <section id='homeData' class="bg-light-gray">
+    <div id='dashboardContent' class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="col-lg-6 portfolioPie">
+                        <div id="pieChartPort"></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="pieChartPort"></div>
+                    </div>
+                    </div>
+
+                    <button class="btn-xl btn btn-default loadPort">Load Portfolio</button>
+                    <div class="col-lg-12">
+                        <div class="quotesData text-left">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
+
+{% block extrajs %}
+<script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="{% static 'js/d3pie.js' %}"></script>
+
+{% endblock %}

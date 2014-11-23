@@ -154,3 +154,16 @@ ul{
         display: none;
 
 }
+.dashboardBtn{
+    display: none;
+}
+#dashboardBackground{
+    /*opacity: .85;*/
+}
+#dashboardContent{
+    /*opacity: .9;*/
+}
+.quotesData div{
+    color: #000000;
+
+}

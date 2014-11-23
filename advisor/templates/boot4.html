@@ -84,6 +84,7 @@
         <div class="intro-text row">
             {% block content %}
             {% endblock content %}
+        <h3>This Site is for information purpose only and is not actual investment advice!</h3>
             {% if user.is_authenticated %}
                 <a href="#portfolio" class="page-scroll btn btn-xl introJump">Your Portfolio</a>
             {% else %}
@@ -226,7 +227,7 @@
                             </div>
                             <div class="demographics" style="display: none;">
                                 <h4> Almost done, just need your age, income and the monthly housing cost's for your
-                                    entire home or apartment to finish registration!</h4>
+                                    entire home or apartment, and other major spending like student loan payments to finish registration!</h4>
                                 <h5>Your monthly housing cost should include rent/mortgage, utilities, HOA, etc</h5>
                                 <input id="id_income" name="income" type="text" placeholder="Yearly Income">
                                 <input id="id_age" name="age" type="text" placeholder="Age">
@@ -298,6 +299,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
+
+{#                        <a class="btn btn-default btn-xl dashboardBtn" href={% url 'dashboard' %}>Dashboard</a>#}
+
+
                     <a class="btn btn-default btn-xl homeDataBtn page-scroll" href="#homeData">More</a>
 
                     </div>

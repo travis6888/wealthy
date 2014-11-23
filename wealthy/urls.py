@@ -22,6 +22,9 @@ urlpatterns = patterns('',
     url(r'^income/$', 'advisor.views.input_income', name='income'),
     url(r'^rent_to_median/$', 'advisor.views.rent_to_median', name='rent_to_median'),
     url(r'^find_investment_monthly/$', 'advisor.views.find_investment_monthly', name='find_investment_monthly'),
+    url(r'^dashboard/$', 'advisor.views.dashboard', name='dashboard'),
+    url(r'^price_lookup/$', 'advisor.views.price_lookup', name="price_lookup"),
+    url(r'^buy_stock/$', 'advisor.views.buy_stock', name='buy_stock'),
 
     url(r'^demo_age/$', 'advisor.views.demo_age', name='demo_age'),
 
