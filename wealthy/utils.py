@@ -95,7 +95,7 @@ def get_portfolio_value(items):
         portfolio_value += cost
     items.current_value = decimal.Decimal(portfolio_value)
     items.save()
-    data = {'stockPort': str(stock_portfolio_info), 'portValue': str(items.current_value)}
+    data = {'stockPort': str(stock_portfolio_info), 'portValue': float(items.current_value), 'portCost': float(items.cost)}
     return data
 
 
@@ -157,10 +157,6 @@ def empty_stock_add_shares(data, items, number_shares):
         items.save()
     else:
         pass
-    return
-
-
-def personal_portfolio_value_calc():
     return
 
 
