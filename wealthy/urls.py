@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     url(r'^dashboard/$', 'advisor.views.dashboard', name='dashboard'),
     url(r'^price_lookup/$', 'advisor.views.price_lookup', name="price_lookup"),
     url(r'^buy_stock/$', 'advisor.views.buy_stock', name='buy_stock'),
+    url(r'^personal_pie_info/$', 'advisor.views.personal_pie_info', name='personal_pie_info'),
 
     url(r'^demo_age/$', 'advisor.views.demo_age', name='demo_age'),
 

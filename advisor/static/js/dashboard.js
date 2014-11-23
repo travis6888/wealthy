@@ -3,13 +3,13 @@
  */
 $(document).ready( function(){
 
+var names = [];
 
+var stocks = {'names': []};
 
 
 $('.loadPort').on('click', function(){
-    var stocks = {'names': []};
                     var values = [];
-                    var names = [];
                     var portfolio = [];
                     var expected = [];
 //                    Get all the portfolio information after the user has a risk score
@@ -21,6 +21,7 @@ $('.loadPort').on('click', function(){
                         success: function (stock_response) {
                             var stocked = stock_response.stocksp;
                             var stockedname = stock_response.stocksn;
+
                             values.push(stocked.stock1p, stocked.stock2p, stocked.stock3p, stocked.stock4p, stocked.stock5p);
                             names.push(stockedname.stock1n, stockedname.stock2n, stockedname.stock3n, stockedname.stock4n, stockedname.stock5n);
                             expected.push(stock_response.expected);
@@ -67,7 +68,7 @@ $('.loadPort').on('click', function(){
 
 
                             "data": {
-                                "sortOrder": "value-asc",
+                                "sortOrder": "label-desc",
                                 "content": [
                                     {
                                         "label": names[0],
@@ -152,6 +153,7 @@ $('.loadPort').on('click', function(){
         success: function(response){
             for (var key in response) {
                 var value = response[key];
+
                 $('.quotesData').append("<button class='btn-lg btn btn-default stocks' data-title="+value+">"+key+"</button>")
             }
 
@@ -165,7 +167,10 @@ $('.loadPort').on('click', function(){
 
 });
 
+var personalValues = {};
 
+
+var personalValues2 = [];
 $('.quotesData').on('click','button', function(){
     var stockName = $(this).text();
     var quote = $(this).data('title');
@@ -181,11 +186,128 @@ $('.quotesData').on('click','button', function(){
                         },
                         error: function(response){
                         console.log(response)}
+                    }).complete(function(){
+                         $.ajax({
+                        url: '/personal_pie_info/',
+                        type: 'GET',
+                        dataType: 'json',
+
+                        success: function (stock_response) {
+                            console.log(stock_response)
+                        },
+                        error: function(error){
+                        console.log(error);
+                        }
+                         });
+
+                    }).complete(function(){
+//                        Create custom pie graph for each portfolio
+                        var pie = new d3pie("pieChartPers", {
+                            "header": {
+                                "title": {
+                                    "text": "here",
+                                    "color": "fec503",
+                                    "fontSize": 28,
+                                    "font": "open sans"
+                                },
+                                "subtitle": {
+                                    "text": "Expected return of ",
+
+                                    //                    "color": "#fec503",
+                                    "fontSize": 15,
+                                    "font": "open sans"
+                                },
+                                "titleSubtitlePadding": 9
+                            },
+                            "footer": {
+                                "color": "#999999",
+                                "fontSize": 10,
+                                "font": "open sans",
+                                "location": "bottom-left"
+                            },
+                            "size": {
+                                "canvasHeight": 400,
+                                "canvasWidth": 600,
+                                "pieInnerRadius": "9%",
+                                "pieOuterRadius": "90%"
+                            },
+                            "data": {
+                                "sortOrder": "label-desc",
+                                "content": [
+
+                                    {
+                                        "label": stocks.names[0],
+                                        "value": 100,
+                                        "color": "#1f7f0e"
+                                    },
+                                    {
+                                        "label": stocks.names[1],
+                                        "value": 0,
+                                        "color": "#2ea217"
+                                    },
+                                    {
+                                        "label": stocks.names[2],
+                                        "value": 0,
+                                        "color": "#043a00"
+                                    },
+                                    {
+                                        "label": stocks.names[3],
+                                        "value": 0,
+                                        "color": "#40cb27"
+                                    },
+                                    {
+                                        "label": stocks.names[4],
+                                        "value": 0,
+                                        "color": "#155d07"
+                                    }
+                                ]
+
+
+                            },
+                            "labels": {
+                                "outer": {
+                                    "pieDistance": 32
+                                },
+                                "inner": {
+
+                                    "hideWhenLessThanPercentage": 3
+                                },
+                                "mainLabel": {
+                                    "fontSize": 11
+                                },
+                                "percentage": {
+                                    "color": "#ffffff",
+                                    "decimalPlaces": 0
+                                },
+                                "value": {
+                                    "color": "#adadad",
+                                    "fontSize": 11
+                                },
+                                "lines": {
+                                    "enabled": true
+                                }
+                            },
+                            "effects": {
+                                "pullOutSegmentOnClick": {
+                                    "effect": "linear",
+                                    "speed": 400,
+                                    "size": 8
+                                }
+                            },
+                            "misc": {
+                                "gradient": {
+                                    "enabled": true,
+                                    "percentage": 100
+                                }
+                            }
+
+                        });
                     });
-
-
-
 });
+
+
+
+//});
 
 
 

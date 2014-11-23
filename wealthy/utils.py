@@ -93,11 +93,10 @@ def get_portfolio_value(items):
         number_shares = i[1]
         cost = get_stock_value(data, number_shares)
         portfolio_value += cost
-        print portfolio_value
-
     items.current_value = decimal.Decimal(portfolio_value)
-    return items.current_value
-
+    items.save()
+    data = {'stockPort': str(stock_portfolio_info), 'portValue': str(items.current_value)}
+    return data
 
 
 def empty_stock_add_shares(data, items, number_shares):
@@ -111,64 +110,50 @@ def empty_stock_add_shares(data, items, number_shares):
         items.stock_one_shares += number_shares
         get_stock_cost(data, number_shares, items)
         get_portfolio_value(items)
-
         items.save()
     elif items.stock_two_name == str(data):
         items.stock_two_shares += number_shares
         get_stock_cost(data, number_shares, items)
         get_portfolio_value(items)
-
         items.save()
     elif items.stock_two_name is None:
         items.stock_two_name = str(data)
         items.stock_two_shares += number_shares
         get_stock_cost(data, number_shares, items)
         get_portfolio_value(items)
-
         items.save()
     elif items.stock_three_name == str(data):
         items.stock_three_shares += number_shares
         get_stock_cost(data, number_shares, items)
-
         get_portfolio_value(items)
-
         items.save()
     elif items.stock_three_name is None:
         items.stock_three_name = str(data)
         items.stock_three_shares += number_shares
         get_stock_cost(data, number_shares, items)
-
         get_portfolio_value(items)
-
         items.save()
     elif items.stock_four_name == str(data):
         items.stock_four_shares += number_shares
         get_stock_cost(data, number_shares, items)
-
         get_portfolio_value(items)
-
         items.save()
     elif items.stock_four_name is None:
         items.stock_four_name = str(data)
         items.stock_four_shares += number_shares
         get_stock_cost(data, number_shares, items)
         get_portfolio_value(items)
-
         items.save()
     elif items.stock_five_name == str(data):
         items.stock_five_shares += number_shares
         get_stock_cost(data, number_shares, items)
-
         get_portfolio_value(items)
-
         items.save()
     elif items.stock_five_name is None:
         items.stock_five_name = str(data)
         items.stock_five_shares += number_shares
         get_stock_cost(data, number_shares, items)
-
         get_portfolio_value(items)
-
         items.save()
     else:
         pass
@@ -185,7 +170,6 @@ def buy_stock_conditionals(data, portfolio, monthly, request):
     if portfolio:
         for items in portfolio:
             empty_stock_add_shares(data, items, number_shares)
-
     else:
         price = ystockquote.get_price(str(data))
         cost = float(price) * float(number_shares)

@@ -27,7 +27,7 @@ from yahoo import *
 
 # @csrf_exempt
 from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc, \
-    buy_stock_conditionals
+    buy_stock_conditionals, get_portfolio_value
 
 
 @login_required
@@ -299,4 +299,19 @@ def buy_stock(request):
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         return render(request, 'error.html')
+
+@csrf_exempt
+def personal_pie_info(request):
+    investor = Investor.objects.get(id=request.user.id)
+    investment_monthly = investor.monthly_investment
+    portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
+    if request.method == "GET":
+        for items in portfolio:
+            data = get_portfolio_value(items)
+            print data
+
+        return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+
 
