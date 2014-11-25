@@ -173,3 +173,20 @@ ul{
     max-height: 400px;
     max-width: 400px;
 }
+#piechart{
+    min-height: 300px;
+    min-width: 300px;
+    max-height: 400px;
+    max-width: 400px;
+}
+/*.chart-wrapper {*/
+ /*position: relative;*/
+    /*padding-bottom: 40%;*/
+    /*width:45%;*/
+    /*float:left;*/
+/*}*/
+
+/*.chart-inner {*/
+/*position: absolute;*/
+    /*width: 50%; height: 100%;*/
+/*}*/
