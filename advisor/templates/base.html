@@ -94,6 +94,20 @@
             {% endif %}
 
         </div>
+
+    <div class="row">
+        <div class="hidden createAccount">
+
+        </div>
+    </div>
+
+    </div>
+</header>
+{% if not user.is_authenticated %}
+<section id="services">
+    <div class="container">
+                <div class="row">
+
         <div class="modal fade bs-example-modal-sm modalsTarget" tabindex="-1" role="dialog"
              aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
@@ -109,18 +123,6 @@
                 </div>
             </div>
         </div>
-    <div class="row">
-        <div class="hidden createAccount">
-
-        </div>
-    </div>
-
-    </div>
-</header>
-{% if not user.is_authenticated %}
-<section id="services">
-    <div class="container">
-        <div class="row">
             <div class=" col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5 demoAgeInput">
                 <input type="text" style="text-align: center;" class=" input-lg form-control demo_age"
                        placeholder="Enter Age">
