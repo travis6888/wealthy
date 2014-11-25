@@ -287,15 +287,15 @@ $(document).ready(function () {
 });
 
 //Register modal toggles to avoid overwhelming users
-    $(document).on('click', '#usernameNext', function () {
-        $('.userName').hide();
-        $('.emailPassword').fadeIn('slow');
-    });
-    $(document).on('click', '.emailPasswordNext', function () {
-        $('.emailPasswordNext').hide();
-        $('.demographics').fadeIn('slow');
-        $('.doneButton').fadeIn('slow');
-    });
+$(document).on('click', '#usernameNext', function () {
+    $('.userName').hide();
+    $('.emailPassword').fadeIn('slow');
+});
+$(document).on('click', '.emailPasswordNext', function () {
+    $('.emailPasswordNext').hide();
+    $('.demographics').fadeIn('slow');
+    $('.doneButton').fadeIn('slow');
+});
 
 $('.homeDataBtn').on('click', function () {
     $('.housing').toggle();
@@ -311,10 +311,14 @@ $('.getRentPrice').on('click', function () {
         url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
         type: 'GET',
         dataType: 'json',
+        beforeSend: function () {
+//$('.bouncywrap').toggle();
+
+        },
         success: function (zip_response) {
 
             $(function () {
-                $('#container').highcharts({
+                $('#housingChart').highcharts({
                     title: {
                         text: 'Rental Prices Over the Last Year',
                         x: -20 //center

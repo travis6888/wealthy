@@ -34,115 +34,77 @@ $(document).ready(function () {
 
         }).complete(function () {
 
-///                     Create custom pie graph for each portfolio
-            var pie = new d3pie("pieChartPort", {
-                "header": {
-                    "title": {
-                        "text": portfolio,
-                        "color": "fec503",
-                        "fontSize": 28,
-                        "font": "open sans"
-                    },
-                    "subtitle": {
-                        "text": "Expected return of " + (expected * 100).toFixed(2) + " % ",
+              $(function () {
 
-                        //                    "color": "#fec503",
-                        "fontSize": 15,
-                        "font": "open sans"
-                    },
-                    "titleSubtitlePadding": 9
-                },
-                "footer": {
-                    "color": "#999999",
-                    "fontSize": 10,
-                    "font": "open sans",
-                    "location": "bottom-left"
-                },
-                "size": {
-                    "canvasHeight": 400,
-                    "canvasWidth": 400,
-                    "pieInnerRadius": "9%",
-                    "pieOuterRadius": "90%"
-                },
+                    // Radialize the colors
+                    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                        return {
+                            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                            stops: [
+                                [0, color],
+                                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                            ]
+                        };
+                    });
+                });
+                        // Build the chart
+                        $('#pieChartPort').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false
+                            },
+                            title: {
+                                text: portfolio
+                            },
+                            "subtitle": {
+                                "text": "Expected return of " + (expected * 100).toFixed(2) + " % "},
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: false,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                        style: {
+                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                        },
+                                        connectorColor: 'silver'
+
+                                    },
+                                    showInLegend: true
+
+                                }
+                            },
+                            series: [
+                                {
+                                    type: 'pie',
+                                    name: portfolio,
+                                    data: [
+                                        [names[0], values[0]],
+
+                                        {
+                                            name: names[1],
+                                            y: values[1],
+                                            sliced: true,
+                                            selected: true
+                                        },
+                                        [names[2], values[2]],
+                                        [names[3], values[3]],
+                                        [names[4], values[4]]
 
 
-                "data": {
-                    "sortOrder": "label-desc",
-                    "content": [
-                        {
-                            "label": names[0],
-                            "value": values[0],
-                            "color": "#1f7f0e"
-                        },
-                        {
-                            "label": names[1],
-                            "value": values[1],
-                            "color": "#2ea217"
-                        },
-                        {
-                            "label": names[2],
-                            "value": values[2],
-                            "color": "#043a00"
-                        },
-                        {
-                            "label": names[3],
-                            "value": values[3],
-                            "color": "#40cb27"
-                        },
-                        {
-                            "label": names[4],
-                            "value": values[4],
-                            "color": "#155d07"
-                        }
-                        //
-                    ]
+                                    ]
+                                }
+                            ]
+
+                        });
 
 
-                },
-                "labels": {
-                    "outer": {
-                        "pieDistance": 32
-                    },
-                    "inner": {
-
-                        "hideWhenLessThanPercentage": 3
-                    },
-                    "mainLabel": {
-                        "fontSize": 11
-                    },
-                    "percentage": {
-                        "color": "#ffffff",
-                        "decimalPlaces": 0
-                    },
-                    "value": {
-                        "color": "#adadad",
-                        "fontSize": 11
-                    },
-                    "lines": {
-                        "enabled": true
-                    }
-                },
-                "effects": {
-                    "pullOutSegmentOnClick": {
-                        "effect": "linear",
-                        "speed": 400,
-                        "size": 8
-                    }
-                },
-                "misc": {
-                    "gradient": {
-                        "enabled": true,
-                        "percentage": 100
-                    }
-                }
-
-            });
         }).complete(function () {
-//                        $.ajax({
-//                        });
-        });
-
-
         $('.loadPort').toggle();
 
         $.ajax({
@@ -165,6 +127,7 @@ $(document).ready(function () {
         });
 
     });
+});
 
     var personalValues = {};
     var portfolioValue = {'portV': []};
@@ -310,8 +273,8 @@ $(document).ready(function () {
 
         });
     });
+
 });
-//});
 
 
 //});

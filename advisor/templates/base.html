@@ -84,7 +84,7 @@
         <div class="intro-text row">
             {% block content %}
             {% endblock content %}
-        <h3>This Site is for information purpose only and is not actual investment advice!</h3>
+            <h3>This Site is for information purpose only and is not actual investment advice!</h3>
             {% if user.is_authenticated %}
                 <a href="#portfolio" class="page-scroll btn btn-xl introJump">Your Portfolio</a>
             {% else %}
@@ -95,169 +95,187 @@
 
         </div>
 
-    <div class="row">
-        <div class="hidden createAccount">
+        <div class="row">
+            <div class="hidden createAccount">
 
+            </div>
         </div>
-    </div>
 
     </div>
 </header>
 {% if not user.is_authenticated %}
-<section id="services">
-    <div class="container">
-                <div class="row">
-
-        <div class="modal fade bs-example-modal-sm modalsTarget" tabindex="-1" role="dialog"
-             aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content loginModal">
-                    <form method="post" action="/login/">
-                        {% csrf_token %}
-                        <input id="id_username" maxlength="245" name="username" type="text" class="form-control"
-                               placeholder="Username" required autofocus>
-                        <input id="id_password" name="password" type="password" class="form-control"
-                               placeholder="Password" required>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-            <div class=" col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5 demoAgeInput">
-                <input type="text" style="text-align: center;" class=" input-lg form-control demo_age"
-                       placeholder="Enter Age">
-            </div>
-        </div>
-        <div class="row">
-            <div class="ageSubmit col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5">
-                <button class="btn btn-xl center-block ageInputBtn ">Submit</button>
-            </div>
-        </div>
-
-        <div class="demoHide">
-            <div class="container">
+    <section id="services">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
+
+                <div class="modal fade bs-example-modal-sm modalsTarget" tabindex="-1" role="dialog"
+                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content loginModal">
+                            <form method="post" action="/login/">
+                                {% csrf_token %}
+                                <input id="id_username" maxlength="245" name="username" type="text" class="form-control"
+                                       placeholder="Username" required autofocus>
+                                <input id="id_password" name="password" type="password" class="form-control"
+                                       placeholder="Password" required>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5 demoAgeInput">
+                    <input type="text" style="text-align: center;" class=" input-lg form-control demo_age"
+                           placeholder="Enter Age">
+                </div>
+            </div>
+            <div class="row">
+                <div class="ageSubmit col-xs-2 col-xs-offset-5 col-lg-2 col-offset-5 col-md-2 col-offset-5">
+                    <button class="btn btn-xl center-block ageInputBtn ">Submit</button>
+                </div>
+            </div>
+
+            <div class="demoHide">
+                <div class="container">
                     <div class="row">
-                    <h2 class="section-heading">Here's A Demo Portfolio For Someone Your Age!</h2>
+                        <div class="col-lg-12 text-center">
+                            <div class="row">
+                                <h2 class="section-heading">Here's A Demo Portfolio For Someone Your Age!</h2>
 
-                    <h3 class="section-subheading text-muted userAge"></h3>
+                                <h3 class="section-subheading text-muted userAge"></h3>
 
-                    <p class="firstPara"></p>
+                                <p class="firstPara"></p>
+                            </div>
                         </div>
-                </div>
-            </div>
-
-            <div class="row ">
-                <div class="col-lg-12">
-
-                <div class="col-lg-4">
-                    <div class="chart-wrapper">
-                        <div class="chart-inner">
-                    <div id="pieChart"></div>
-                        </div>
-                        </div>
-
-                </div>
-                <div class="col-lg-4">
-
-                    <div id="accordion">
-                        <h3>S&P500 Index ETF</h3>
-
-                        <div>Find a suitable ETF that tracks the S&P 500 index. This ETF should be low cost with fees less than .5% a year. Go with whatever your investment broker offers with free transactions.
-                        </div>
-                        <h3>REIT ETF</h3>
-
-                        <div>Find a real estate investment trust(REIT) ETF that will give you the lowest yearly fee and follows the REIT Index. Keep in mind transaction fees and focus on ETF's that are offered through your financial broker.
-                        </div>
-                        <h3>Utilities ETF</h3>
-
-                        <div>Invest in a low beta Utilities ETF that will help diversify your portfolio. Always focus on keeping fees and transaction costs low.
-                        </div>
-                        <h3>Government Bonds ETF</h3>
-
-                        <div>Invest in a ETF that has a diversified portfolio of short and long-term Government Bonds. Preferably invested in US Government but stronger Eurozone countries work also. </div>
-                        <h3>Corporate Bond Long Term Bonds</h3>
-
-                        <div>Invest in a ETF that has a diversified portfolio of Long Term Corporate Bonds that have a majority invested in large blue chip companies. </div>
-                        <h3>Intermediate Term Corporate Bonds</h3>
-
-                        <div>Invest in Intermediate Bond ETF that follows mid-cap companies and has low fees and transaction costs.</div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="demoResults">
-
                     </div>
 
+                    <div class="row ">
+                        <div class="col-lg-12">
+
+                            <div class="col-lg-4">
+                                <div class="chart-wrapper">
+                                    <div class="chart-inner">
+                                        <div id="pieChart"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+
+                                <div id="accordion">
+                                    <h3>S&P500 Index ETF</h3>
+
+                                    <div>Find a suitable ETF that tracks the S&P 500 index. This ETF should be low cost
+                                        with fees less than .5% a year. Go with whatever your investment broker offers
+                                        with free transactions.
+                                    </div>
+                                    <h3>REIT ETF</h3>
+
+                                    <div>Find a real estate investment trust(REIT) ETF that will give you the lowest
+                                        yearly fee and follows the REIT Index. Keep in mind transaction fees and focus
+                                        on ETF's that are offered through your financial broker.
+                                    </div>
+                                    <h3>Utilities ETF</h3>
+
+                                    <div>Invest in a low beta Utilities ETF that will help diversify your portfolio.
+                                        Always focus on keeping fees and transaction costs low.
+                                    </div>
+                                    <h3>Government Bonds ETF</h3>
+
+                                    <div>Invest in a ETF that has a diversified portfolio of short and long-term
+                                        Government Bonds. Preferably invested in US Government but stronger Eurozone
+                                        countries work also.
+                                    </div>
+                                    <h3>Corporate Bond Long Term Bonds</h3>
+
+                                    <div>Invest in a ETF that has a diversified portfolio of Long Term Corporate Bonds
+                                        that have a majority invested in large blue chip companies.
+                                    </div>
+                                    <h3>Intermediate Term Corporate Bonds</h3>
+
+                                    <div>Invest in Intermediate Bond ETF that follows mid-cap companies and has low fees
+                                        and transaction costs.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="demoResults">
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <button class=" btn btn-xl makeProfileBtn center-block" data-toggle="modal"
+                            data-target=".register-modal-sm">Create Yours!
+                    </button>
+                </div>
+
+                <div class="row">
+                    <div class="modal fade register-modal-sm active" tabindex="-1" role="dialog"
+                         aria-labelledby="myLargeModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-sm active">
+                            <div class="modal-content">
+                                <form method="post" action="/register/" enctype="form-data">
+                                    {% csrf_token %}
+                                    <div class="modal-header">
+                                        <h2>Create Account</h2>
+                                    </div>
+                                    <h2 class="form-signin-heading">Create an account</h2>
+
+                                    <div class="userName">
+                                        <h4>Hey there! Lets make a username, so I know what to call you</h4>
+                                        <input id="id_username" maxlength="30" name="username" type="text"
+                                               placeholder="Username">
+                                        <input id="id_first_name" maxlength="30" name="first_name" type="text"
+                                               placeholder="First Name">
+                                        <input id="id_last_name" maxlength="30" name="last_name" type="text"
+                                               placeholder="Last Name">
+
+                                        <a href="#" class="btn btn-lg btn-primary btn-block usernameNext"
+                                           id="usernameNext">Next</a>
+                                    </div>
+                                    <div class="emailPassword" style="display: none;">
+                                        <h4>Awesome! Could we also get your e-mail and password too?</h4>
+                                        <input id="id_email" name="email" type="email" placeholder="E-mail">
+                                        <input id="id_password1" name="password1" type="password"
+                                               placeholder="Password">
+                                        <input id="id_password2" name="password2" type="password"
+                                               placeholder="Confirm Password">
+                                        <a href="#" class="btn btn-lg btn-primary btn-block emailPasswordNext">Next</a>
+                                    </div>
+                                    <div class="demographics" style="display: none;">
+                                        <h4> Almost done, just need your age, income and the monthly housing cost's for
+                                            your
+                                            entire home or apartment, and other major spending like student loan
+                                            payments to finish registration!</h4>
+                                        <h5>Your monthly housing cost should include rent/mortgage, utilities, HOA,
+                                            etc</h5>
+                                        <input id="id_income" name="income" type="text" placeholder="Yearly Income">
+                                        <input id="id_age" name="age" type="text" placeholder="Age">
+                                        <input id="id_housing" name="housing" type="text" placeholder="Housing Costs">
+                                        <input id="id_zipcode" name="zipcode" type="text" placeholder="Zipcode">
+                                        <input id="id_other_costs" name="other_costs" type="text"
+                                               placeholder="Other Mandatory spending">
+
+                                    </div>
+
+
+                                    <button class="btn btn-lg btn-primary btn-block doneButton" style="display: none;"
+                                            type="submit">Yay! You're done!
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
-                </div>
-            <button class=" btn btn-xl makeProfileBtn center-block" data-toggle="modal"
-                    data-target=".register-modal-sm">Create Yours!
-            </button>
         </div>
 
-        <div class="row">
-            <div class="modal fade register-modal-sm active" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-sm active">
-                    <div class="modal-content">
-                        <form method="post" action="/register/" enctype="form-data">
-                            {% csrf_token %}
-                            <div class="modal-header">
-                                <h2>Create Account</h2>
-                            </div>
-                            <h2 class="form-signin-heading">Create an account</h2>
 
-                            <div class="userName">
-                                <h4>Hey there! Lets make a username, so I know what to call you</h4>
-                                <input id="id_username" maxlength="30" name="username" type="text"
-                                       placeholder="Username">
-                                <input id="id_first_name" maxlength="30" name="first_name" type="text"
-                                       placeholder="First Name">
-                                <input id="id_last_name" maxlength="30" name="last_name" type="text"
-                                       placeholder="Last Name">
-
-                                <a href="#" class="btn btn-lg btn-primary btn-block usernameNext"
-                                   id="usernameNext">Next</a>
-                            </div>
-                            <div class="emailPassword" style="display: none;">
-                                <h4>Awesome! Could we also get your e-mail and password too?</h4>
-                                <input id="id_email" name="email" type="email" placeholder="E-mail">
-                                <input id="id_password1" name="password1" type="password" placeholder="Password">
-                                <input id="id_password2" name="password2" type="password"
-                                       placeholder="Confirm Password">
-                                <a href="#" class="btn btn-lg btn-primary btn-block emailPasswordNext">Next</a>
-                            </div>
-                            <div class="demographics" style="display: none;">
-                                <h4> Almost done, just need your age, income and the monthly housing cost's for your
-                                    entire home or apartment, and other major spending like student loan payments to finish registration!</h4>
-                                <h5>Your monthly housing cost should include rent/mortgage, utilities, HOA, etc</h5>
-                                <input id="id_income" name="income" type="text" placeholder="Yearly Income">
-                                <input id="id_age" name="age" type="text" placeholder="Age">
-                                <input id="id_housing" name="housing" type="text" placeholder="Housing Costs">
-                                <input id="id_zipcode" name="zipcode" type="text" placeholder="Zipcode">
-                                <input id="id_other_costs" name="other_costs" type="text" placeholder="Other Mandatory spending">
-
-                            </div>
-
-
-                            <button class="btn btn-lg btn-primary btn-block doneButton" style="display: none;"
-                                    type="submit">Yay! You're done!
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-            </div>
-
-
-</section>
+    </section>
 {% endif %}
 
 {% if user.is_authenticated %}
@@ -307,50 +325,67 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
 
-{#                        <a class="btn btn-default btn-xl dashboardBtn" href={% url 'dashboard' %}>Dashboard</a>#}
+                    {#                        <a class="btn btn-default btn-xl dashboardBtn" href={% url 'dashboard' %}>Dashboard</a>#}
 
 
                     <a class="btn btn-default btn-xl homeDataBtn page-scroll" href="#homeData">More</a>
 
-                    </div>
                 </div>
             </div>
-
-
+        </div>
 
 
     </section>
-<section id="homeData">
-<div class="row">
-    <div class="housing">
+    <section id="homeData">
+        {#<div class="container">#}
+        <div class="row">
+            <div class="housing">
                 <div class="col-lg-12 text-center">
                     <div class="housingAnalysisTitle">
                         <h2 class="section-heading">Housing Analysis</h2>
                     </div>
                     <div class="housingQs">
-                    <h2 class="section-heading housingQuest">Do you own or rent?</h2>
+                        <h2 class="section-heading housingQuest">Do you own or rent?</h2>
 
-                <div class="col-lg-6">
-                    <button class="btn btn-xl centered getRentPrice" >Rent</button>
-                    <input type="hidden" id="housingNumber" name="housing" value="{{ housing|floatformat:"0" }}">
+                        <div class="col-lg-6">
+                            <button class="btn btn-xl centered getRentPrice">Rent</button>
+                            <input type="hidden" id="housingNumber" name="housing"
+                                   value="{{ housing|floatformat:"0" }}">
 
-                    <input type="hidden" id="myVar" name="zip" value="{{ zip|floatformat:"0" }}">
-                    <div class="rentalPrice"></div>
+                            <input type="hidden" id="myVar" name="zip" value="{{ zip|floatformat:"0" }}">
 
-                </div>
-                    <div class="col-lg-6">
-                    <button class="btn btn-xl centered getHomePrice" >Own</button>
+                            <div class="rentalPrice"></div>
+
                         </div>
-                </div>
-                    <div id="container"></div>
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="housingAnalysis">
+                        <div class="col-lg-6">
+                            <button class="btn btn-xl centered getHomePrice">Own</button>
+                        </div>
                     </div>
+                    <div id="housingChart"></div>
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="housingAnalysis centered">
+                            <div class="bouncywrap">
+
+                                <div class="dotcon dc1">
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div class="dotcon dc2">
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div class="dotcon dc3">
+                                    <div class="dot"></div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-</section>
+        {#    </div>#}
+    </section>
 {% endif %}
 
 <section id="contact">
@@ -399,8 +434,8 @@
 <script src="{% static 'js/agency.js' %}"></script>
 <script src="{% static 'js/index.js' %}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
-<script src="{% static 'js/highcharts.js'%}"></script>
-<script src="{% static 'js/exporting.js'%}"></script>
+<script src="{% static 'js/highcharts.js' %}"></script>
+<script src="{% static 'js/exporting.js' %}"></script>
 
 </body>
 
