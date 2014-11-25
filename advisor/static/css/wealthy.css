@@ -167,3 +167,9 @@ ul{
     color: #000000;
 
 }
+#piechart2{
+    min-height: 300px;
+    min-width: 300px;
+    max-height: 400px;
+    max-width: 400px;
+}
