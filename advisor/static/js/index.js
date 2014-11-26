@@ -312,7 +312,7 @@ $('.getRentPrice').on('click', function () {
         type: 'GET',
         dataType: 'json',
         beforeSend: function () {
-//$('.bouncywrap').toggle();
+        $('.loading').toggle();
 
         },
         success: function (zip_response) {
@@ -385,10 +385,10 @@ $('.getRentPrice').on('click', function () {
                 var price10 = zip_response.data[9][1];
                 var price11 = zip_response.data[10][1];
                 var price12 = zip_response.data[11][1];
-//                    for(i=0; i< zip_response.data[i][1].length <= 12; i++){
-//                        console.log(zip_response.data[i][1])
-//
-//                    }
+
+                    for(i=0; zip_response.data[i][1].length <= zip_response.data[12][1]; i++){
+                        console.log(zip_response.data[i][1]);
+                    }
                 var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
                 var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
                 var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
@@ -396,8 +396,8 @@ $('.getRentPrice').on('click', function () {
 
                 $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average " +
                     " rental price for the first six months of the year was $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the last six" +
-                    " month average was $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div> Which is a percentage change of " + percent_change +
-                    " %</div>");
+                    " month average was $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div>, which is a percentage change of " + percent_change +
+                    " %.</div>");
 
 
             });
@@ -432,9 +432,13 @@ $('.getHomePrice').on('click', function () {
             url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
             type: 'GET',
             dataType: 'json',
+            beforeSend: function () {
+        $('.loading').toggle();
+
+        },
             success: function (zip_response) {
                 $(function () {
-                    $('#container').highcharts({
+                    $('#housingChart').highcharts({
                         title: {
                             text: 'Median Home Prices Over the Last Year',
                             x: -20 //center

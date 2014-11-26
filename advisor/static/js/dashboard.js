@@ -286,4 +286,22 @@ $(document).ready(function () {
 //		pie.updateProp("header.title.text", $("#title").val());
 //	});
 //"Current Portfolio Value is $" + portfolioValue.portV[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-//                        +" & Your Portfolio Cost is $"+portfolioCost.portC[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+//
+//                     +" & Your Portfolio Cost is $"+portfolioCost.portC[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+//series: [{
+//                name: 'Random data',
+//                data: (function () {
+//                    // generate an array of random data
+//                    var data = [],
+//                        time = (new Date()).getTime(),
+//                        i;
+//
+//                    for (i = -19; i <= 0; i += 1) {
+//                        data.push({
+//                            x: time + i * 1000,
+//                            y: Math.random()
+//                        });
+//                    }
+//                    return data;
+//                }())
+//            }]

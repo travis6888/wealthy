@@ -190,96 +190,119 @@ ul{
 /*position: absolute;*/
     /*width: 50%; height: 100%;*/
 /*}*/
-@import url(http://fonts.googleapis.com/css?family=Raleway:900,700,500,300,100);
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:500);
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/*html {*/
+  /*background: #FFFFFF;*/
+/*}*/
 
-
-
-
-
-.bouncywrap{
-    text-align: center;
-  /*position: relative;*/
+#loading {
+  margin: 50px auto 0;
+  width: 125px;
+  height: 118px;
     display: none;
 }
 
-
-.dotcon{
-  display: block;
-  /*float: left;*/
-  width: 50px;
+#loading p {
   position: absolute;
+  z-index: 99;
+  padding: 34px;
+  color: black;
+  font-size: 16px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  width: 22px;
+  animation: dots 2s steps(2) linear infinite;
+  -webkit-animation: dots 2s steps(2) infinite;
+  -moz-animation: dots 2s steps(2) linear infinite;
+  -o-animation: dots 2s steps(2) linear infinite;
 }
 
-.dc1{
-  -webkit-animation: bouncy1 1.5s infinite;
-  left: -40px;
-  animation: bouncy1 1.5s infinite;
+@keyframes dots {
+  0%  {width: 22px;}
+  50% {width: 30px;}
+  100% {width: 40px;}
+}
+@-webkit-keyframes dots {
+  0%  {width: 22px;}
+  50% {width: 30px;}
+  100% {width: 40px;}
+}
+@-moz-keyframes dots {
+  0%  {width: 22px;}
+  50% {width: 30px;}
+  100% {width: 40px;}
+}
+@-o-keyframes dots {
+  0%  {width: 22px;}
+  50% {width: 30px;}
+  100% {width: 40px;}
 }
 
-.dc2{
-  -webkit-animation: bouncy2 1.5s infinite;
-  animation: bouncy2 1.5s infinite;
-  left: 0;
+#loading div {
+  height: 100%;
+  margin: 10% auto;
+	border-right: 5px solid #D20000;
+  border-bottom: 5px solid transparent;
+	border-radius: 100%;
+  animation: spin 0.9s linear infinite;
+  -webkit-animation: spin 0.9s linear infinite;
+  -moz-animation: spin 0.9s linear infinite;
+  -o-animation: spin 0.9s linear infinite;
 }
 
-.dc3{
-  -webkit-animation: bouncy3 1.5s infinite;
-  animation: bouncy3 1.5s infinite;
-  left: 40px;
+@keyframes spin {
+ 0% {
+    transform: rotate(0deg);
+    border-right-color: #D22020;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-right-color: #A27AD7;
+  }
+  100% {
+    transform: rotate(359deg);
+    border-right-color: #D22020;
+  }
 }
-
-.dot{
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background: rgba(0, 163, 255, 0.80);
+@-webkit-keyframes spin {
+ 0% {
+    -webkit-transform: rotate(0deg);
+    border-right-color: #D22020;
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    border-right-color: #A27AD7;
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    border-right-color: #D22020;
+  }
 }
-
-
-@-webkit-keyframes bouncy1{
-  0% {-webkit-transform: translate(0px,0px) rotate(0deg);}
-  50% {-webkit-transform: translate(0px,0px) rotate(180deg);}
-  100% {-webkit-transform: translate(40px,0px) rotate(-180deg);}
+@-moz-keyframes spin {
+ 0% {
+    -moz-transform: rotate(0deg);
+    border-right-color: #D22020;
+  }
+  50% {
+    -moz-transform: rotate(180deg);
+    border-right-color: #A27AD7;
+  }
+  100% {
+    -moz-transform: rotate(359deg);
+    border-right-color: #D22020;
+  }
 }
-
-@keyframes bouncy1{
-  0% {transform: translate(0px,0px) rotate(0deg);}
-  50% {transform: translate(0px,0px) rotate(180deg);}
-  100% {transform: translate(40px,0px) rotate(-180deg);}
-}
-
-@-webkit-keyframes bouncy2{
-  0% {-webkit-transform: translateX(0px);}
-  50% {-webkit-transform: translateX(-40px);}
-  100% {-webkit-transform: translateX(-40px);}
-}
-
-@keyframes bouncy2{
-  0% {transform: translateX(0px);}
-  50% {transform: translateX(-40px);}
-  100% {transform: translateX(-40px);}
-}
-
-@-webkit-keyframes bouncy3{
-  0% {-webkit-transform: translateX(0px);}
-  50% {-webkit-transform: translateX(0px);}
-  100% {-webkit-transform: translateX(-40px);}
-}
-
-@keyframes bouncy3 {
-    0% {
-        transform: translateX(0px);
-    }
-    50% {
-        transform: translateX(0px);
-    }
-    100% {
-        transform: translateX(-40px);
-    }
+@-o-keyframes spin {
+ 0% {
+    -o-transform: rotate(0deg);
+    border-right-color: #D22020;
+  }
+  50% {
+    -o-transform: rotate(180deg);
+    border-right-color: #A27AD7;
+  }
+  100% {
+    -o-transform: rotate(359deg);
+    border-right-color: #D22020;
+  }
 }
