@@ -34,100 +34,100 @@ $(document).ready(function () {
 
         }).complete(function () {
 
-              $(function () {
+            $(function () {
 
-                    // Radialize the colors
-                    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-                        return {
-                            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-                            stops: [
-                                [0, color],
-                                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-                            ]
-                        };
-                    });
+                // Radialize the colors
+                Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                    return {
+                        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                        stops: [
+                            [0, color],
+                            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                        ]
+                    };
                 });
-                        // Build the chart
-                        $('#pieChartPort').highcharts({
-                            chart: {
-                                plotBackgroundColor: null,
-                                plotBorderWidth: null,
-                                plotShadow: false
+            });
+            // Build the chart
+            $('#pieChartPort').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: portfolio
+                },
+                "subtitle": {
+                    "text": "Expected return of " + (expected * 100).toFixed(2) + " % "},
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                             },
-                            title: {
-                                text: portfolio
+                            connectorColor: 'silver'
+
+                        },
+                        showInLegend: true
+
+                    }
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        name: portfolio,
+                        data: [
+                            [names[0], values[0]],
+
+                            {
+                                name: names[1],
+                                y: values[1],
+                                sliced: true,
+                                selected: true
                             },
-                            "subtitle": {
-                                "text": "Expected return of " + (expected * 100).toFixed(2) + " % "},
-                            tooltip: {
-                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                            },
-                            plotOptions: {
-                                pie: {
-                                    allowPointSelect: true,
-                                    cursor: 'pointer',
-                                    dataLabels: {
-                                        enabled: false,
-                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                        style: {
-                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                                        },
-                                        connectorColor: 'silver'
-
-                                    },
-                                    showInLegend: true
-
-                                }
-                            },
-                            series: [
-                                {
-                                    type: 'pie',
-                                    name: portfolio,
-                                    data: [
-                                        [names[0], values[0]],
-
-                                        {
-                                            name: names[1],
-                                            y: values[1],
-                                            sliced: true,
-                                            selected: true
-                                        },
-                                        [names[2], values[2]],
-                                        [names[3], values[3]],
-                                        [names[4], values[4]]
+                            [names[2], values[2]],
+                            [names[3], values[3]],
+                            [names[4], values[4]]
 
 
-                                    ]
-                                }
-                            ]
+                        ]
+                    }
+                ]
 
-                        });
+            });
 
 
         }).complete(function () {
-        $('.loadPort').toggle();
+            $('.loadPort').toggle();
 
-        $.ajax({
-            url: '/price_lookup/',
-            type: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                for (var key in response) {
-                    var value = response[key];
+            $.ajax({
+                url: '/price_lookup/',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    for (var key in response) {
+                        var value = response[key];
 
-                    $('.quotesData').append("<button class='btn-lg btn btn-default stocks' data-title=" + value + ">" + key + "</button>")
+                        $('.quotesData').append("<button class='btn-lg btn btn-default stocks' data-title=" + value + ">" + key + "</button>")
+                    }
+
+                },
+                error: function (error) {
+                    console.log(error);
+                    $('.loadPort').toggle();
+
                 }
+            });
 
-            },
-            error: function (error) {
-                console.log(error);
-                $('.loadPort').toggle();
-
-            }
         });
-
     });
-});
 
     var personalValues = {};
     var portfolioValue = {'portV': []};
@@ -171,68 +171,68 @@ $(document).ready(function () {
 
     $('.testBtn').on('click', function () {
 //                        Create custom pie graph for each portfolio
-         $(function () {
+        $(function () {
 
-                    // Radialize the colors
-                    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-                        return {
-                            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-                            stops: [
-                                [0, color],
-                                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-                            ]
-                        };
-                    });
-                });
-                        // Build the chart
-                        $('#pieChartPers').highcharts({
-                            chart: {
-                                plotBackgroundColor: null,
-                                plotBorderWidth: null,
-                                plotShadow: false
-                            },
-                            title: {
-                                text: portfolio
-                            },
-                            "subtitle": {
-                                "text": "Expected return of " + (expected * 100).toFixed(2) + " % "},
-                            tooltip: {
-                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                            },
-                            plotOptions: {
-                                pie: {
-                                    allowPointSelect: true,
-                                    cursor: 'pointer',
-                                    dataLabels: {
-                                        enabled: false,
-                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                        style: {
-                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                                        },
-                                        connectorColor: 'silver'
+            // Radialize the colors
+            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                return {
+                    radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                    stops: [
+                        [0, color],
+                        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                    ]
+                };
+            });
+        });
+        // Build the chart
+        $('#pieChartPers').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Your Personal Portfolio'
+            },
+//            "subtitle": {
+//                "text": "Expected return of% "},
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        },
+                        connectorColor: 'silver'
 
-                                    },
-                                    showInLegend: true
+                    },
+                    showInLegend: true
 
-                                }
-                            },
-                            series: [{
-                name: 'Random data',
-                data: (function () {
-                    // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
+                }
+            },
+            series: [
+                {
+                    name: 'Stocks',
+                    data: (function () {
+                        // generate an array of random data
+                        var data = [],
+                            i;
 
-                    for (i = -19; i <= 0; i += 1) {
-                        data.push({
-                            x: time + i * 1000,
-                            y: Math.random()
-                        });
-                    }
-                    return data;
-                }())
-            }]
+                        for (i = 0; i <= stocks.names.length; i++) {
+                            data.push([
+                                stocks.names[0], 20
+                            ]);
+                        }
+                        return data;
+                    }())
+                }
+            ]
 //                            series: [
 //                                {
 //                                    type: 'pie',
@@ -256,7 +256,7 @@ $(document).ready(function () {
 //                                }
 //                            ]
 
-                        });
+        });
 
 
     });
