@@ -216,57 +216,60 @@ $(document).ready(function () {
 
                 }
             },
-            series: [
-                {
-                    name: 'Stocks',
-                    data: (function () {
-                        // generate an array of random data
-                        var data = [],
-                            i;
+//            series: [
+//                {
+//                    type: "pie",
+//                    name: 'Stocks',
+//                    data: (function () {
+//                        // generate an array of random data
+//                        var data = [],
+//                            i;
+//
+//                        for (i = 0; i <= stocks.names.length; i++) {
+//                            data.push([
+//                                stocks.names[0], 20
+//                            ]);
+//                        }
+//                        return data;
+//                    }())
+//                }
+//            ]
 
-                        for (i = 0; i <= stocks.names.length; i++) {
-                            data.push([
-                                stocks.names[0], 20
-                            ]);
-                        }
-                        return data;
-                    }())
-                }
-            ]
-//                            series: [
-//                                {
-//                                    type: 'pie',
-//                                    name: 'Personal Portfolio',
-//
-//                                    data: [
-//                                        [stocks.names[0], values[0]],
-//
-//                                        {
-//                                            name: stocks.names[1],
-//                                            y: values[1],
-//                                            sliced: true,
-//                                            selected: true
-//                                        },
-//                                        [stocks.names[0][2], values[2]],
-//                                        [stocks.names[0], values[3]],
-//                                        [stocks.names[0], values[4]]
-//
-//
-//                                    ]
-//                                }
-//                            ]
+                            series: [
+                                {
+                                    type: 'pie',
+                                    name: 'Personal Portfolio',
+
+                                    data: [
+                                        [stocks.names[0], 20],
+
+                                        {
+                                            name: stocks.names[1],
+                                            y: 20,
+                                            sliced: true,
+                                            selected: true
+                                        },
+                                        [stocks.names[2], 20],
+                                        [stocks.names[3], 20],
+                                        [stocks.names[4], 20]
+
+
+                                    ]
+                                }
+                            ]
 
         });
 
 
     });
-
 });
 
-
 //});
-
-
+//
+//
+//});
+//
+//
 //});
 //$(function() {
 //	$("#updateTitleBtn").on("click", function() {
