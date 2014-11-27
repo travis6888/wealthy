@@ -16,7 +16,7 @@ import ystockquote
 
 
 from advisor.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc, \
-    buy_stock_conditionals, get_portfolio_value
+    buy_stock_conditionals, get_portfolio_value, match_stocks
 
 
 @login_required
@@ -293,12 +293,18 @@ def buy_stock(request):
 def personal_pie_info(request):
     investor = Investor.objects.get(id=request.user.id)
     investment_monthly = investor.monthly_investment
+    portfolio = investor.portfolio_name
+    quote_list = []
+    for stock in Investment.objects.filter(portfolios__name=portfolio):
+        quote = stock.hidden_symbol
+        quote_list.append(quote)
     portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
     if request.method == "GET":
         for items in portfolio:
             data = get_portfolio_value(items)
-            print data
 
+            print data
+        match_stocks(data, quote_list)
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         return render(request, 'error.html')

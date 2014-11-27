@@ -95,7 +95,8 @@ def get_portfolio_value(items):
         portfolio_value += cost
     items.current_value = decimal.Decimal(portfolio_value)
     items.save()
-    data = {'stockPort': str(stock_portfolio_info), 'portValue': float(items.current_value), 'portCost': float(items.cost)}
+    data = {'stockPort': str(stock_portfolio_info), 'portValue': float(items.current_value),
+            'portCost': float(items.cost)}
     return data
 
 
@@ -171,7 +172,13 @@ def buy_stock_conditionals(data, portfolio, monthly, request):
         cost = float(price) * float(number_shares)
         real_cost = decimal.Decimal(cost)
         PersonalStockPortfolio.objects.create(name="primary", owner=request.user, stock_one_name=str(data),
-                                         stock_one_shares=number_shares, cost=real_cost)
+                                              stock_one_shares=number_shares, cost=real_cost)
     data = {data: number_shares}
     return data
 
+
+def match_stocks(data, quote_list):
+    print quote_list
+
+    for stock in data['stockPort'].get():
+        print stock
