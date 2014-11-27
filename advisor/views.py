@@ -1,33 +1,22 @@
 import json
-import user
+
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.core import serializers
-from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
-from django.template import RequestContext
-from django.utils import formats
 from django.views.decorators.csrf import csrf_exempt
-import math
-from requests import auth
-from advisor.forms import EmailUserCreationForm, RiskProfileForm, StockLookUpForm
-from advisor.models import Investor, Stocks, Portfolio, Investment, PersonalStockPortfolio
-from wealthy import settings
+from advisor.forms import EmailUserCreationForm, RiskProfileForm
+from advisor.models import Investor, Investment, PersonalStockPortfolio
 import ystockquote
-import finance
-import numpy.lib.financial
-from yahoo import *
 
 
-# @csrf_exempt
-from wealthy.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc, \
-    buy_stock_conditionals
+from advisor.utils import demo_age_calc, find_invest_month_calc, input_income_calc, portfolio_return_calc, \
+    buy_stock_conditionals, get_portfolio_value
 
 
 @login_required
@@ -267,11 +256,11 @@ def find_portfolio(request):
 def boot(request):
     investor = Investor.objects.get(id=request.user.id)
     investor_data ={'zip': investor.zipcode, 'housing': investor.housing}
-    return render(request, 'boot4.html', investor_data)
+    return render(request, 'base.html', investor_data)
 
 
 def home(request):
-    return render(request, 'boot4.html')
+    return render(request, 'base.html')
 
 
 def dashboard(request):
@@ -299,4 +288,20 @@ def buy_stock(request):
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         return render(request, 'error.html')
+
+@csrf_exempt
+def personal_pie_info(request):
+    investor = Investor.objects.get(id=request.user.id)
+    investment_monthly = investor.monthly_investment
+    portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
+    if request.method == "GET":
+        for items in portfolio:
+            data = get_portfolio_value(items)
+            print data
+
+        return HttpResponse(json.dumps(data), content_type='application/json')
+    else:
+        return render(request, 'error.html')
+
+
 

@@ -82,105 +82,72 @@ $(document).ready(function () {
 
 
                     }).complete(function () {
+                        $(function () {
 
-///                     Create custom pie graph for each portfolio
-                        $('.riskScore').hide();
-                        var pie = new d3pie("pieChart2", {
-                            "header": {
-                                "title": {
-                                    "text": portfolio,
-                                    "color": "fec503",
-                                    "fontSize": 28,
-                                    "font": "open sans"
-                                },
-                                "subtitle": {
-                                    "text": "Expected return of " + (expected * 100).toFixed(2) + " % ",
+                            // Radialize the colors
+                            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                                return {
+                                    radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                                    stops: [
+                                        [0, color],
+                                        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                                    ]
+                                };
+                            });
+                        });
+                        // Build the chart
+                        $('#pieChart2').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false
+                            },
+                            title: {
+                                text: portfolio
+                            },
+                            "subtitle": {
+                                "text": "Expected return of " + (expected * 100).toFixed(2) + " % "},
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: false,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                        style: {
+                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                        },
+                                        connectorColor: 'silver'
 
-                                    //                    "color": "#fec503",
-                                    "fontSize": 15,
-                                    "font": "open sans"
-                                },
-                                "titleSubtitlePadding": 9
-                            },
-                            "footer": {
-                                "color": "#999999",
-                                "fontSize": 10,
-                                "font": "open sans",
-                                "location": "bottom-left"
-                            },
-                            "size": {
-                                "canvasHeight": 400,
-                                "canvasWidth": 400,
-                                "pieInnerRadius": "9%",
-                                "pieOuterRadius": "90%"
-                            },
-                            "data": {
-                                "sortOrder": "value-asc",
-                                "content": [
-                                    {
-                                        "label": names[0],
-                                        "value": values[0],
-                                        "color": "#1f7f0e"
                                     },
-                                    {
-                                        "label": names[1],
-                                        "value": values[1],
-                                        "color": "#2ea217"
-                                    },
-                                    {
-                                        "label": names[2],
-                                        "value": values[2],
-                                        "color": "#043a00"
-                                    },
-                                    {
-                                        "label": names[3],
-                                        "value": values[3],
-                                        "color": "#40cb27"
-                                    },
-                                    {
-                                        "label": names[4],
-                                        "value": values[4],
-                                        "color": "#155d07"
-                                    }
-                                    //
-                                ]
-                            },
-                            "labels": {
-                                "outer": {
-                                    "pieDistance": 32
-                                },
-                                "inner": {
+                                    showInLegend: true
 
-                                    "hideWhenLessThanPercentage": 3
-                                },
-                                "mainLabel": {
-                                    "fontSize": 11
-                                },
-                                "percentage": {
-                                    "color": "#ffffff",
-                                    "decimalPlaces": 0
-                                },
-                                "value": {
-                                    "color": "#adadad",
-                                    "fontSize": 10
-                                },
-                                "lines": {
-                                    "enabled": true
                                 }
                             },
-                            "effects": {
-                                "pullOutSegmentOnClick": {
-                                    "effect": "linear",
-                                    "speed": 400,
-                                    "size": 8
+                            series: [
+                                {
+                                    type: 'pie',
+                                    name: portfolio,
+                                    data: [
+                                        [names[0], values[0]],
+
+                                        {
+                                            name: names[1],
+                                            y: values[1],
+                                            sliced: true,
+                                            selected: true
+                                        },
+                                        [names[2], values[2]],
+                                        [names[3], values[3]],
+                                        [names[4], values[4]]
+
+
+                                    ]
                                 }
-                            },
-                            "misc": {
-                                "gradient": {
-                                    "enabled": true,
-                                    "percentage": 100
-                                }
-                            }
+                            ]
 
                         });
                     });
@@ -221,107 +188,72 @@ $(document).ready(function () {
         $('.demoHide').toggle('slow');
         $('.demoAgeInput').toggle();
         $('.ageInputBtn').toggle();
+        $(function () {
 
-        var pie = new d3pie("pieChart", {
-            "header": {
-                "title": {
-                    "text": "Conservative Portfolio",
-                    "color": "fec503",
-                    "fontSize": 28,
-                    "font": "open sans"
-                },
-                "subtitle": {
-                    "text": "Expected return of 5.8% ",
-
-//                    "color": "#fec503",
-                    "fontSize": 15,
-                    "font": "open sans"
-                },
-                "titleSubtitlePadding": 9
-            },
-            "footer": {
-                "color": "#999999",
-                "fontSize": 10,
-                "font": "open sans",
-                "location": "bottom-left"
-            },
-            "size": {
-                "canvasHeight": 400,
-                "canvasWidth": 400,
-                "pieInnerRadius": "9%",
-                "pieOuterRadius": "90%"
-            },
-            "data": {
-                "sortOrder": "value-desc",
-                "content": [
-                    {
-                        "label": "S&P500 Index ETF",
-                        "value": 30,
-                        "color": "#1f7f0e"
-                    },
-                    {
-                        "label": "REIT ETF",
-                        "value": 10,
-                        "color": "#2ea217"
-                    },
-                    {
-                        "label": "Utilities ETF",
-                        "value": 10,
-                        "color": "#043a00"
-                    },
-                    {
-                        "label": "Government Bonds",
-                        "value": 15,
-                        "color": "#40cb27"
-                    },
-                    {
-                        "label": "LT CRP BNDs",
-                        "value": 15,
-                        "color": "#155d07"
-                    },
-                    {
-                        "label": "INT CRP BNDs",
-                        "value": 20,
-                        "color": "#0e4904"
-                    }
-                ]
-            },
-            "labels": {
-                "outer": {
-                    "pieDistance": 32
-                },
-                "inner": {
-                    "hideWhenLessThanPercentage": 3
-                },
-                "mainLabel": {
-                    "fontSize": 11
-                },
-                "percentage": {
-                    "color": "#ffffff",
-                    "decimalPlaces": 0
-                },
-                "value": {
-                    "color": "#adadad",
-                    "fontSize": 11
-                },
-                "lines": {
-                    "enabled": true
-                }
-            },
-            "effects": {
-                "pullOutSegmentOnClick": {
-                    "effect": "linear",
-                    "speed": 400,
-                    "size": 8
-                }
-            },
-            "misc": {
-                "gradient": {
-                    "enabled": true,
-                    "percentage": 100
-                }
-            }
+            // Radialize the colors
+            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                return {
+                    radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                    stops: [
+                        [0, color],
+                        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                    ]
+                };
+            });
         });
+        $('#pieChart').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Conservative'
+            },
+            "subtitle": {
+                "text": "Expected return of 5.2 % "},
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        },
+                        connectorColor: 'silver'
+
+                    },
+                    showInLegend: true
+
+                }
+            },
+            series: [
+                {
+                    type: 'pie',
+                    name: 'Conservative',
+                    data: [
+                        ["S&P500 Index ETF", 30],
+
+                        {
+                            name: "REIT ETF",
+                            y: 10,
+                            sliced: true,
+                            selected: true
+                        },
+                        ['Utilities ETF', 10],
+                        ["Government Bonds", 15],
+                        ["LT CRP BNDs", 15],
+                        ["INT CRP BNDs", 20]
+                    ]
+                }
+            ]
+        });
+
 // Uses the user's age to personalize the demo portfolio
         var ageInput = $('.demo_age').val();
         var age = {};
@@ -351,37 +283,164 @@ $(document).ready(function () {
                 navigation: true
             });
         });
+    });
+});
+
 //Register modal toggles to avoid overwhelming users
-        $(document).on('click', '#usernameNext', function () {
-            $('.userName').hide();
-            $('.emailPassword').fadeIn('slow');
-        });
-        $(document).on('click', '.emailPasswordNext', function () {
-            $('.emailPasswordNext').hide();
-            $('.demographics').fadeIn('slow');
-            $('.doneButton').fadeIn('slow');
-        });
+$(document).on('click', '#usernameNext', function () {
+    $('.userName').hide();
+    $('.emailPassword').fadeIn('slow');
+});
+$(document).on('click', '.emailPasswordNext', function () {
+    $('.emailPasswordNext').hide();
+    $('.demographics').fadeIn('slow');
+    $('.doneButton').fadeIn('slow');
+});
+
+$('.homeDataBtn').on('click', function () {
+    $('.housing').toggle();
+});
+
+
+$('.getRentPrice').on('click', function () {
+    var zipcode = document.getElementById("myVar").value;
+    var housing = document.getElementById("housingNumber").value;
+    $('.housingQs').toggle('slow');
+
+    $.ajax({
+        url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
+        type: 'GET',
+        dataType: 'json',
+        beforeSend: function () {
+        $('.loading').toggle();
+
+        },
+        success: function (zip_response) {
+
+            $(function () {
+                $('#housingChart').highcharts({
+                    title: {
+                        text: 'Rental Prices Over the Last Year',
+                        x: -20 //center
+                    },
+                    subtitle: {
+                        text: 'Source: Zillow and Quandl',
+                        x: -20
+                    },
+                    xAxis: {
+                        name: 'Dates',
+                        categories: [zip_response.data[11][0].slice(5), zip_response.data[10][0].slice(5),
+                            zip_response.data[9][0].slice(5), zip_response.data[8][0].slice(5), zip_response.data[7][0].slice(5),
+                            zip_response.data[6][0].slice(5), zip_response.data[5][0].slice(5), zip_response.data[4][0].slice(5),
+                            zip_response.data[3][0].slice(5), zip_response.data[2][0].slice(5), zip_response.data[1][0].slice(5),
+                            zip_response.data[0][0].slice(5) ]
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Median Price of Rentals'
+                        },
+                        plotLines: [
+                            {
+                                value: 0,
+                                width: 2,
+                                color: '#808080'
+                            }
+                        ]
+                    },
+                    tooltip: {
+                        animation: true
+                    },
+                    legend: {
+                        layout: 'horizontal',
+//            align: 'right',
+                        verticalAlign: 'bottom',
+                        borderWidth: 0
+
+                    },
+                    series: [
+                        {
+                            name: "Zipcode: " + zipcode,
+                            data: [zip_response.data[11][1], zip_response.data[10][1],
+                                zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
+                                zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
+                                zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
+                                zip_response.data[0][1]]
+                        }
+                    ]
+                });
+            });
+
+            $('.housingAnalysisTitle').toggle('slow');
+
+            $(function () {
+                var price = zip_response.data[0][1];
+                var price2 = zip_response.data[1][1];
+                var price3 = zip_response.data[2][1];
+                var price4 = zip_response.data[3][1];
+                var price5 = zip_response.data[4][1];
+                var price6 = zip_response.data[5][1];
+                var price7 = zip_response.data[5][1];
+                var price8 = zip_response.data[7][1];
+                var price9 = zip_response.data[8][1];
+                var price10 = zip_response.data[9][1];
+                var price11 = zip_response.data[10][1];
+                var price12 = zip_response.data[11][1];
+
+                    for(i=0; zip_response.data[i][1].length <= zip_response.data[12][1]; i++){
+                        console.log(zip_response.data[i][1]);
+                    }
+                var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
+                var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
+                var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
+
+
+                $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average " +
+                    " rental price for the first six months of the year was $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the last six" +
+                    " month average was $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div>, which is a percentage change of " + percent_change +
+                    " %.</div>");
+
+
+            });
+        },
+        error: function (zip_response) {
+        }
     });
-    $('.homeDataBtn').on('click', function () {
-        $('.housing').toggle();
-    });
+});
 
+//Gets home price from zillow and quandl for the zipcode of user, also gets their housing costs to estimate mortgage payment
+$('.getHomePrice').on('click', function () {
+    $('.housingQs').toggle('slow');
+    var mortgageRates = {'fifteenYear': [], 'thirtyYear': []};
+    var zipcode = document.getElementById("myVar").value;
+    var housing = document.getElementById("housingNumber").value;
+    $.ajax({
+        url: 'http://www.zillow.com/webservice/GetRateSummary.htm?zws-id=X1-ZWz1b511wdba4r_43hp8&output=json',
+        type: 'GET',
+        dataType: 'jsonp',
+        success: function (response) {
+            var fifteenYear = response.response.today.fifteenYearFixed;
+            var thirtyYear = response.response.today.thirtyYearFixed;
+            mortgageRates['fifteenYear'].push(fifteenYear);
+            mortgageRates['thirtyYear'].push(thirtyYear)
+        },
+        error: function (error) {
+            console.log(error);
 
-    $('.getRentPrice').on('click', function () {
-        var zipcode = document.getElementById("myVar").value;
-        var housing = document.getElementById("housingNumber").value;
-        $('.housingQs').toggle('slow');
-
+        }
+    }).complete(function () {
         $.ajax({
-            url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
+            url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
             type: 'GET',
             dataType: 'json',
-            success: function (zip_response) {
+            beforeSend: function () {
+        $('.loading').toggle();
 
+        },
+            success: function (zip_response) {
                 $(function () {
-                    $('#container').highcharts({
+                    $('#housingChart').highcharts({
                         title: {
-                            text: 'Rental Prices Over the Last Year',
+                            text: 'Median Home Prices Over the Last Year',
                             x: -20 //center
                         },
                         subtitle: {
@@ -398,7 +457,7 @@ $(document).ready(function () {
                         },
                         yAxis: {
                             title: {
-                                text: 'Median Price of Rentals'
+                                text: 'Median Price of Homes in ' + zipcode
                             },
                             plotLines: [
                                 {
@@ -425,14 +484,13 @@ $(document).ready(function () {
                                     zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
                                     zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
                                     zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
-                                    zip_response.data[0][1]]
-                            }
+                                    zip_response.data[0][1]]}
                         ]
                     });
                 });
 
+//
                 $('.housingAnalysisTitle').toggle('slow');
-
                 $(function () {
                     var price = zip_response.data[0][1];
                     var price2 = zip_response.data[1][1];
@@ -446,159 +504,44 @@ $(document).ready(function () {
                     var price10 = zip_response.data[9][1];
                     var price11 = zip_response.data[10][1];
                     var price12 = zip_response.data[11][1];
-//                    for(i=0; i< zip_response.data[i][1].length <= 12; i++){
+//                    for(i=0; i< zip_response.data[i][1].length <= zip_response.data[12][1].length; i++){
 //                        console.log(zip_response.data[i][1])
 //
 //                    }
                     var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
                     var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
                     var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
+                    var principle = (last6Average * .80);
+                    var thirtyMonthly = (mortgageRates.thirtyYear[0] / 100) / 12;
+                    var thirty = mortgageRates.thirtyYear[0];
+                    var fifteen = mortgageRates.fifteenYear[0];
+                    var fifteenMonthly = (mortgageRates.fifteenYear[0] / 100) / 12;
+                    var thirtyYearMortgagePayment = (principle * (thirtyMonthly * (Math.pow(1 + thirtyMonthly, 360)) / (Math.pow((1 + thirtyMonthly), 360) - 1))).toFixed(2);
+                    var fifteenYearMortgagePayment = (principle * (fifteenMonthly * (Math.pow(1 + fifteenMonthly, 180)) / (Math.pow((1 + fifteenMonthly), 180) - 1))).toFixed(2);
+                    var housingVersusThirty = ((thirtyYearMortgagePayment / housing) * 100).toFixed(2);
+                    var housingVersusFifteen = ((fifteenYearMortgagePayment / housing) * 100).toFixed(2);
 
 
-                    $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average " +
-                        " rental price for the first six months of the year was $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the last six" +
-                        " month average was $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div> Which is a percentage change of " + percent_change +
-                        " %</div>");
+//                    Takes the first six months median home sale price and last six months, gives a percent change between the averages.
+                    $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
+                        " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
+                        "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ".</div><div> Which is a percentage change of " +
+                        percent_change + " %!</div><div>The most recent 30 Year Fixed Mortgage rate is " + thirty + "% and the 15 year Fixed Mortgage rate is " + fifteen + "%</div><div>" +
+                        "A new mortgage on home in your area would cost either $" + thirtyYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 30 year, or $" +
+                        fifteenYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 15 year.</div><div>" +
+                        "A new mortgage is  " + housingVersusThirty + "% more/less on a 30 year and " + housingVersusFifteen + "% more/less on 15 year than you pay now!</div>");
 
 
                 });
             },
-            error: function (zip_response) {
+            error: function (error_response) {
             }
         });
     });
-
-//Gets home price from zillow and quandl for the zipcode of user, also gets their housing costs to estimate mortgage payment
-    $('.getHomePrice').on('click', function () {
-        $('.housingQs').toggle('slow');
-        var mortgageRates = {'fifteenYear': [], 'thirtyYear': []};
-        var zipcode = document.getElementById("myVar").value;
-        var housing = document.getElementById("housingNumber").value;
-        $.ajax({
-            url: 'http://www.zillow.com/webservice/GetRateSummary.htm?zws-id=X1-ZWz1b511wdba4r_43hp8&output=json',
-            type: 'GET',
-            dataType: 'jsonp',
-            success: function (response) {
-                var fifteenYear = response.response.today.fifteenYearFixed;
-                var thirtyYear = response.response.today.thirtyYearFixed;
-                mortgageRates['fifteenYear'].push(fifteenYear);
-                mortgageRates['thirtyYear'].push(thirtyYear)
-            },
-            error: function (error) {
-                console.log(error);
-
-            }
-        }).complete(function () {
-            $.ajax({
-                url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
-                type: 'GET',
-                dataType: 'json',
-                success: function (zip_response) {
-                    $(function () {
-                        $('#container').highcharts({
-                            title: {
-                                text: 'Median Home Prices Over the Last Year',
-                                x: -20 //center
-                            },
-                            subtitle: {
-                                text: 'Source: Zillow and Quandl',
-                                x: -20
-                            },
-                            xAxis: {
-                                name: 'Dates',
-                                categories: [zip_response.data[11][0].slice(5), zip_response.data[10][0].slice(5),
-                                    zip_response.data[9][0].slice(5), zip_response.data[8][0].slice(5), zip_response.data[7][0].slice(5),
-                                    zip_response.data[6][0].slice(5), zip_response.data[5][0].slice(5), zip_response.data[4][0].slice(5),
-                                    zip_response.data[3][0].slice(5), zip_response.data[2][0].slice(5), zip_response.data[1][0].slice(5),
-                                    zip_response.data[0][0].slice(5) ]
-                            },
-                            yAxis: {
-                                title: {
-                                    text: 'Median Price of Homes in ' + zipcode
-                                },
-                                plotLines: [
-                                    {
-                                        value: 0,
-                                        width: 2,
-                                        color: '#808080'
-                                    }
-                                ]
-                            },
-                            tooltip: {
-                                animation: true
-                            },
-                            legend: {
-                                layout: 'horizontal',
-//            align: 'right',
-                                verticalAlign: 'bottom',
-                                borderWidth: 0
-
-                            },
-                            series: [
-                                {
-                                    name: "Zipcode: " + zipcode,
-                                    data: [zip_response.data[11][1], zip_response.data[10][1],
-                                        zip_response.data[9][1], zip_response.data[8][1], zip_response.data[7][1],
-                                        zip_response.data[6][1], zip_response.data[5][1], zip_response.data[4][1],
-                                        zip_response.data[3][1], zip_response.data[2][1], zip_response.data[1][1],
-                                        zip_response.data[0][1]]}
-                            ]
-                        });
-                    });
-
-//
-                    $('.housingAnalysisTitle').toggle('slow');
-                    $(function () {
-                        var price = zip_response.data[0][1];
-                        var price2 = zip_response.data[1][1];
-                        var price3 = zip_response.data[2][1];
-                        var price4 = zip_response.data[3][1];
-                        var price5 = zip_response.data[4][1];
-                        var price6 = zip_response.data[5][1];
-                        var price7 = zip_response.data[5][1];
-                        var price8 = zip_response.data[7][1];
-                        var price9 = zip_response.data[8][1];
-                        var price10 = zip_response.data[9][1];
-                        var price11 = zip_response.data[10][1];
-                        var price12 = zip_response.data[11][1];
-//                    for(i=0; i< zip_response.data[i][1].length <= zip_response.data[12][1].length; i++){
-//                        console.log(zip_response.data[i][1])
-//
-//                    }
-                        var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
-                        var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
-                        var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);
-                        var principle = (last6Average * .80);
-                        var thirtyMonthly = (mortgageRates.thirtyYear[0] / 100) / 12;
-                        var thirty = mortgageRates.thirtyYear[0];
-                        var fifteen = mortgageRates.fifteenYear[0];
-                        var fifteenMonthly = (mortgageRates.fifteenYear[0] / 100) / 12;
-                        var thirtyYearMortgagePayment = (principle * (thirtyMonthly * (Math.pow(1 + thirtyMonthly, 360)) / (Math.pow((1 + thirtyMonthly), 360) - 1))).toFixed(2);
-                        var fifteenYearMortgagePayment = (principle * (fifteenMonthly * (Math.pow(1 + fifteenMonthly, 180)) / (Math.pow((1 + fifteenMonthly), 180) - 1))).toFixed(2);
-                        var housingVersusThirty = ((thirtyYearMortgagePayment / housing) * 100).toFixed(2);
-                        var housingVersusFifteen = ((fifteenYearMortgagePayment / housing) * 100).toFixed(2);
-
-
-//                    Takes the first six months median home sale price and last six months, gives a percent change between the averages.
-                        $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
-                            " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
-                            "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ".</div><div> Which is a percentage change of " +
-                            percent_change + " %!</div><div>The most recent 30 Year Fixed Mortgage rate is " + thirty + "% and the 15 year Fixed Mortgage rate is " + fifteen + "%</div><div>" +
-                            "A new mortgage on home in your area would cost either $" + thirtyYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 30 year, or $" +
-                            fifteenYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 15 year.</div><div>" +
-                            "A new mortgage is  " + housingVersusThirty + "% more/less on a 30 year and " + housingVersusFifteen + "% more/less on 15 year than you pay now!</div>");
-
-
-                    });
-                },
-                error: function (error_response) {
-                }
-            });
-        });
-    });
-
-
 });
+
+
+
 
 
 
