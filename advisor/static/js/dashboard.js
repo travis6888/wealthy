@@ -171,107 +171,94 @@ $(document).ready(function () {
 
     $('.testBtn').on('click', function () {
 //                        Create custom pie graph for each portfolio
-        var pie = new d3pie("pieChartPers", {
-            "header": {
-                "title": {
-                    "text": "Your Personal Portfolio",
-                    "color": "fec503",
-                    "fontSize": 28,
-                    "font": "open sans"
-                },
-//                "subtitle": {
-//                    "text":
-//
-//                    //                    "color": "#fec503",
-//                    "fontSize": 15,
-//                    "font": "open sans"
-//                },
-//                "titleSubtitlePadding": 9
-//            },
-            "footer": {
-                "color": "#999999",
-                "fontSize": 10,
-                "font": "open sans",
-                "location": "bottom-left"
-                }
-            },
-            "size": {
-                "canvasHeight": 400,
-                "canvasWidth": 400,
-                "pieInnerRadius": "9%",
-                "pieOuterRadius": "90%"
-            },
-            "data": {
-                "sortOrder": "label-desc",
-                "content": [
+         $(function () {
 
-                    {
-                        "label": stocks.names[0],
-                        "value": 20,
-                        "color": "#1f7f0e"
-                    },
-                    {
-                        "label": stocks.names[1],
-                        "value": 20,
-                        "color": "#2ea217"
-                    },
-                    {
-                        "label": stocks.names[2],
-                        "value": 20,
-                        "color": "#043a00"
-                    },
-                    {
-                        "label": stocks.names[3],
-                        "value": 20,
-                        "color": "#40cb27"
-                    },
-                    {
-                        "label": stocks.names[4],
-                        "value": 20,
-                        "color": "#155d07"
+                    // Radialize the colors
+                    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                        return {
+                            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                            stops: [
+                                [0, color],
+                                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                            ]
+                        };
+                    });
+                });
+                        // Build the chart
+                        $('#pieChartPers').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false
+                            },
+                            title: {
+                                text: portfolio
+                            },
+                            "subtitle": {
+                                "text": "Expected return of " + (expected * 100).toFixed(2) + " % "},
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: false,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                        style: {
+                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                        },
+                                        connectorColor: 'silver'
+
+                                    },
+                                    showInLegend: true
+
+                                }
+                            },
+                            series: [{
+                name: 'Random data',
+                data: (function () {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    for (i = -19; i <= 0; i += 1) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: Math.random()
+                        });
                     }
-                ]
+                    return data;
+                }())
+            }]
+//                            series: [
+//                                {
+//                                    type: 'pie',
+//                                    name: 'Personal Portfolio',
+//
+//                                    data: [
+//                                        [stocks.names[0], values[0]],
+//
+//                                        {
+//                                            name: stocks.names[1],
+//                                            y: values[1],
+//                                            sliced: true,
+//                                            selected: true
+//                                        },
+//                                        [stocks.names[0][2], values[2]],
+//                                        [stocks.names[0], values[3]],
+//                                        [stocks.names[0], values[4]]
+//
+//
+//                                    ]
+//                                }
+//                            ]
+
+                        });
 
 
-            },
-            "labels": {
-                "outer": {
-                    "pieDistance": 32
-                },
-                "inner": {
-
-                    "hideWhenLessThanPercentage": 3
-                },
-                "mainLabel": {
-                    "fontSize": 11
-                },
-                "percentage": {
-                    "color": "#ffffff",
-                    "decimalPlaces": 0
-                },
-                "value": {
-                    "color": "#adadad",
-                    "fontSize": 11
-                },
-                "lines": {
-                    "enabled": true
-                }
-            },
-            "effects": {
-                "pullOutSegmentOnClick": {
-                    "effect": "linear",
-                    "speed": 400,
-                    "size": 8
-                }
-            },
-            "misc": {
-                "gradient": {
-                    "enabled": true,
-                    "percentage": 100
-                }
-            }
-
-        });
     });
 
 });
@@ -288,20 +275,3 @@ $(document).ready(function () {
 //"Current Portfolio Value is $" + portfolioValue.portV[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 //
 //                     +" & Your Portfolio Cost is $"+portfolioCost.portC[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-//series: [{
-//                name: 'Random data',
-//                data: (function () {
-//                    // generate an array of random data
-//                    var data = [],
-//                        time = (new Date()).getTime(),
-//                        i;
-//
-//                    for (i = -19; i <= 0; i += 1) {
-//                        data.push({
-//                            x: time + i * 1000,
-//                            y: Math.random()
-//                        });
-//                    }
-//                    return data;
-//                }())
-//            }]
