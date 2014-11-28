@@ -160,17 +160,30 @@ $(document).ready(function () {
                                     format: '<b>{point.name}</b> ({point.y:,.0f})',
                                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'green',
                                     softConnector: true
-                                }
+                                },
+                                showInLegend: true
+                            }
+
+                        },
+                        legend: 
+                                    {
+                                        title: {
+                            text: 'Portfolio Progress',
+                            style: {
+                                fontStyle: 'italic'
                             }
                         },
-                        legend: {
-                            enabled: false
-                        },
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top'
+//                        x: -10,
+//                        y: 100
+                                    },
                         series: [{
                             name: 'Expect Portfolio Data',
                             data: [
-                                ['Current Value $', currentVal],
-                                ['Expected Value $', expectedVal]
+                                ['Current Value $', Number((currentVal).toFixed(2))],
+                                ['Expected Value $', Number((expectedVal).toFixed(2))]
 
                             ]
                         }]

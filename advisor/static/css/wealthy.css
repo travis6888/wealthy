@@ -334,3 +334,9 @@ ul{
 h4{
     color: #000000;
 }
+#progressCharh{
+    min-height: 300px;
+    min-width: 300px;
+    max-height: 450px;
+    max-width: 600px;
+}

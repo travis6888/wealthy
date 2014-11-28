@@ -53,6 +53,7 @@ def portfolio_return_calc(age, investment, risk_portfolio, investor):
         portfolio_attr.append(portfolio.expected_return)
     inv_return = numpy.fv((float(portfolio_attr[1]) / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
     investment_return = '{:20,.2f}'.format(float(inv_return))
+    inv_rt = '{:.20}'.format(inv_return)
     data2 = {'stocksp': {'stock1p': 25, 'stock2p': 25, 'stock3p': 20, 'stock4p': 20, 'stock5p': 10},
              'stocksn': {'stock1n': stock_name[0], 'stock2n': stock_name[1], 'stock3n': stock_name[2],
                          'stock4n': stock_name[3], 'stock5n': stock_name[4]},
@@ -60,7 +61,7 @@ def portfolio_return_calc(age, investment, risk_portfolio, investor):
              'expected': portfolio_attr[1],
              'return': investment_return, 'stock_list': stock_info_list}
     investor.portfolio_name = risk_portfolio
-    investor.expected_return = inv_return
+    investor.expected_return = inv_rt
     investor.save()
     return data2
 
