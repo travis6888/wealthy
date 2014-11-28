@@ -6,6 +6,12 @@ $(document).ready(function () {
     var names = [];
 
     var stocks = {'names': []};
+    var totalValue = 0;
+
+    var personalValues = {};
+    var portfolioValue = [];
+    var portfolioNames = [];
+
 
 
     $('.loadPort').on('click', function () {
@@ -63,6 +69,12 @@ $(document).ready(function () {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                 },
                 plotOptions: {
+                    series: {
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutExpo'
+                }
+            },
                     pie: {
                         allowPointSelect: true,
                         cursor: 'pointer',
@@ -126,15 +138,98 @@ $(document).ready(function () {
                 }
             });
 
+        }).complete(function(){
+            $.ajax({
+                url: '/personal_pie_info/',
+                type: 'GET',
+                dataType: 'json',
+
+                success: function (stock_response) {
+                    console.log(stock_response);
+                    totalValue =0;
+                    for (var key in stock_response) {
+                        var value = stock_response[key];
+                        console.log(key);
+                        console.log(value);
+                        portfolioNames.push(key);
+                        portfolioValue.push(value);
+                        totalValue += value;
+
+
+                    }
+                $('#pieChartPers').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Your Personal Portfolio'
+            },
+            "subtitle": {
+                "text": "Current Value $"+Number((totalValue).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")},
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                 series: {
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutExpo'
+                }
+            },
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        },
+                        connectorColor: 'silver'
+
+                    },
+                    showInLegend: true
+
+                }
+            },
+            series: [
+                {
+                    type: "pie",
+                    name: 'Stocks',
+                    data: (function () {
+                        // generate an array of random data
+                        var data = [],
+                            i;
+
+                        for (i = 0; i < portfolioNames.length; i++) {
+                            console.log(portfolioNames[i]);
+                            data.push([
+                                portfolioNames[i], portfolioValue[i]
+                            ]);
+                        }
+                        return data;
+                    }())
+                }
+            ]
+
+                });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         });
     });
 
-    var personalValues = {};
-    var portfolioValue = {'portValue': []};
-    var portfolioNames = {'portNames': []};
-
     var personalValues2 = [];
     $('.quotesData').on('click', 'button', function () {
+         var totalValue = 0;
+
+    var personalValues = {};
+    var portfolioValue = [];
+    var portfolioNames = [];
         var stockName = $(this).text();
         var quote = $(this).data('title');
 //    var stockData = { stockName: quote};
@@ -158,12 +253,14 @@ $(document).ready(function () {
 
                 success: function (stock_response) {
                     console.log(stock_response);
+                    totalValue =0;
                     for (var key in stock_response) {
                         var value = stock_response[key];
                         console.log(key);
                         console.log(value);
-                        portfolioNames['portNames'].push(key);
-                        portfolioValue['portValue'].push(value);
+                        portfolioNames.push(key);
+                        portfolioValue.push(value);
+                        totalValue += value;
 
 
                     }
@@ -179,7 +276,7 @@ $(document).ready(function () {
 
     $('.testBtn').on('click', function () {
 //                        Create custom pie graph for each portfolio
-    
+        console.log(totalValue);
         // Build the chart
         $('#pieChartPers').highcharts({
             chart: {
@@ -191,11 +288,17 @@ $(document).ready(function () {
                 text: 'Your Personal Portfolio'
             },
             "subtitle": {
-                "text": "Current Value $"},
+                "text": "Current Value $"+ Number((totalValue).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")},
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             plotOptions: {
+               series: {
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutExpo'
+                }
+            },
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
@@ -212,65 +315,29 @@ $(document).ready(function () {
 
                 }
             },
-//            series: [
-//                {
-//                    type: "pie",
-//                    name: 'Stocks',
-//                    data: (function () {
-//                        // generate an array of random data
-//                        var data = [],
-//                            i;
-//
-//                        for (i = 0; i <= stocks.names.length; i++) {
-//                            data.push([
-//                                stocks.names[0], 20
-//                            ]);
-//                        }
-//                        return data;
-//                    }())
-//                }
-//            ]
+            series: [
+                {
+                    type: "pie",
+                    name: 'Stocks',
+                    data: (function () {
+                        // generate an array of random data
+                        var data = [],
+                            i;
 
-                            series: [
-                                {
-                                    type: 'pie',
-                                    name: 'Personal Portfolio',
-
-                                    data: [
-                                        [portfolioNames.portNames[0], portfolioValue.portValue[0]],
-
-                                        {
-                                            name: portfolioNames.portNames[1],
-                                            y:portfolioValue.portValue[1],
-                                            sliced: true,
-                                            selected: true
-                                        },
-                                        [portfolioNames.portNames[2], portfolioValue.portValue[2]],
-                                        [portfolioNames.portNames[3], portfolioValue.portValue[3]],
-                                        [portfolioNames.portNames[4], portfolioValue.portValue[4]]
-
-
-                                    ]
-                                }
-                            ]
-
+                        for (i = 0; i < portfolioNames.length; i++) {
+                            console.log(portfolioNames[i]);
+                            data.push([
+                                portfolioNames[i], portfolioValue[i]
+                            ]);
+                        }
+                        return data;
+                    }())
+                }
+            ]
         });
 
 
     });
 });
 
-//});
-//
-//
-//});
-//
-//
-//});
-//$(function() {
-//	$("#updateTitleBtn").on("click", function() {
-//		pie.updateProp("header.title.text", $("#title").val());
-//	});
-//"Current Portfolio Value is $" + portfolioValue.portV[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-//
-//                     +" & Your Portfolio Cost is $"+portfolioCost.portC[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+//.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
