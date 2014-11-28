@@ -15,6 +15,7 @@ class Investor(AbstractUser):
     monthly_investment = models.FloatField(null=True, default=0, max_length=20)
     other_costs = models.FloatField(null=True, blank=True, default=0, max_length=20)
     portfolio_name = models.CharField(max_length=25, blank=True, null=True)
+    expected_return = models.FloatField(max_length=120, default=0)
 
     def __unicode__(self):
         return u"{} {}".format(self.username, self.income)

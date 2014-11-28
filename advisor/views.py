@@ -298,12 +298,10 @@ def personal_pie_info(request):
     portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
     if request.method == "GET":
         for items in portfolio:
-            data = get_portfolio_value(items)
+            data = get_portfolio_value(items, investor)
             stocks = match_stocks(data, portfolio_stocks)
 
             return HttpResponse(json.dumps(stocks), content_type='application/json')
     else:
         return render(request, 'error.html')
-
-
 

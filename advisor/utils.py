@@ -60,6 +60,7 @@ def portfolio_return_calc(age, investment, risk_portfolio, investor):
              'expected': portfolio_attr[1],
              'return': investment_return, 'stock_list': stock_info_list}
     investor.portfolio_name = risk_portfolio
+    investor.expected_return = inv_return
     investor.save()
     return data2
 
@@ -80,7 +81,7 @@ def get_stock_value(data, number_shares):
     return cost
 
 
-def get_portfolio_value(items):
+def get_portfolio_value(items, investor):
     stock_portfolio_info = {}
     portfolio_value = 0
     stock_portfolio_info[items.stock_one_name] = float(items.stock_one_shares)
@@ -97,7 +98,7 @@ def get_portfolio_value(items):
     items.save()
     data = {'stockPort': stock_portfolio_info}
     data2 = {'portValue': float(items.current_value),
-            'portCost': float(items.cost)}
+            'portCost': float(items.cost), 'portExpect':investor.expected_return}
     return [data, data2]
 
 
@@ -187,7 +188,7 @@ def match_stocks(data, portfolio_stocks):
                 data_list[quote.name] = value
             else:
                 pass
-    return data_list
+    return [data_list, data[1]]
 
 
 
