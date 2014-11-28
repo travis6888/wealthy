@@ -306,3 +306,28 @@ ul{
     border-right-color: #D22020;
   }
 }
+.testBtn{
+    display: none;
+}
+.btn-md{
+    padding: 10px;
+    border-color: #fed136;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #fed136;
+}
+.btn-md:hover,
+.btn-md:focus,
+.btn-md:active,
+.btn-md.active {
+    border-color: #f6bf01;
+    color: #fff;
+    background-color: #fec503;
+}
+.stocks{
+    margin: 8px;
+}

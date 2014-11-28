@@ -127,7 +127,7 @@ $(document).ready(function () {
                     for (var key in response) {
                         var value = response[key];
 
-                        $('.quotesData').append("<button class='btn-lg btn btn-default stocks' data-title=" + value + ">" + key + "</button>")
+                        $('.quotesData').append("<button class='btn btn-default btn-md stocks' data-title=" + value + ">" + key + "</button>")
                     }
 
                 },
