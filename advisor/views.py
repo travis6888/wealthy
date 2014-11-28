@@ -294,6 +294,7 @@ def personal_pie_info(request):
     investor = Investor.objects.get(id=request.user.id)
     investment_monthly = investor.monthly_investment
     portfolio = investor.portfolio_name
+    portfolio_stocks = Investment.objects.filter(portfolios__name=portfolio)
     quote_list = []
     for stock in Investment.objects.filter(portfolios__name=portfolio):
         quote = stock.hidden_symbol
@@ -303,8 +304,7 @@ def personal_pie_info(request):
         for items in portfolio:
             data = get_portfolio_value(items)
 
-            print data
-        match_stocks(data, quote_list)
+            match_stocks(data, portfolio_stocks)
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         return render(request, 'error.html')

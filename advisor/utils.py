@@ -83,11 +83,11 @@ def get_stock_value(data, number_shares):
 def get_portfolio_value(items):
     stock_portfolio_info = {}
     portfolio_value = 0
-    stock_portfolio_info[items.stock_one_name] = items.stock_one_shares
-    stock_portfolio_info[items.stock_two_name] = items.stock_two_shares
-    stock_portfolio_info[items.stock_three_name] = items.stock_three_shares
-    stock_portfolio_info[items.stock_four_name] = items.stock_four_shares
-    stock_portfolio_info[items.stock_five_name] = items.stock_five_shares
+    stock_portfolio_info[items.stock_one_name] = float(items.stock_one_shares)
+    stock_portfolio_info[items.stock_two_name] = float(items.stock_two_shares)
+    stock_portfolio_info[items.stock_three_name] = float(items.stock_three_shares)
+    stock_portfolio_info[items.stock_four_name] = float(items.stock_four_shares)
+    stock_portfolio_info[items.stock_five_name] = float(items.stock_five_shares)
     for i in stock_portfolio_info.items():
         data = i[0]
         number_shares = i[1]
@@ -95,9 +95,10 @@ def get_portfolio_value(items):
         portfolio_value += cost
     items.current_value = decimal.Decimal(portfolio_value)
     items.save()
-    data = {'stockPort': str(stock_portfolio_info), 'portValue': float(items.current_value),
+    data = {'stockPort': stock_portfolio_info}
+    data2 = {'portValue': float(items.current_value),
             'portCost': float(items.cost)}
-    return data
+    return [data, data2]
 
 
 def empty_stock_add_shares(data, items, number_shares):
@@ -177,8 +178,23 @@ def buy_stock_conditionals(data, portfolio, monthly, request):
     return data
 
 
-def match_stocks(data, quote_list):
-    print quote_list
+def match_stocks(data, portfolio_stocks):
+    data_list = {}
+    for stock, values in data[0]['stockPort'].iteritems():
+        for quote in portfolio_stocks:
+            if stock == quote.hidden_symbol:
+                value = (float(ystockquote.get_price(stock))*values)
+                data_list[quote.name] = value
+                print data_list
+            else:
+                pass
+    return data_list
 
-    for stock in data['stockPort'].get():
-        print stock
+
+
+
+
+
+
+
+
