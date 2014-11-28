@@ -185,7 +185,6 @@ def match_stocks(data, portfolio_stocks):
             if stock == quote.hidden_symbol:
                 value = (float(ystockquote.get_price(stock))*values)
                 data_list[quote.name] = value
-                print data_list
             else:
                 pass
     return data_list

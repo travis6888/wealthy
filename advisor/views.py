@@ -295,17 +295,13 @@ def personal_pie_info(request):
     investment_monthly = investor.monthly_investment
     portfolio = investor.portfolio_name
     portfolio_stocks = Investment.objects.filter(portfolios__name=portfolio)
-    quote_list = []
-    for stock in Investment.objects.filter(portfolios__name=portfolio):
-        quote = stock.hidden_symbol
-        quote_list.append(quote)
     portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
     if request.method == "GET":
         for items in portfolio:
             data = get_portfolio_value(items)
+            stocks = match_stocks(data, portfolio_stocks)
 
-            match_stocks(data, portfolio_stocks)
-        return HttpResponse(json.dumps(data), content_type='application/json')
+            return HttpResponse(json.dumps(stocks), content_type='application/json')
     else:
         return render(request, 'error.html')
 

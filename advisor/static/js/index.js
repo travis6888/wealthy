@@ -386,9 +386,7 @@ $('.getRentPrice').on('click', function () {
                 var price11 = zip_response.data[10][1];
                 var price12 = zip_response.data[11][1];
 
-                    for(i=0; zip_response.data[i][1].length <= zip_response.data[12][1]; i++){
-                        console.log(zip_response.data[i][1]);
-                    }
+
                 var last6Average = (price + price2 + price3 + price4 + price5 + price6) / 6;
                 var first6Average = (price7 + price8 + price9 + price10 + price11 + price12) / 6;
                 var percent_change = (((last6Average - first6Average) / last6Average) * 100).toFixed(2);

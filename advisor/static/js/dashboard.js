@@ -130,8 +130,8 @@ $(document).ready(function () {
     });
 
     var personalValues = {};
-    var portfolioValue = {'portV': []};
-    var portfolioCost = {'portC': []};
+    var portfolioValue = {'portValue': []};
+    var portfolioNames = {'portNames': []};
 
     var personalValues2 = [];
     $('.quotesData').on('click', 'button', function () {
@@ -158,8 +158,16 @@ $(document).ready(function () {
 
                 success: function (stock_response) {
                     console.log(stock_response);
-                    portfolioValue['portV'].push(stock_response.portValue);
-                    portfolioCost['portC'].push(stock_response.portCost)
+                    for (var key in stock_response) {
+                        var value = stock_response[key];
+                        console.log(key);
+                        console.log(value);
+                        portfolioNames['portNames'].push(key);
+                        portfolioValue['portValue'].push(value);
+
+
+                    }
+
                 },
                 error: function (error) {
                     console.log(error);
@@ -171,19 +179,7 @@ $(document).ready(function () {
 
     $('.testBtn').on('click', function () {
 //                        Create custom pie graph for each portfolio
-       $(function () {
-
-                // Radialize the colors
-                Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-                    return {
-                        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-                        stops: [
-                            [0, color],
-                            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-                        ]
-                    };
-                });
-            });
+    
         // Build the chart
         $('#pieChartPers').highcharts({
             chart: {
@@ -195,7 +191,7 @@ $(document).ready(function () {
                 text: 'Your Personal Portfolio'
             },
             "subtitle": {
-                "text": "Current Value $"+ portfolioValue.portV[0]},
+                "text": "Current Value $"},
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
@@ -241,17 +237,17 @@ $(document).ready(function () {
                                     name: 'Personal Portfolio',
 
                                     data: [
-                                        [stocks.names[0], 20],
+                                        [portfolioNames.portNames[0], portfolioValue.portValue[0]],
 
                                         {
-                                            name: stocks.names[1],
-                                            y: 20,
+                                            name: portfolioNames.portNames[1],
+                                            y:portfolioValue.portValue[1],
                                             sliced: true,
                                             selected: true
                                         },
-                                        [stocks.names[2], 20],
-                                        [stocks.names[3], 20],
-                                        [stocks.names[4], 20]
+                                        [portfolioNames.portNames[2], portfolioValue.portValue[2]],
+                                        [portfolioNames.portNames[3], portfolioValue.portValue[3]],
+                                        [portfolioNames.portNames[4], portfolioValue.portValue[4]]
 
 
                                     ]
