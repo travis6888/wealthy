@@ -306,7 +306,7 @@ ul{
     border-right-color: #D22020;
   }
 }
-.testBtn{
+.updateBtn{
     display: none;
 }
 .btn-md{
@@ -330,4 +330,7 @@ ul{
 }
 .stocks{
     margin: 8px;
+}
+h4{
+    color: #000000;
 }

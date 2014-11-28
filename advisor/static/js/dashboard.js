@@ -13,7 +13,6 @@ $(document).ready(function () {
     var portfolioNames = [];
 
 
-
     $('.loadPort').on('click', function () {
         var values = [];
         var portfolio = [];
@@ -23,6 +22,10 @@ $(document).ready(function () {
             url: '/find_portfolio/',
             type: 'GET',
             dataType: 'json',
+            beforeSend: function () {
+        $('.loading').toggle();
+
+        },
 
             success: function (stock_response) {
                 var stocked = stock_response.stocksp;
@@ -70,11 +73,11 @@ $(document).ready(function () {
                 },
                 plotOptions: {
                     series: {
-                animation: {
-                    duration: 2000,
-                    easing: 'easeOutExpo'
-                }
-            },
+                        animation: {
+                            duration: 2000,
+                            easing: 'easeOutExpo'
+                        }
+                    },
                     pie: {
                         allowPointSelect: true,
                         cursor: 'pointer',
@@ -123,6 +126,10 @@ $(document).ready(function () {
                 url: '/price_lookup/',
                 type: 'GET',
                 dataType: 'json',
+                beforeSend: function () {
+                $('.loading').toggle();
+
+                },
                 success: function (response) {
                     for (var key in response) {
                         var value = response[key];
@@ -138,15 +145,20 @@ $(document).ready(function () {
                 }
             });
 
-        }).complete(function(){
+        }).complete(function () {
+//            grab data from models and do calculations in python in views and utils files
             $.ajax({
                 url: '/personal_pie_info/',
                 type: 'GET',
                 dataType: 'json',
+                beforeSend: function () {
+        $('.loading').toggle();
+
+        },
 
                 success: function (stock_response) {
                     console.log(stock_response);
-                    totalValue =0;
+                    totalValue = 0;
                     for (var key in stock_response) {
                         var value = stock_response[key];
                         console.log(key);
@@ -157,65 +169,67 @@ $(document).ready(function () {
 
 
                     }
-                $('#pieChartPers').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: 'Your Personal Portfolio'
-            },
-            "subtitle": {
-                "text": "Current Value $"+Number((totalValue).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")},
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                 series: {
-                animation: {
-                    duration: 2000,
-                    easing: 'easeOutExpo'
-                }
-            },
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    $('#pieChartPers').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false
                         },
-                        connectorColor: 'silver'
+                        title: {
+                            text: 'Your Personal Portfolio'
+                        },
+                        "subtitle": {
+                            "text": "Current Value $" + Number((totalValue).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")},
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            series: {
+                                animation: {
+                                    duration: 2000,
+                                    easing: 'easeOutExpo'
+                                }
+                            },
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: false,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    },
+                                    connectorColor: 'silver'
 
-                    },
-                    showInLegend: true
+                                },
+                                showInLegend: true
 
-                }
-            },
-            series: [
-                {
-                    type: "pie",
-                    name: 'Stocks',
-                    data: (function () {
-                        // generate an array of random data
-                        var data = [],
-                            i;
+                            }
+                        },
+                        series: [
+                            {
+                                type: "pie",
+                                name: 'Stocks',
+                                data: (function () {
+                                    // generate an data from their personal portfolio model, for loop because there could be less than five
+                                    var data = [],
+                                        i;
 
-                        for (i = 0; i < portfolioNames.length; i++) {
-                            console.log(portfolioNames[i]);
-                            data.push([
-                                portfolioNames[i], portfolioValue[i]
-                            ]);
-                        }
-                        return data;
-                    }())
-                }
-            ]
+                                    for (i = 0; i < portfolioNames.length; i++) {
+                                        console.log(portfolioNames[i]);
+                                        data.push([
+                                            portfolioNames[i], portfolioValue[i]
+                                        ]);
+                                    }
+                                    return data;
+                                }())
+                            }
+                        ]
 
-                });
+                    });
+
                 },
+
                 error: function (error) {
                     console.log(error);
                 }
@@ -223,17 +237,15 @@ $(document).ready(function () {
         });
     });
 
-    var personalValues2 = [];
     $('.quotesData').on('click', 'button', function () {
-         var totalValue = 0;
+        var totalValue = 0;
 
-    var personalValues = {};
-    var portfolioValue = [];
-    var portfolioNames = [];
-        var stockName = $(this).text();
+        var portfolioValue = [];
+        var portfolioNames = [];
         var quote = $(this).data('title');
-//    var stockData = { stockName: quote};
         var stockquote = JSON.stringify(quote);
+//        send specific quote to add to personal portfolio and get cost, value, matching data
+        $('quotesData').toggle();
         $.ajax({
             url: '/buy_stock/',
             type: 'POST',
@@ -246,6 +258,7 @@ $(document).ready(function () {
                 console.log(response)
             }
         }).complete(function () {
+//            Do calculations in python backend to make it clean and easy
             $.ajax({
                 url: '/personal_pie_info/',
                 type: 'GET',
@@ -253,7 +266,7 @@ $(document).ready(function () {
 
                 success: function (stock_response) {
                     console.log(stock_response);
-                    totalValue =0;
+                    totalValue = 0;
                     for (var key in stock_response) {
                         var value = stock_response[key];
                         console.log(key);
@@ -261,23 +274,20 @@ $(document).ready(function () {
                         portfolioNames.push(key);
                         portfolioValue.push(value);
                         totalValue += value;
-
-
                     }
+                                 $('.updateBtn').toggle();
+                                    $('.updateWords').append('<h4>Please update graph</h4>')
 
                 },
                 error: function (error) {
                     console.log(error);
                 }
             });
-
         });
     });
 
-    $('.testBtn').on('click', function () {
-//                        Create custom pie graph for each portfolio
-        console.log(totalValue);
-        // Build the chart
+    $('.updateBtn').on('click', function () {
+//                        Create custom pie graph for each portfolio from database.
         $('#pieChartPers').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -288,17 +298,17 @@ $(document).ready(function () {
                 text: 'Your Personal Portfolio'
             },
             "subtitle": {
-                "text": "Current Value $"+ Number((totalValue).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")},
+                "text": "Current Value $" + Number((totalValue).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")},
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             plotOptions: {
-               series: {
-                animation: {
-                    duration: 2000,
-                    easing: 'easeOutExpo'
-                }
-            },
+                series: {
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutExpo'
+                    }
+                },
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
@@ -309,10 +319,8 @@ $(document).ready(function () {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         },
                         connectorColor: 'silver'
-
                     },
                     showInLegend: true
-
                 }
             },
             series: [
@@ -320,10 +328,9 @@ $(document).ready(function () {
                     type: "pie",
                     name: 'Stocks',
                     data: (function () {
-                        // generate an array of random data
+                        // generate pie with stocks in database, may not own all five so for loop made sense
                         var data = [],
                             i;
-
                         for (i = 0; i < portfolioNames.length; i++) {
                             console.log(portfolioNames[i]);
                             data.push([
@@ -339,5 +346,3 @@ $(document).ready(function () {
 
     });
 });
-
-//.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
