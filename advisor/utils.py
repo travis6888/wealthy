@@ -53,6 +53,7 @@ def portfolio_return_calc(age, investment, risk_portfolio, investor):
         portfolio_attr.append(portfolio.expected_return)
     inv_return = numpy.fv((float(portfolio_attr[1]) / 12), ((65 - (int(age))) * 12), -(int(investment)), -investment)
     investment_return = '{:20,.2f}'.format(float(inv_return))
+    inv_rt = '{:.20}'.format(inv_return)
     data2 = {'stocksp': {'stock1p': 25, 'stock2p': 25, 'stock3p': 20, 'stock4p': 20, 'stock5p': 10},
              'stocksn': {'stock1n': stock_name[0], 'stock2n': stock_name[1], 'stock3n': stock_name[2],
                          'stock4n': stock_name[3], 'stock5n': stock_name[4]},
@@ -60,6 +61,7 @@ def portfolio_return_calc(age, investment, risk_portfolio, investor):
              'expected': portfolio_attr[1],
              'return': investment_return, 'stock_list': stock_info_list}
     investor.portfolio_name = risk_portfolio
+    investor.expected_return = inv_rt
     investor.save()
     return data2
 
@@ -80,14 +82,14 @@ def get_stock_value(data, number_shares):
     return cost
 
 
-def get_portfolio_value(items):
+def get_portfolio_value(items, investor):
     stock_portfolio_info = {}
     portfolio_value = 0
-    stock_portfolio_info[items.stock_one_name] = items.stock_one_shares
-    stock_portfolio_info[items.stock_two_name] = items.stock_two_shares
-    stock_portfolio_info[items.stock_three_name] = items.stock_three_shares
-    stock_portfolio_info[items.stock_four_name] = items.stock_four_shares
-    stock_portfolio_info[items.stock_five_name] = items.stock_five_shares
+    stock_portfolio_info[items.stock_one_name] = float(items.stock_one_shares)
+    stock_portfolio_info[items.stock_two_name] = float(items.stock_two_shares)
+    stock_portfolio_info[items.stock_three_name] = float(items.stock_three_shares)
+    stock_portfolio_info[items.stock_four_name] = float(items.stock_four_shares)
+    stock_portfolio_info[items.stock_five_name] = float(items.stock_five_shares)
     for i in stock_portfolio_info.items():
         data = i[0]
         number_shares = i[1]
@@ -95,8 +97,10 @@ def get_portfolio_value(items):
         portfolio_value += cost
     items.current_value = decimal.Decimal(portfolio_value)
     items.save()
-    data = {'stockPort': str(stock_portfolio_info), 'portValue': float(items.current_value), 'portCost': float(items.cost)}
-    return data
+    data = {'stockPort': stock_portfolio_info}
+    data2 = {'portValue': float(items.current_value),
+            'portCost': float(items.cost), 'portExpect':investor.expected_return}
+    return [data, data2]
 
 
 def empty_stock_add_shares(data, items, number_shares):
@@ -171,7 +175,27 @@ def buy_stock_conditionals(data, portfolio, monthly, request):
         cost = float(price) * float(number_shares)
         real_cost = decimal.Decimal(cost)
         PersonalStockPortfolio.objects.create(name="primary", owner=request.user, stock_one_name=str(data),
-                                         stock_one_shares=number_shares, cost=real_cost)
+                                              stock_one_shares=number_shares, cost=real_cost)
     data = {data: number_shares}
     return data
+
+
+def match_stocks(data, portfolio_stocks):
+    data_list = {}
+    for stock, values in data[0]['stockPort'].iteritems():
+        for quote in portfolio_stocks:
+            if stock == quote.hidden_symbol:
+                value = (float(ystockquote.get_price(stock))*values)
+                data_list[quote.name] = value
+            else:
+                pass
+    return [data_list, data[1]]
+
+
+
+
+
+
+
+
 
