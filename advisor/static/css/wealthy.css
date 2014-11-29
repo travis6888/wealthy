@@ -174,10 +174,22 @@ ul{
     max-width: 400px;
 }
 #piechart{
-    min-height: 300px;
+    min-height: 400px;
     min-width: 300px;
     max-height: 400px;
     max-width: 400px;
+}
+#pieChartPers{
+    min-height: 400px;
+    min-width: 300px;
+    max-height: 600px;
+    max-width: 600px;
+}
+#pieChartPort{
+    min-height: 400px;
+    min-width: 300px;
+    max-height: 600px;
+    max-width: 600px;
 }
 /*.chart-wrapper {*/
  /*position: relative;*/
@@ -335,8 +347,8 @@ h4{
     color: #000000;
 }
 #progressCharh{
-    min-height: 300px;
-    min-width: 300px;
+    min-height: 400px;
+    min-width: 400px;
     max-height: 450px;
-    max-width: 600px;
+    max-width: 500px;
 }

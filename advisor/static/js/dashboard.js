@@ -165,7 +165,7 @@ $(document).ready(function () {
                             }
 
                         },
-                        legend: 
+                        legend:
                                     {
                                         title: {
                             text: 'Portfolio Progress',
