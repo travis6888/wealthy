@@ -346,9 +346,10 @@ ul{
 h4{
     color: #000000;
 }
-#progressCharh{
+#progressChart{
     min-height: 400px;
-    min-width: 400px;
-    max-height: 450px;
-    max-width: 500px;
+    min-width: 500px;
+    max-height: 550px;
+    max-width: 600px;
 }
+
