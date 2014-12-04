@@ -353,3 +353,6 @@ h4{
     max-width: 600px;
 }
 
+.quotesData{
+    display: none;
+}
