@@ -355,4 +355,6 @@ h4{
 
 .quotesData{
     display: none;
+    color: #000000;
+    font-size: 17px;
 }
