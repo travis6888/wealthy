@@ -262,7 +262,7 @@ def boot(request):
 def home(request):
     return render(request, 'base.html')
 
-
+@login_required()
 def dashboard(request):
     return render(request, 'dashboard.html')
 
@@ -278,19 +278,22 @@ def price_lookup(request):
     return HttpResponse(json.dumps(stock_list), content_type='application/json')
 
 @csrf_exempt
+@login_required()
 def buy_stock(request):
     investor = Investor.objects.get(id=request.user.id)
     monthly = investor.monthly_investment
     portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
     if request.method == "POST":
         data = json.loads(request.body)
-        buy_stock_conditionals(data, portfolio, monthly, request)
+        buy_stock_conditionals(data, portfolio, monthly, request, investor)
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         return render(request, 'error.html')
 
 @csrf_exempt
+@login_required()
 def personal_pie_info(request):
+
     investor = Investor.objects.get(id=request.user.id)
     investment_monthly = investor.monthly_investment
     portfolio = investor.portfolio_name
@@ -300,8 +303,13 @@ def personal_pie_info(request):
         for items in portfolio:
             data = get_portfolio_value(items, investor)
             stocks = match_stocks(data, portfolio_stocks)
-
             return HttpResponse(json.dumps(stocks), content_type='application/json')
+    # elif request.method == "POST":
+    #     for items in portfolio:
+    #         data = get_portfolio_value(items, investor)
+    #         stocks = match_stocks(data, portfolio_stocks)
+    #         return HttpResponse(json.dumps(stocks), content_type='application/json')
+
     else:
         return render(request, 'error.html')
 

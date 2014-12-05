@@ -103,73 +103,74 @@ def get_portfolio_value(items, investor):
     return [data, data2]
 
 
-def empty_stock_add_shares(data, items, number_shares):
+def empty_stock_add_shares(data, items, number_shares, investor):
+
     if items.stock_one_name == str(data):
         items.stock_one_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_one_name is None:
         items.stock_one_name = str(data)
         items.stock_one_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_two_name == str(data):
         items.stock_two_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_two_name is None:
         items.stock_two_name = str(data)
         items.stock_two_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_three_name == str(data):
         items.stock_three_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_three_name is None:
         items.stock_three_name = str(data)
         items.stock_three_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_four_name == str(data):
         items.stock_four_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_four_name is None:
         items.stock_four_name = str(data)
         items.stock_four_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_five_name == str(data):
         items.stock_five_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     elif items.stock_five_name is None:
         items.stock_five_name = str(data)
         items.stock_five_shares += number_shares
         get_stock_cost(data, number_shares, items)
-        get_portfolio_value(items)
+        get_portfolio_value(items, investor)
         items.save()
     else:
         pass
     return
 
 
-def buy_stock_conditionals(data, portfolio, monthly, request):
+def buy_stock_conditionals(data, portfolio, monthly, request, investor):
     price = ystockquote.get_price(str(data))
     number_shares = math.trunc(float(monthly) / float(price))
     if portfolio:
         for items in portfolio:
-            empty_stock_add_shares(data, items, number_shares)
+            empty_stock_add_shares(data, items, number_shares, investor)
     else:
         price = ystockquote.get_price(str(data))
         cost = float(price) * float(number_shares)
