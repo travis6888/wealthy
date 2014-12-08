@@ -130,7 +130,7 @@ $(document).ready(function () {
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function () {
-                    $('.loading').toggle();
+                    $('#loading').toggle();
                 },
                 success: function (stock_response) {
                     totalValue = 0;
@@ -264,6 +264,12 @@ $(document).ready(function () {
             type: 'POST',
             dataType: 'html',
             data: stockquote,
+            beforeSend: function () {
+                      $('.stocks').toggle();
+
+                    $('#loadingQuotes').toggle();
+
+                },
             success: function (response) {
             },
             error: function (response) {
@@ -290,7 +296,6 @@ $(document).ready(function () {
                     }
                     $('.updateBtn').toggle();
                     $('.updateWords').append('<h4>Please update graph</h4>');
-                    $('.stocks').toggle();
                 },
                 error: function (error) {
                 }

@@ -312,7 +312,7 @@ $('.getRentPrice').on('click', function () {
         type: 'GET',
         dataType: 'json',
         beforeSend: function () {
-        $('.loading').toggle();
+        $('#loading').toggle();
 
         },
         success: function (zip_response) {
@@ -394,13 +394,14 @@ $('.getRentPrice').on('click', function () {
 
                 $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average " +
                     " rental price for the first six months of the year was $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the last six" +
-                    " month average was $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</div><div>, which is a percentage change of " + percent_change +
+                    " month average was $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ", which is a percentage change of " + percent_change +
                     " %.</div>");
 
 
             });
         },
         error: function (zip_response) {
+            $('.housingAnalysis').html("<div> We are sorry but an error occured, please reload page and try again</div>")
         }
     });
 });
@@ -431,7 +432,7 @@ $('.getHomePrice').on('click', function () {
             type: 'GET',
             dataType: 'json',
             beforeSend: function () {
-        $('.loading').toggle();
+        $('#loading').toggle();
 
         },
             success: function (zip_response) {
@@ -533,6 +534,8 @@ $('.getHomePrice').on('click', function () {
                 });
             },
             error: function (error_response) {
+             $('.housingAnalysis').html("<div> We are sorry but an error occured, please reload page and try again</div>")
+
             }
         });
     });
