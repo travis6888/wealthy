@@ -524,10 +524,10 @@ $('.getHomePrice').on('click', function () {
 //                    Takes the first six months median home sale price and last six months, gives a percent change between the averages.
                     $('.housingAnalysis').html("<div>Your housing cost are $" + housing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month.</div><div>The average" +
                         " median home sale price for the first six months $" + first6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " and the most recent " +
-                        "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ".</div><div> Which is a percentage change of " +
-                        percent_change + " %!</div><div>The most recent 30 Year Fixed Mortgage rate is " + thirty + "% and the 15 year Fixed Mortgage rate is " + fifteen + "%</div><div>" +
-                        "A new mortgage on home in your area would cost either $" + thirtyYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 30 year, or $" +
-                        fifteenYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 15 year.</div><div>" +
+                        "six month average is $" + last6Average.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ". Which is a percentage change of " +
+                        percent_change + " %!</div><div>The most recent 30 Year Fixed Mortgage rate is " + thirty + "% and the 15 year Fixed Mortgage rate is " + fifteen + "%" +
+                        "A new mortgage on home in your area would cost either $" + thirtyYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 30 year fixed, or $" +
+                        fifteenYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 15 year fixed.</div><div>" +
                         "A new mortgage is  " + housingVersusThirty + "% more/less on a 30 year and " + housingVersusFifteen + "% more/less on 15 year than you pay now!</div>");
 
 

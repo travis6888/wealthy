@@ -19,7 +19,8 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json',
             beforeSend: function () {
-                $('.loading').toggle();
+                $('#loadingPort').toggle();
+                $('#loadingProgress').toggle();
             },
             success: function (stock_response) {
                 var stocked = stock_response.stocksp;
@@ -110,12 +111,14 @@ $(document).ready(function () {
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function () {
-                    $('.loading').toggle();
+
                 },
                 success: function (response) {
                     for (var key in response) {
                         var value = response[key];
+
                         $('.quotesData').toggle();
+
                         $('.quotesData').append("<button class='btn btn-default btn-md stocks' data-title=" + value + ">" + key + "</button>")
                     }
                 },
@@ -130,7 +133,7 @@ $(document).ready(function () {
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function () {
-                    $('#loading').toggle();
+//                    $('#loading').toggle();
                 },
                 success: function (stock_response) {
                     totalValue = 0;
@@ -144,6 +147,8 @@ $(document).ready(function () {
                     var currentVal = parseFloat(stock_response[1]['portValue']);
                     var expectedVal = parseFloat((stock_response[1]['portExpect'] - stock_response[1]['portValue']));
                     var gain = (stock_response[1]['portValue'] - stock_response[1]['portCost']);
+                    $('#loadingPort').toggle();
+                    $('#loadingProgress').toggle();
 
                 $('#progressChart').highcharts({
                         chart: {

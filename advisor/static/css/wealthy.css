@@ -208,14 +208,14 @@ ul{
   /*background: #FFFFFF;*/
 /*}*/
 
-#loading {
+#loading, #loadingProgress, #loadingQuotes, #loadingPort {
   margin: 50px auto 0;
   width: 125px;
   height: 118px;
     display: none;
 }
 
-#loading p {
+#loading p, #loadingPort p, #loadingProgress p, #loadingQuotes p {
   position: absolute;
   z-index: 99;
   padding: 34px;
@@ -250,7 +250,7 @@ ul{
   100% {width: 40px;}
 }
 
-#loading div {
+#loading div, #loadingPort div, #loadingProgress div, #loadingQuotes div {
   height: 100%;
   margin: 10% auto;
 	border-right: 5px solid #D20000;
@@ -261,39 +261,7 @@ ul{
   -moz-animation: spin 0.9s linear infinite;
   -o-animation: spin 0.9s linear infinite;
 }
-#loadingQuotes div {
-    height: 100%;
-    margin: 10% auto;
-    border-right: 5px solid #D20000;
-    border-bottom: 5px solid transparent;
-    border-radius: 100%;
-    animation: spin 0.9s linear infinite;
-    -webkit-animation: spin 0.9s linear infinite;
-    -moz-animation: spin 0.9s linear infinite;
-    -o-animation: spin 0.9s linear infinite;
-}
-#loadingPort div {
-    height: 100%;
-    margin: 10% auto;
-    border-right: 5px solid #D20000;
-    border-bottom: 5px solid transparent;
-    border-radius: 100%;
-    animation: spin 0.9s linear infinite;
-    -webkit-animation: spin 0.9s linear infinite;
-    -moz-animation: spin 0.9s linear infinite;
-    -o-animation: spin 0.9s linear infinite;
-}
-#loadingProgress div {
-    height: 100%;
-    margin: 10% auto;
-    border-right: 5px solid #D20000;
-    border-bottom: 5px solid transparent;
-    border-radius: 100%;
-    animation: spin 0.9s linear infinite;
-    -webkit-animation: spin 0.9s linear infinite;
-    -moz-animation: spin 0.9s linear infinite;
-    -o-animation: spin 0.9s linear infinite;
-}
+
 @keyframes spin {
  0% {
     transform: rotate(0deg);
