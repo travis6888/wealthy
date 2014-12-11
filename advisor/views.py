@@ -304,11 +304,11 @@ def personal_pie_info(request):
             data = get_portfolio_value(items, investor)
             stocks = match_stocks(data, portfolio_stocks)
             return HttpResponse(json.dumps(stocks), content_type='application/json')
-    # elif request.method == "POST":
-    #     for items in portfolio:
-    #         data = get_portfolio_value(items, investor)
-    #         stocks = match_stocks(data, portfolio_stocks)
-    #         return HttpResponse(json.dumps(stocks), content_type='application/json')
+    elif request.method == "POST":
+        for items in portfolio:
+            data = get_portfolio_value(items, investor)
+            stocks = match_stocks(data, portfolio_stocks)
+            return HttpResponse(json.dumps(stocks), content_type='application/json')
 
     else:
         return render(request, 'error.html')
