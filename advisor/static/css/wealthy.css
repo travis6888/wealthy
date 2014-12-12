@@ -358,3 +358,6 @@ h4{
     color: #000000;
     font-size: 17px;
 }
+.editProfileModal, .editProfileModal form input, .editProfileModal form{
+    color: #000000;
+}
