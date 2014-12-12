@@ -254,17 +254,26 @@ def find_portfolio(request):
 
 
 def boot(request):
-    investor = Investor.objects.get(id=request.user.id)
-    investor_data ={'zip': investor.zipcode, 'housing': investor.housing}
-    return render(request, 'base.html', investor_data)
+    if request.user.is_authenticated():
+        investor = Investor.objects.get(id=request.user.id)
+        investor_data ={'zip': investor.zipcode, 'housing': investor.housing}
+        return render(request, 'base.html', investor_data)
+    else:
+        return render(request, 'base.html')
 
 
 def home(request):
-    return render(request, 'base.html')
+    if request.user.is_authenticated():
+        return redirect('boot')
+    else:
+        return render(request, 'base.html')
 
 @login_required()
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    if request.user.is_authenticated():
+        return render(request, 'dashboard.html')
+    else:
+        return render(request, 'error.html')
 
 @csrf_exempt
 @login_required()
