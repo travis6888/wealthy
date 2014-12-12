@@ -62,13 +62,16 @@
 
                 {% if user.is_authenticated %}
                     <li>
-                        <a href="{% url 'logout' %}">Logout</a>
+                    <a href="{% url 'logout' %}">Logout</a>
                     </li>
                     <li>
                     <a href="#portfolio" class="page-scroll introJump">Portfolio</a>
                     </li>
                     <li>
                     <a href="#homeData" class="page-scroll introJump homeDataBtn">Housing</a>
+                    </li>
+                    <li>
+                    <a data-toggle="modal" data-target=".bs-profile-modal-sm">Edit Profile</a>
                     </li>
                 {% else %}
                     <li>
@@ -112,6 +115,22 @@
     <section id="services">
         <div class="container">
             <div class="row">
+                <div class="modal fade bs-profile-modal-sm modalsTarget" tabindex="-1" role="dialog"
+                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content loginModal">
+                            <form method="post" action="/edit_profile/">
+                                {% csrf_token %}
+                                  <input id="id_income" name="income" type="text" placeholder="Yearly Income">
+                                        <input id="id_age" name="age" type="text" placeholder="Age">
+                                        <input id="id_housing" name="housing" type="text" placeholder="Housing Costs">
+                                        <input id="id_zipcode" name="zipcode" type="text" placeholder="Zipcode">
+                                        <input id="id_other_costs" name="other_costs" type="text"
+                                               placeholder="Other Mandatory spending">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                 <div class="modal fade bs-example-modal-sm modalsTarget" tabindex="-1" role="dialog"
                      aria-labelledby="myLargeModalLabel" aria-hidden="true">
