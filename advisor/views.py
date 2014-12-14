@@ -57,9 +57,9 @@ def edit_profile(request):
             profile_user.save()
             return redirect(reverse('boot'))
     else:
-        form = EmailUserCreationForm()
-        return render(request, "registration/register.html",
-                      {'form': form, "user": profile_user})
+        form = EditUserForm()
+        return render(request, "registration/edit_profile.html",
+                      {'form': form})
 
 
 @login_required()
