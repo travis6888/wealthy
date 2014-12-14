@@ -7,6 +7,15 @@ from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 
 
+class EditUserForm(forms.Form):
+    housing = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Monthly Housing Costs'}))
+    income = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Income amount'}))
+    age = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Age'}))
+    zipcode = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Zipcode'}))
+    other_costs = forms.FloatField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Other Major Monthly Costs: Debt, etc'}))
+
+
+
 class EmailUserCreationForm(UserCreationForm):
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     first_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))

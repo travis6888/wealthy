@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-from advisor.forms import EmailUserCreationForm, RiskProfileForm
+from advisor.forms import EmailUserCreationForm, RiskProfileForm, EditUserForm
 from advisor.models import Investor, Investment, PersonalStockPortfolio
 import ystockquote
 
@@ -47,17 +47,19 @@ def register(request):
 def edit_profile(request):
     profile_user = Investor.objects.get(id=request.user.id)
     if request.method == 'POST':
-        form = EmailUserCreationForm(request.POST)
+        form = EditUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            profile_user.housing = form.cleaned_data['housing']
+            profile_user.other_costs = form.cleaned_data['other_costs']
+            profile_user.income = form.cleaned_data['income']
+            profile_user.age = form.cleaned_data['age']
+            profile_user.zipcode = form.cleaned['zipcode']
+            profile_user.save()
             return redirect(reverse('boot'))
     else:
-            form = EmailUserCreationForm()
+        form = EmailUserCreationForm()
         return render(request, "registration/register.html",
                       {'form': form, "user": profile_user})
-
-    else:
-        return redirect("boot")
 
 
 @login_required()
