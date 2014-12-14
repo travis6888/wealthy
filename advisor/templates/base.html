@@ -100,6 +100,10 @@
                         <div class="modal-content editProfileModal">
                             <form method="post" action="/edit_profile/">
                                 {% csrf_token %}
+                                <div class="modal-header">
+                                        <h2>Edit Account</h2>
+                                    <h3>Update income, zipcode, age, housing costs, and other costs!</h3>
+                                    </div>
                                   <input id="id_income" name="income" type="text" placeholder="Yearly Income">
                                         <input id="id_age" name="age" type="text" placeholder="Age">
                                         <input id="id_housing" name="housing" type="text" placeholder="Housing Costs">
@@ -251,7 +255,7 @@
                                     <div class="modal-header">
                                         <h2>Create Account</h2>
                                     </div>
-                                    <h2 class="form-signin-heading">Create an account</h2>
+                                    <h2 class="form-signin-heading">It's Easy!</h2>
 
                                     <div class="userName">
                                         <h4>Hey there! Lets make a username, so I know what to call you</h4>
@@ -354,7 +358,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
 
-                    <a class="btn btn-default btn-xl dashboardBtn" href={% url 'dashboard' %}>Dashboard</a>
+{#                    <a class="btn btn-default btn-xl dashboardBtn" href={% url 'dashboard' %}>Dashboard</a>#}
 
 
                     <a class="btn btn-default btn-xl homeDataBtn page-scroll" href="#homeData">More</a>

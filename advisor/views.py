@@ -53,7 +53,7 @@ def edit_profile(request):
             profile_user.other_costs = form.cleaned_data['other_costs']
             profile_user.income = form.cleaned_data['income']
             profile_user.age = form.cleaned_data['age']
-            profile_user.zipcode = form.cleaned['zipcode']
+            profile_user.zipcode = form.cleaned_data['zipcode']
             profile_user.save()
             return redirect(reverse('boot'))
     else:
