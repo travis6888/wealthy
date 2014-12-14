@@ -44,15 +44,14 @@ def register(request):
 
 
 @login_required
-def edit_profile(request, user_id):
-    profile_user = Investor.objects.get(id=user_id)
-    if request.user == profile_user:
-        if request.method == 'POST':
-            form = EmailUserCreationForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect(reverse('boot'))
-        else:
+def edit_profile(request):
+    profile_user = Investor.objects.get(id=request.user.id)
+    if request.method == 'POST':
+        form = EmailUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('boot'))
+    else:
             form = EmailUserCreationForm()
         return render(request, "registration/register.html",
                       {'form': form, "user": profile_user})
