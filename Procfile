@@ -1,1 +1,1 @@
-web: gunicorn wealthy.wsgi --log-file - newrelic-admin run-program python manage.py run_gunicorn -b "0.0.0.0:$PORT" -w 3
+web: newrelic-admin run-program python manage.py gunicorn wealthy.wsgi --log-file -  run_gunicorn -b "0.0.0.0:$PORT" -w 3
