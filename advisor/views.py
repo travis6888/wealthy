@@ -274,7 +274,7 @@ def dashboard(request):
     if request.user.is_authenticated():
         investor = Investor.objects.get(id=request.user.id)
 
-        return render(request, 'dashboard.html', {'investor': investor})
+        return render(request, 'dashboard.html', {'investor': investor.personal_portfolio})
     else:
         return render(request, 'error.html')
 
