@@ -5,7 +5,7 @@
 {% block content %}
     <section id='homeData' class="bg-light-gray">
     <div id='dashboardContent' class="container">
-        {%  if request.user == investor and investor.personal_portfolio %}
+        {%  if request.user.get_profile.personal_porfolio %}
                       <h4>exists</h4>
         {% for stock in investor.personal_portfolio.all %}
             {{ stock.name }}
