@@ -272,7 +272,8 @@ def home(request):
 @login_required()
 def dashboard(request):
     if request.user.is_authenticated():
-        return render(request, 'dashboard.html')
+        investor = Investor.objects.get(id=request.user.id)
+        return render(request, 'dashboard.html', {'investor': investor})
     else:
         return render(request, 'error.html')
 
