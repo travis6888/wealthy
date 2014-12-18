@@ -7,6 +7,11 @@ from advisor.models import Portfolio, Investment, PersonalStockPortfolio
 
 __author__ = 'Travis'
 
+'''
+Calculate numbers for demo, use 30% a month investment, assumptions 4k a month after tax,
+ 65 retirement, use only age as variable
+'''
+
 
 def demo_age_calc(age):
     percent_month = (float(4000) * .70)
@@ -16,6 +21,10 @@ def demo_age_calc(age):
     vistior_age = {'investment': investment_month, 'age': age, 'return': investment_return,
                    "percent_mon": percent_month}
     return vistior_age
+
+'''
+Find amount of money to invest each month based on after tax income and percent a month
+'''
 
 
 def find_invest_month_calc(investor, monies, percent_month):
@@ -76,7 +85,9 @@ def get_stock_cost(data, number_shares, items):
 
 
 def get_stock_value(data, number_shares):
+    print data
     price = ystockquote.get_price(str(data))
+    print price, number_shares
     cost = float(price) * float(number_shares)
     real_cost = decimal.Decimal(cost)
     return cost
@@ -93,13 +104,16 @@ def get_portfolio_value(items, investor):
     for i in stock_portfolio_info.items():
         data = i[0]
         number_shares = i[1]
-        cost = get_stock_value(data, number_shares)
-        portfolio_value += cost
+        try:
+            cost = get_stock_value(data, number_shares)
+            portfolio_value += cost
+        except:
+            pass
     items.current_value = decimal.Decimal(portfolio_value)
     items.save()
     data = {'stockPort': stock_portfolio_info}
     data2 = {'portValue': float(items.current_value),
-            'portCost': float(items.cost), 'portExpect':investor.expected_return}
+            'portCost': float(items.cost), 'portExpect': investor.expected_return}
     return [data, data2]
 
 

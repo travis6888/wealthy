@@ -7,7 +7,7 @@ $(document).ready(function () {
     var totalValue = 0;
     var portfolioValue = [];
     var portfolioNames = [];
-    var portCost =[];
+    var portCost = [];
     var portValue = [];
     $('.loadPort').on('click', function () {
         var values = [];
@@ -150,7 +150,7 @@ $(document).ready(function () {
                     $('#loadingPort').toggle();
                     $('#loadingProgress').toggle();
 
-                $('#progressChart').highcharts({
+                    $('#progressChart').highcharts({
                         chart: {
                             type: 'pyramid',
                             marginRight: 100
@@ -171,28 +171,29 @@ $(document).ready(function () {
                             }
 
                         },
-                        legend:
-                                    {
-                                        title: {
-                            text: 'Portfolio Progress',
-                            style: {
-                                fontStyle: 'italic'
-                            }
-                        },
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top'
+                        legend: {
+                            title: {
+                                text: 'Portfolio Progress',
+                                style: {
+                                    fontStyle: 'italic'
+                                }
+                            },
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'top'
 //                        x: -10,
 //                        y: 100
-                                    },
-                        series: [{
-                            name: 'Expect Portfolio Data',
-                            data: [
-                                ['Current Value $', Number((currentVal).toFixed(2))],
-                                ['Expected Value $', Number((expectedVal).toFixed(2))]
+                        },
+                        series: [
+                            {
+                                name: 'Expect Portfolio Data',
+                                data: [
+                                    ['Current Value $', Number((currentVal).toFixed(2))],
+                                    ['Expected Value $', Number((expectedVal).toFixed(2))]
 
-                            ]
-                        }]
+                                ]
+                            }
+                        ]
                     });
 
                     $('#pieChartPers').highcharts({
@@ -270,11 +271,11 @@ $(document).ready(function () {
             dataType: 'html',
             data: stockquote,
             beforeSend: function () {
-                      $('.stocks').toggle();
+                $('.stocks').toggle();
 
-                    $('#loadingQuotes').toggle();
+                $('#loadingQuotes').toggle();
 
-                },
+            },
             success: function (response) {
             },
             error: function (response) {
