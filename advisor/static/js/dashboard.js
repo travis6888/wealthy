@@ -251,6 +251,8 @@ $(document).ready(function () {
                             }
                         ]
                     });
+                    portfolioNames.length = 0;
+                    portfolioValue.length = 0;
                 },
                 error: function (error) {
                 }
@@ -258,10 +260,10 @@ $(document).ready(function () {
         });
     });
 
+
     $('.quotesData').on('click', 'button', function () {
         var totalValue = 0;
-        var portfolioValue = [];
-        var portfolioNames = [];
+
         var quote = $(this).data('title');
         var stockquote = JSON.stringify(quote);
 //        send specific quote to add to personal portfolio and get cost, value, matching data
@@ -288,9 +290,10 @@ $(document).ready(function () {
                 dataType: 'json',
                 success: function (stock_response) {
                     totalValue = 0;
+                    console.log(stock_response);
+
                     for (var key in stock_response[0]) {
                         var value = stock_response[0][key];
-
                         portfolioNames.push(key);
                         portfolioValue.push(value);
                         totalValue += value;
@@ -302,6 +305,7 @@ $(document).ready(function () {
                     }
                     $('.updateBtn').toggle();
                     $('.updateWords').append('<h4>Please update graph</h4>');
+                    $('#loadingQuotes').toggle()
                 },
                 error: function (error) {
                 }
