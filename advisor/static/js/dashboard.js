@@ -366,4 +366,29 @@ $(document).ready(function () {
         });
     });
 
+    $('.newPort').on('click', function (){
+        $.ajax({
+                url: '/price_lookup/',
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function () {
+
+                },
+                success: function (response) {
+                    console.log(response);
+                    for (var key in response) {
+                        var value = response[key];
+
+                        $('.quotesData').toggle();
+
+                        $('.quotesData').append("<button class='btn btn-default btn-md stocks' data-title=" + value + ">" + key + "</button>")
+                    }
+                },
+                error: function (error) {
+//                    $('.loadPort').toggle();
+                }
+            });
+    });
+
+
 });
