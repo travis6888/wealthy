@@ -379,9 +379,9 @@ $(document).ready(function () {
                     for (var key in response) {
                         var value = response[key];
 
-                        $('.quotesData').toggle();
+                        $('.quotesData2').toggle();
 
-                        $('.quotesData').append("<button class='btn btn-default btn-md stocks' data-title=" + value + ">" + key + "</button>")
+                        $('.quotesData2').append("<button class='btn btn-default btn-md stocks' data-title=" + value + ">" + key + "</button>")
                     }
                 },
                 error: function (error) {
@@ -389,6 +389,54 @@ $(document).ready(function () {
                 }
             });
     });
+$('.quotesData2').on('click', 'button', function () {
+        var totalValue = 0;
+        var portfolioValue = [];
+        var portfolioNames = [];
+        var quote = $(this).data('title');
+        var stockquote = JSON.stringify(quote);
+//        send specific quote to add to personal portfolio and get cost, value, matching data
+        $.ajax({
+            url: '/buy_stock/',
+            type: 'POST',
+            dataType: 'html',
+            data: stockquote,
+            beforeSend: function () {
+                $('.stocks').toggle();
 
+                $('#loadingQuotes').toggle();
+
+            },
+            success: function (response) {
+            },
+            error: function (response) {
+            }
+        }).complete(function () {
+//            Do calculations in python backend to make it clean and easy
+            $.ajax({
+                url: '/personal_pie_info/',
+                type: 'GET',
+                dataType: 'json',
+                success: function (stock_response) {
+                    totalValue = 0;
+                    for (var key in stock_response[0]) {
+                        var value = stock_response[0][key];
+
+                        portfolioNames.push(key);
+                        portfolioValue.push(value);
+                        totalValue += value;
+                    }
+                    for (var key2 in stock_response[1]) {
+                        var value2 = stock_response[1][key];
+                        console.log(key2);
+                        console.log(value2);
+                    }
+                   window.location.replace("/dashboard/");
+                },
+                error: function (error) {
+                }
+            });
+        });
+    });
 
 });
