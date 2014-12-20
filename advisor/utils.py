@@ -85,9 +85,7 @@ def get_stock_cost(data, number_shares, items):
 
 
 def get_stock_value(data, number_shares):
-    print data
     price = ystockquote.get_price(str(data))
-    print price, number_shares
     cost = float(price) * float(number_shares)
     real_cost = decimal.Decimal(cost)
     return cost
@@ -104,11 +102,9 @@ def get_portfolio_value(items, investor):
     for i in stock_portfolio_info.items():
         data = i[0]
         number_shares = i[1]
-        try:
-            cost = get_stock_value(data, number_shares)
-            portfolio_value += cost
-        except:
-            pass
+        cost = get_stock_value(data, number_shares)
+        portfolio_value += cost
+
     items.current_value = decimal.Decimal(portfolio_value)
     items.save()
     data = {'stockPort': stock_portfolio_info}
