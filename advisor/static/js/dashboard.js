@@ -179,9 +179,9 @@ $(document).ready(function () {
                                     fontStyle: 'italic'
                                 }
                             },
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top'
+                            layout: 'horizontal',
+                            align: 'top',
+                            verticalAlign: 'right'
 //                        x: -10,
 //                        y: 100
                         },
@@ -401,8 +401,8 @@ $(document).ready(function () {
                                     fontStyle: 'italic'
                                 }
                             },
-                            layout: 'vertical',
-                            align: 'right',
+                            layout: 'horizontal',
+                            align: 'top',
                             verticalAlign: 'top'
 //                        x: -10,
 //                        y: 100
