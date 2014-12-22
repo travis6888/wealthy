@@ -299,7 +299,7 @@ $(document).ready(function () {
                         totalValue += value;
                     }
                     for (var key2 in stock_response[1]) {
-                        var value2 = stock_response[1][key];
+                        var value2 = stock_response[1][key2];
                         console.log(key2);
                         console.log(value2);
                     }
@@ -314,6 +314,9 @@ $(document).ready(function () {
     });
 
     $('.updateBtn').on('click', function () {
+        $('.updateBtn').toggle();
+        $('.updateWords').toggle();
+        $('.quotesData').toggle();
 //                        Create custom pie graph for each portfolio from database.
         $('#pieChartPers').highcharts({
             chart: {
@@ -368,9 +371,51 @@ $(document).ready(function () {
                 }
             ]
         });
-        $('.updateBtn').toggle();
-        $('.quotesData').toggle();
-        
+        $('#progressChart').highcharts({
+                        chart: {
+                            type: 'pyramid',
+                            marginRight: 100
+                        },
+                        title: {
+                            text: 'Portfolio Progress',
+                            x: -50
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b> ({point.y:,.0f})',
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'green',
+                                    softConnector: true
+                                },
+                                showInLegend: true
+                            }
+
+                        },
+                        legend: {
+                            title: {
+                                text: 'Portfolio Progress',
+                                style: {
+                                    fontStyle: 'italic'
+                                }
+                            },
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'top'
+//                        x: -10,
+//                        y: 100
+                        },
+                        series: [
+                            {
+                                name: 'Expect Portfolio Data',
+                                data: [
+                                    ['Current Value $', Number((currentVal).toFixed(2))],
+                                    ['Expected Value $', Number((expectedVal).toFixed(2))]
+
+                                ]
+                            }
+                        ]
+                    });
     });
 
     $('.newPort').on('click', function (){
