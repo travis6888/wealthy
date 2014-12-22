@@ -386,8 +386,9 @@ $(document).ready(function () {
                         plotOptions: {
                             series: {
                                 dataLabels: {
+                                    inside:true,
                                     enabled: true,
-                                    format: '<b>{point.name}</b> ({point.y:,.0f})',
+                                    format: '<b>{point.name}</b> ({point.y:.2f})',
                                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'green',
                                     softConnector: true
                                 },
@@ -399,14 +400,15 @@ $(document).ready(function () {
                             title: {
                                 text: 'Portfolio Progress',
                                 style: {
-                                    fontStyle: 'italic'
+                                    fontStyle: 'bold'
                                 }
                             },
                             layout: 'horizontal',
-                            align: 'top',
-                            verticalAlign: 'top'
-//                        x: -10,
-//                        y: 100
+                            align: 'center',
+                            margin: 20,
+                            verticalAlign: 'bottom',
+                            labelFormat: '<span>{name}</span>: <b> {y:.2f} </b>'
+
                         },
                         series: [
                             {
