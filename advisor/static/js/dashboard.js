@@ -368,6 +368,9 @@ $(document).ready(function () {
                 }
             ]
         });
+        $('.updateBtn').toggle();
+        $('.quotesData').toggle();
+        
     });
 
     $('.newPort').on('click', function (){
