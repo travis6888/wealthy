@@ -163,8 +163,9 @@ $(document).ready(function () {
                         plotOptions: {
                             series: {
                                 dataLabels: {
+                                    inside:true,
                                     enabled: true,
-                                    format: '<b>{point.name}</b> ({point.y:,.0f})',
+                                    format: '<b>{point.name}</b> ({point.y:.2f})',
                                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'green',
                                     softConnector: true
                                 },
@@ -180,10 +181,11 @@ $(document).ready(function () {
                                 }
                             },
                             layout: 'horizontal',
-                            align: 'top',
-                            verticalAlign: 'right'
-//                        x: -10,
-//                        y: 100
+                            align: 'center',
+                            margin: 20,
+                            verticalAlign: 'bottom',
+                            labelFormat: '<span>{name}</span>: <b> {y:.2f} </b>'
+
                         },
                         series: [
                             {
@@ -191,7 +193,6 @@ $(document).ready(function () {
                                 data: [
                                     ['Current Value $', Number((currentVal).toFixed(2))],
                                     ['Expected Value $', Number((expectedVal).toFixed(2))]
-
                                 ]
                             }
                         ]
