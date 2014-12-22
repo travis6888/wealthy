@@ -9,6 +9,7 @@ $(document).ready(function () {
     var portfolioNames = [];
     var portCost = [];
     var portValue = [];
+    var portfolioData = {};
     $('.loadPort').on('click', function () {
         var values = [];
         var portfolio = [];
@@ -300,8 +301,8 @@ $(document).ready(function () {
                     }
                     for (var key2 in stock_response[1]) {
                         var value2 = stock_response[1][key2];
-                        console.log(key2);
-                        console.log(value2);
+                        portfolioData[key2] = value2;
+
                     }
                     $('.updateBtn').toggle();
                     $('.updateWords').append('<h4>Please update graph</h4>');
@@ -314,6 +315,7 @@ $(document).ready(function () {
     });
 
     $('.updateBtn').on('click', function () {
+        console.log(portfolioData);
         $('.updateBtn').toggle();
         $('.updateWords').toggle();
         $('.quotesData').toggle();
@@ -409,8 +411,8 @@ $(document).ready(function () {
                             {
                                 name: 'Expect Portfolio Data',
                                 data: [
-                                    ['Current Value $', Number((currentVal).toFixed(2))],
-                                    ['Expected Value $', Number((expectedVal).toFixed(2))]
+                                    ['Current Value $', Number((portfolioData.portValue).toFixed(2))],
+                                    ['Expected Value $', Number((portfolioData.portExpect).toFixed(2))]
 
                                 ]
                             }
