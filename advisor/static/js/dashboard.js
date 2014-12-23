@@ -400,7 +400,7 @@ $(document).ready(function () {
                             title: {
                                 text: 'Portfolio Progress',
                                 style: {
-                                    fontStyle: 'bold'
+                                    fontStyle: 'italic'
                                 }
                             },
                             layout: 'horizontal',
