@@ -243,7 +243,6 @@ $(document).ready(function () {
                                         i;
 
                                     for (i = 0; i < portfolioNames.length; i++) {
-                                        console.log(portfolioNames[i]);
                                         data.push([
                                             portfolioNames[i], portfolioValue[i]
                                         ]);
@@ -275,8 +274,8 @@ $(document).ready(function () {
             dataType: 'html',
             data: stockquote,
             beforeSend: function () {
+                $('.quotesDataText').toggle();
                 $('.stocks').toggle();
-
                 $('#loadingQuotes').toggle();
 
             },
@@ -292,7 +291,6 @@ $(document).ready(function () {
                 dataType: 'json',
                 success: function (stock_response) {
                     totalValue = 0;
-                    console.log(stock_response);
 
                     for (var key in stock_response[0]) {
                         var value = stock_response[0][key];
@@ -316,7 +314,6 @@ $(document).ready(function () {
     });
 
     $('.updateBtn').on('click', function () {
-        console.log(portfolioData);
         $('.updateBtn').toggle();
         $('.updateWords').toggle();
         $('.quotesData').toggle();
@@ -432,7 +429,6 @@ $(document).ready(function () {
 
                 },
                 success: function (response) {
-                    console.log(response);
                     for (var key in response) {
                         var value = response[key];
 
@@ -485,8 +481,7 @@ $('.quotesData2').on('click', 'button', function () {
                     }
                     for (var key2 in stock_response[1]) {
                         var value2 = stock_response[1][key];
-                        console.log(key2);
-                        console.log(value2);
+
                     }
                    window.location.replace("/dashboard/");
                 },
