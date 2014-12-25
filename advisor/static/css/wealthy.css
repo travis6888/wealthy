@@ -361,3 +361,6 @@ h4{
 .editProfileModal, .editProfileModal form input, .editProfileModal form{
     color: #000000;
 }
+.progressCharts{
+    margin-top: 20px;
+}
