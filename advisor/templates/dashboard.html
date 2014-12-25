@@ -3,18 +3,16 @@
 
 
 {% block content %}
-    <section id='homeData' class="bg-light-gray">
-        <div id='dashboardContent' class="container">
-            <div class="row">
+
 
                 {% if investor.count == 1 %}
-                    {#        {% for stock in investor.all %}#}
-                    {#            {{ stock.name }}#}
-                    {#         {% endfor %}#}
-
+                   <section id='homeData' class="bg-light-gray">
+                    <div id='dashboardContent' class="container">
+                        <div class="row">
 
                     <button class="btn-xl btn btn-default loadPort">Load Portfolio</button>
                     <div class="col-lg-12">
+
                         <div class="quotesData text-center">
                             <p class="quotesDataText">Click on a ETF to buy your monthly allowance worth and help balance portfolio!</p>
                         </div>
@@ -26,6 +24,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <button class="updateBtn btn-md btn-default btn">Update</button>
 
                     <div class="col-lg-12 text-center">
@@ -43,8 +43,8 @@
                             <div id="pieChartPers"></div>
                         </div>
                     </div>
-
-
+</div>
+<div class="row">
                     <div class="col-lg-6 col-lg-offset-3">
                         <div id="loadingProgress">
                             <p>Loading...</p>
@@ -56,8 +56,11 @@
 
                         </div>
                     </div>
-
+</div>
                 {% else %}
+                    <section id='homeData' class="bg-light-gray">
+        <div id='dashboardContent' class="container">
+            <div class="row">
                     <div class="col-lg-12 text-center">
                     <div class="quotesData2 text-center">
                         <p>Click on a ETF to buy your monthly allowance worth and help balance portfolio!</p>

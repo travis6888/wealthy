@@ -163,7 +163,7 @@ $(document).ready(function () {
                         plotOptions: {
                             series: {
                                 dataLabels: {
-                                    inside:true,
+                                    inside: true,
                                     enabled: true,
                                     format: '<b>{point.name}</b> ({point.y:.2f})',
                                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'green',
@@ -372,77 +372,77 @@ $(document).ready(function () {
             ]
         });
         $('#progressChart').highcharts({
-                        chart: {
-                            type: 'pyramid',
-                            marginRight: 100
-                        },
-                        title: {
-                            text: 'Portfolio Progress',
-                            x: -50
-                        },
-                        plotOptions: {
-                            series: {
-                                dataLabels: {
-                                    inside:true,
-                                    enabled: true,
-                                    format: '<b>{point.name}</b> ({point.y:.2f})',
-                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'green',
-                                    softConnector: true
-                                },
-                                showInLegend: true
-                            }
+            chart: {
+                type: 'pyramid',
+                marginRight: 100
+            },
+            title: {
+                text: 'Portfolio Progress',
+                x: -50
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        inside: true,
+                        enabled: true,
+                        format: '<b>{point.name}</b> ({point.y:.2f})',
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'green',
+                        softConnector: true
+                    },
+                    showInLegend: true
+                }
 
-                        },
-                        legend: {
-                            title: {
-                                text: 'Portfolio Progress',
-                                style: {
-                                    fontStyle: 'italic'
-                                }
-                            },
-                            layout: 'horizontal',
-                            align: 'center',
-                            margin: 20,
-                            verticalAlign: 'bottom',
-                            labelFormat: '<span>{name}</span>: <b> {y:.2f} </b>'
-
-                        },
-                        series: [
-                            {
-                                name: 'Expect Portfolio Data',
-                                data: [
-                                    ['Current Value $', Number((portfolioData.portValue).toFixed(2))],
-                                    ['Expected Value $', Number((portfolioData.portExpect).toFixed(2))]
-
-                                ]
-                            }
-                        ]
-                    });
-    });
-
-    $('.newPort').on('click', function (){
-        $.ajax({
-                url: '/price_lookup/',
-                type: 'GET',
-                dataType: 'json',
-                beforeSend: function () {
-
-                },
-                success: function (response) {
-                    for (var key in response) {
-                        var value = response[key];
-
-                        $('.quotesData2').toggle();
-
-                        $('.quotesData2').append("<button class='btn btn-default btn-md stocks' data-title=" + value + ">" + key + "</button>")
+            },
+            legend: {
+                title: {
+                    text: 'Portfolio Progress',
+                    style: {
+                        fontStyle: 'italic'
                     }
                 },
-                error: function (error) {
-//                    $('.loadPort').toggle();
+                layout: 'horizontal',
+                align: 'center',
+                margin: 20,
+                verticalAlign: 'bottom',
+                labelFormat: '<span>{name}</span>: <b> {y:.2f} </b>'
+
+            },
+            series: [
+                {
+                    name: 'Expect Portfolio Data',
+                    data: [
+                        ['Current Value $', Number((portfolioData.portValue).toFixed(2))],
+                        ['Expected Value $', Number((portfolioData.portExpect).toFixed(2))]
+
+                    ]
                 }
-            });
+            ]
+        });
     });
-$('.quotesData2').on('click', 'button', function () {
+
+    $('.newPort').on('click', function () {
+        $.ajax({
+            url: '/price_lookup/',
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function () {
+
+            },
+            success: function (response) {
+                for (var key in response) {
+                    var value = response[key];
+
+                    $('.quotesData2').toggle();
+
+                    $('.quotesData2').append("<button class='btn btn-default btn-md stocks' data-title=" + value + ">" + key + "</button>")
+                }
+            },
+            error: function (error) {
+//                    $('.loadPort').toggle();
+            }
+        });
+    });
+    $('.quotesData2').on('click', 'button', function () {
         var totalValue = 0;
         var portfolioValue = [];
         var portfolioNames = [];
@@ -483,7 +483,7 @@ $('.quotesData2').on('click', 'button', function () {
                         var value2 = stock_response[1][key];
 
                     }
-                   window.location.replace("/dashboard/");
+                    window.location.replace("/dashboard/");
                 },
                 error: function (error) {
                 }
