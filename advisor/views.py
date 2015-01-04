@@ -125,11 +125,11 @@ def mortgage_percentage(request):
         data = json.loads(request.body)
         income2 = investor.income
         rent = data['data']
-        desposible_monthly = (float(income2) / 12) - float(rent)
+        disposable_monthly = (float(income2) / 12) - float(rent)
         investor.housing = rent
         investor.save()
-        desposible_monthly = {'desposible_income': desposible_monthly}
-        return HttpResponse(json.dumps(desposible_monthly), content_type='application/json')
+        disposable_monthly = {'desposible_income': disposable_monthly}
+        return HttpResponse(json.dumps(disposable_monthly), content_type='application/json')
 
 
 @login_required()
@@ -226,13 +226,6 @@ def find_investment_monthly(request):
             return HttpResponse(json.dumps(investing), content_type='application/json')
 
 
-def find_investment(request):
-    investor = Investor.objects.get(id=request.user.id)
-    if request.method == "POST":
-        monthly = investor.disposible_monthly
-        data = json.loads(request.body)
-
-
 @csrf_exempt
 def find_portfolio(request):
     investor = Investor.objects.get(id=request.user.id)
@@ -265,7 +258,7 @@ def find_portfolio(request):
 def boot(request):
     if request.user.is_authenticated():
         investor = Investor.objects.get(id=request.user.id)
-        investor_data ={'zip': investor.zipcode, 'housing': investor.housing}
+        investor_data = {'zip': investor.zipcode, 'housing': investor.housing}
         return render(request, 'base.html', investor_data)
     else:
         return render(request, 'base.html')
@@ -277,6 +270,7 @@ def home(request):
     else:
         return render(request, 'base.html')
 
+
 @login_required()
 def dashboard(request):
     if request.user.is_authenticated():
@@ -285,6 +279,7 @@ def dashboard(request):
         return render(request, 'dashboard.html', {'investor': investor.personal_portfolio})
     else:
         return render(request, 'error.html')
+
 
 @csrf_exempt
 @login_required()
@@ -296,6 +291,7 @@ def price_lookup(request):
         quote = stock.hidden_symbol
         stock_list[str(stock.name)] = quote
     return HttpResponse(json.dumps(stock_list), content_type='application/json')
+
 
 @csrf_exempt
 @login_required()
@@ -310,12 +306,11 @@ def buy_stock(request):
     else:
         return render(request, 'error.html')
 
+
 @csrf_exempt
 @login_required()
 def personal_pie_info(request):
-
     investor = Investor.objects.get(id=request.user.id)
-    investment_monthly = investor.monthly_investment
     portfolio = investor.portfolio_name
     portfolio_stocks = Investment.objects.filter(portfolios__name=portfolio)
     portfolio = PersonalStockPortfolio.objects.filter(owner=request.user)
@@ -329,7 +324,5 @@ def personal_pie_info(request):
             data = get_portfolio_value(items, investor)
             stocks = match_stocks(data, portfolio_stocks)
             return HttpResponse(json.dumps(stocks), content_type='application/json')
-
     else:
         return HttpResponse(json.dumps(investor), content_type='application/json')
-
