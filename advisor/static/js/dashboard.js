@@ -433,6 +433,7 @@ $(document).ready(function () {
                     var value = response[key];
 
                     $('.quotesData2').toggle();
+                    $('.quotesDataText2').toggle();
 
                     $('.quotesData2').append("<button class='btn btn-default btn-md stocks' data-title=" + value + ">" + key + "</button>")
                 }
