@@ -326,3 +326,7 @@ def personal_pie_info(request):
             return HttpResponse(json.dumps(stocks), content_type='application/json')
     else:
         return HttpResponse(json.dumps(investor), content_type='application/json')
+
+
+def faqs(request):
+    return render(request, 'faq.html')
