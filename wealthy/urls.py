@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^buy_stock/$', 'advisor.views.buy_stock', name='buy_stock'),
     url(r'^personal_pie_info/$', 'advisor.views.personal_pie_info', name='personal_pie_info'),
     url(r'^faqs/$', 'advisor.views.faqs', name='faqs'),
+    url(r'^how_to/$', 'advisor.views.how_to', name='how_to'),
 
     url(r'^demo_age/$', 'advisor.views.demo_age', name='demo_age'),
 

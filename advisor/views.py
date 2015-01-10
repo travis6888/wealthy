@@ -330,3 +330,7 @@ def personal_pie_info(request):
 
 def faqs(request):
     return render(request, 'faq.html')
+
+
+def how_to(request):
+    return render(request, 'how_to.html')
