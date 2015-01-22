@@ -62,16 +62,16 @@
 
                 {% if user.is_authenticated %}
                     <li>
-                    <a href="{% url 'logout' %}">Logout</a>
+                        <a href="{% url 'logout' %}">Logout</a>
                     </li>
                     <li>
-                    <a href="#portfolio" class="page-scroll introJump">Portfolio</a>
+                        <a href="#portfolio" class="page-scroll introJump">Portfolio</a>
                     </li>
                     <li>
-                    <a href="#homeData" class="page-scroll introJump homeDataBtn">Housing</a>
+                        <a href="#homeData" class="page-scroll introJump homeDataBtn">Housing</a>
                     </li>
                     <li>
-                    <a data-toggle="modal" data-target=".bs-profile-modal-sm">Edit Profile</a>
+                        <a data-toggle="modal" data-target=".bs-profile-modal-sm">Edit Profile</a>
                     </li>
 
                 {% else %}
@@ -79,10 +79,10 @@
                         <a data-toggle="modal" data-target=".bs-example-modal-sm">Login</a>
                     </li>
                 {% endif %}
-                    <li><a href='{% url "faqs" %}'>FAQS</a>
-                    </li>
-                    <li><a href="{% url 'how_to' %}">How to</a>
-                    </li>
+                <li><a href='{% url "faqs" %}'>FAQS</a>
+                </li>
+                <li><a href="{% url 'how_to' %}">How to</a>
+                </li>
 
 
             </ul>
@@ -107,22 +107,23 @@
                             <form method="post" action="/edit_profile/">
                                 {% csrf_token %}
                                 <div class="modal-header">
-                                        <h2>Edit Account</h2>
+                                    <h2>Edit Account</h2>
+
                                     <h3>Update income, zipcode, age, housing costs, and other costs!</h3>
-                                    </div>
-                                  <input id="id_income" name="income" type="text" placeholder="Yearly Income">
-                                        <input id="id_age" name="age" type="text" placeholder="Age">
-                                        <input id="id_housing" name="housing" type="text" placeholder="Housing Costs">
-                                        <input id="id_zipcode" name="zipcode" type="text" placeholder="Zipcode">
-                                        <input id="id_other_costs" name="other_costs" type="text"
-                                               placeholder="Other Mandatory spending">
-                                    <button class="btn btn-lg btn-primary btn-block"
-                                            type="submit">You're done!
-                                    </button>
-                                </form>
-                            </div>
+                                </div>
+                                <input id="id_income" name="income" type="text" placeholder="Yearly Income">
+                                <input id="id_age" name="age" type="text" placeholder="Age">
+                                <input id="id_housing" name="housing" type="text" placeholder="Housing Costs">
+                                <input id="id_zipcode" name="zipcode" type="text" placeholder="Zipcode">
+                                <input id="id_other_costs" name="other_costs" type="text"
+                                       placeholder="Other Mandatory spending">
+                                <button class="btn btn-lg btn-primary btn-block"
+                                        type="submit">You're done!
+                                </button>
+                            </form>
                         </div>
                     </div>
+                </div>
                 <a href="#portfolio" class="page-scroll btn btn-xl introJump">Your Portfolio</a>
 
             {% else %}
@@ -404,15 +405,16 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="housingAnalysis left">
                             <div id="loading">
-                                  <p>Loading...</p>
-                                  <div></div>
-                                </div>
+                                <p>Loading...</p>
 
+                                <div></div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         {#    </div>#}
     </section>

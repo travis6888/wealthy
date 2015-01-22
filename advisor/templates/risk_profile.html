@@ -1,112 +1,214 @@
 {% extends 'base_dashboard.html' %}
 {% block content %}
-<form method='post'>
-    {% csrf_token %}
-<div class="riskForm">
- <div class="questSetOne">
-    <p><label for="id_One_0">I take a long term view on my investments.</label> <ul id="id_One">
-<li><label for="id_One_0"><input id="id_One_0" name="One" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_One_1"><input id="id_One_1" name="One" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_One_2"><input id="id_One_2" name="One" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_One_3"><input id="id_One_3" name="One" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<p><label for="id_Two_0">I am willing to accept that, once the investment is placed it will fluctuate. :</label> <ul id="id_Two">
-<li><label for="id_Two_0"><input id="id_Two_0" name="Two" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Two_1"><input id="id_Two_1" name="Two" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Two_2"><input id="id_Two_2" name="Two" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Two_3"><input id="id_Two_3" name="Two" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<p><label for="id_Three_0">I accept that investments can fall in value and take time to recover. However, I would expect these losses to be recovered within:</label> <ul id="id_Three">
-<li><label for="id_Three_0"><input id="id_Three_0" name="Three" type="radio" value="3" /> More than 4 years</label></li>
-<li><label for="id_Three_1"><input id="id_Three_1" name="Three" type="radio" value="2" /> 2 to 4 years</label></li>
-<li><label for="id_Three_2"><input id="id_Three_2" name="Three" type="radio" value="1" /> 6 months to 2 years</label></li>
-<li><label for="id_Three_3"><input id="id_Three_3" name="Three" type="radio" value="0" /> Less than 1 year</label></li>
-</ul></p>
-<p><label for="id_Four_0">My current income and assets are very stable and I am currently ready to invest:</label> <ul id="id_Four">
-<li><label for="id_Four_0"><input id="id_Four_0" name="Four" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Four_1"><input id="id_Four_1" name="Four" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Four_2"><input id="id_Four_2" name="Four" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Four_3"><input id="id_Four_3" name="Four" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<a href="#" class="btn btn-xl cente questSetOneNext">Next</a>
-</div>
-<div class="questSetTwo" style="display: none;">
-<p><label for="id_Five_0">The stock market doesnt scare me:</label> <ul id="id_Five">
-<li><label for="id_Five_0"><input id="id_Five_0" name="Five" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Five_1"><input id="id_Five_1" name="Five" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Five_2"><input id="id_Five_2" name="Five" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Five_3"><input id="id_Five_3" name="Five" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<p><label for="id_Six_0">I am looking for high investment growth. I am willing to accept the possibility of greater losses to achieve this:</label> <ul id="id_Six">
-<li><label for="id_Six_0"><input id="id_Six_0" name="Six" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Six_1"><input id="id_Six_1" name="Six" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Six_2"><input id="id_Six_2" name="Six" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Six_3"><input id="id_Six_3" name="Six" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<p><label for="id_Seven_0">I would prefer small certain gains to large uncertain ones:</label> <ul id="id_Seven">
-<li><label for="id_Seven_0"><input id="id_Seven_0" name="Seven" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Seven_1"><input id="id_Seven_1" name="Seven" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Seven_2"><input id="id_Seven_2" name="Seven" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Seven_3"><input id="id_Seven_3" name="Seven" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<p><label for="id_Eight_0">To obtain above-average returns on my Investments, I am willing to accept above-average risk.</label> <ul id="id_Eight">
-<li><label for="id_Eight_0"><input id="id_Eight_0" name="Eight" type="radio" value="0" /> Strongly Agree</label></li>
-<li><label for="id_Eight_1"><input id="id_Eight_1" name="Eight" type="radio" value="1" /> Agree</label></li>
-<li><label for="id_Eight_2"><input id="id_Eight_2" name="Eight" type="radio" value="2" /> Disagree</label></li>
-<li><label for="id_Eight_3"><input id="id_Eight_3" name="Eight" type="radio" value="3" /> Strongly Disagree</label></li>
-</ul></p>
-<a href="#" class="btn btn-xl centered questSetTwoNext">Next</a>
-</div>
-<div class="questSetThree" style="display: none;">
-<p><label for="id_Nine_0">If my investments lose money over the course of a year, I can easily resist the temptation to sell them.</label> <ul id="id_Nine">
-<li><label for="id_Nine_0"><input id="id_Nine_0" name="Nine" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Nine_1"><input id="id_Nine_1" name="Nine" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Nine_2"><input id="id_Nine_2" name="Nine" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Nine_3"><input id="id_Nine_3" name="Nine" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<p><label for="id_Ten_0">I know quite a bit about economic issues and personal investing.</label> <ul id="id_Ten">
-<li><label for="id_Ten_0"><input id="id_Ten_0" name="Ten" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Ten_1"><input id="id_Ten_1" name="Ten" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Ten_2"><input id="id_Ten_2" name="Ten" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Ten_3"><input id="id_Ten_3" name="Ten" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<p><label for="id_Eleven_0">If your portfolio lost more than 40% of its value in less than six months, what would you do?</label> <ul id="id_Eleven">
-<li><label for="id_Eleven_0"><input id="id_Eleven_0" name="Eleven" type="radio" value="0" /> Sell immediately</label></li>
-<li><label for="id_Eleven_1"><input id="id_Eleven_1" name="Eleven" type="radio" value="1" /> Look to sell shortly</label></li>
-<li><label for="id_Eleven_2"><input id="id_Eleven_2" name="Eleven" type="radio" value="3" /> Buy the dip</label></li>
-<li><label for="id_Eleven_3"><input id="id_Eleven_3" name="Eleven" type="radio" value="2" /> Leave my positions alone</label></li>
-</ul></p>
-<p><label for="id_Twelve_0">I prefer to give equal weight to losses and gains:</label> <ul id="id_Twelve">
-<li><label for="id_Twelve_0"><input id="id_Twelve_0" name="Twelve" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Twelve_1"><input id="id_Twelve_1" name="Twelve" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Twelve_2"><input id="id_Twelve_2" name="Twelve" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Twelve_3"><input id="id_Twelve_3" name="Twelve" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-<a href="#" class="btn btn-xl questSetThreeNext">Next</a>
+    <form method='post'>
+        {% csrf_token %}
+        <div class="riskForm">
+            <div class="questSetOne">
+                <p><label for="id_One_0">I take a long term view on my investments.</label>
+                <ul id="id_One">
+                    <li><label for="id_One_0"><input id="id_One_0" name="One" type="radio" value="3"/> Strongly
+                        Agree</label></li>
+                    <li><label for="id_One_1"><input id="id_One_1" name="One" type="radio" value="2"/> Agree</label>
+                    </li>
+                    <li><label for="id_One_2"><input id="id_One_2" name="One" type="radio" value="1"/> Disagree</label>
+                    </li>
+                    <li><label for="id_One_3"><input id="id_One_3" name="One" type="radio" value="0"/> Strongly Disagree</label>
+                    </li>
+                </ul>
+                </p>
+                <p><label for="id_Two_0">I am willing to accept that, once the investment is placed it will fluctuate.
+                    :</label>
+                <ul id="id_Two">
+                    <li><label for="id_Two_0"><input id="id_Two_0" name="Two" type="radio" value="3"/> Strongly
+                        Agree</label></li>
+                    <li><label for="id_Two_1"><input id="id_Two_1" name="Two" type="radio" value="2"/> Agree</label>
+                    </li>
+                    <li><label for="id_Two_2"><input id="id_Two_2" name="Two" type="radio" value="1"/> Disagree</label>
+                    </li>
+                    <li><label for="id_Two_3"><input id="id_Two_3" name="Two" type="radio" value="0"/> Strongly Disagree</label>
+                    </li>
+                </ul>
+                </p>
+                <p><label for="id_Three_0">I accept that investments can fall in value and take time to recover.
+                    However, I would expect these losses to be recovered within:</label>
+                <ul id="id_Three">
+                    <li><label for="id_Three_0"><input id="id_Three_0" name="Three" type="radio" value="3"/> More than 4
+                        years</label></li>
+                    <li><label for="id_Three_1"><input id="id_Three_1" name="Three" type="radio" value="2"/> 2 to 4
+                        years</label></li>
+                    <li><label for="id_Three_2"><input id="id_Three_2" name="Three" type="radio" value="1"/> 6 months to
+                        2 years</label></li>
+                    <li><label for="id_Three_3"><input id="id_Three_3" name="Three" type="radio" value="0"/> Less than 1
+                        year</label></li>
+                </ul>
+                </p>
+                <p><label for="id_Four_0">My current income and assets are very stable and I am currently ready to
+                    invest:</label>
+                <ul id="id_Four">
+                    <li><label for="id_Four_0"><input id="id_Four_0" name="Four" type="radio" value="3"/> Strongly Agree</label>
+                    </li>
+                    <li><label for="id_Four_1"><input id="id_Four_1" name="Four" type="radio" value="2"/> Agree</label>
+                    </li>
+                    <li><label for="id_Four_2"><input id="id_Four_2" name="Four" type="radio" value="1"/>
+                        Disagree</label></li>
+                    <li><label for="id_Four_3"><input id="id_Four_3" name="Four" type="radio" value="0"/> Strongly
+                        Disagree</label></li>
+                </ul>
+                </p>
+                <a href="#" class="btn btn-xl cente questSetOneNext">Next</a>
+            </div>
+            <div class="questSetTwo" style="display: none;">
+                <p><label for="id_Five_0">The stock market doesnt scare me:</label>
+                <ul id="id_Five">
+                    <li><label for="id_Five_0"><input id="id_Five_0" name="Five" type="radio" value="3"/> Strongly Agree</label>
+                    </li>
+                    <li><label for="id_Five_1"><input id="id_Five_1" name="Five" type="radio" value="2"/> Agree</label>
+                    </li>
+                    <li><label for="id_Five_2"><input id="id_Five_2" name="Five" type="radio" value="1"/>
+                        Disagree</label></li>
+                    <li><label for="id_Five_3"><input id="id_Five_3" name="Five" type="radio" value="0"/> Strongly
+                        Disagree</label></li>
+                </ul>
+                </p>
+                <p><label for="id_Six_0">I am looking for high investment growth. I am willing to accept the possibility
+                    of greater losses to achieve this:</label>
+                <ul id="id_Six">
+                    <li><label for="id_Six_0"><input id="id_Six_0" name="Six" type="radio" value="3"/> Strongly
+                        Agree</label></li>
+                    <li><label for="id_Six_1"><input id="id_Six_1" name="Six" type="radio" value="2"/> Agree</label>
+                    </li>
+                    <li><label for="id_Six_2"><input id="id_Six_2" name="Six" type="radio" value="1"/> Disagree</label>
+                    </li>
+                    <li><label for="id_Six_3"><input id="id_Six_3" name="Six" type="radio" value="0"/> Strongly Disagree</label>
+                    </li>
+                </ul>
+                </p>
+                <p><label for="id_Seven_0">I would prefer small certain gains to large uncertain ones:</label>
+                <ul id="id_Seven">
+                    <li><label for="id_Seven_0"><input id="id_Seven_0" name="Seven" type="radio" value="3"/> Strongly
+                        Agree</label></li>
+                    <li><label for="id_Seven_1"><input id="id_Seven_1" name="Seven" type="radio" value="2"/>
+                        Agree</label></li>
+                    <li><label for="id_Seven_2"><input id="id_Seven_2" name="Seven" type="radio" value="1"/>
+                        Disagree</label></li>
+                    <li><label for="id_Seven_3"><input id="id_Seven_3" name="Seven" type="radio" value="0"/> Strongly
+                        Disagree</label></li>
+                </ul>
+                </p>
+                <p><label for="id_Eight_0">To obtain above-average returns on my Investments, I am willing to accept
+                    above-average risk.</label>
+                <ul id="id_Eight">
+                    <li><label for="id_Eight_0"><input id="id_Eight_0" name="Eight" type="radio" value="0"/> Strongly
+                        Agree</label></li>
+                    <li><label for="id_Eight_1"><input id="id_Eight_1" name="Eight" type="radio" value="1"/>
+                        Agree</label></li>
+                    <li><label for="id_Eight_2"><input id="id_Eight_2" name="Eight" type="radio" value="2"/>
+                        Disagree</label></li>
+                    <li><label for="id_Eight_3"><input id="id_Eight_3" name="Eight" type="radio" value="3"/> Strongly
+                        Disagree</label></li>
+                </ul>
+                </p>
+                <a href="#" class="btn btn-xl centered questSetTwoNext">Next</a>
+            </div>
+            <div class="questSetThree" style="display: none;">
+                <p><label for="id_Nine_0">If my investments lose money over the course of a year, I can easily resist
+                    the temptation to sell them.</label>
+                <ul id="id_Nine">
+                    <li><label for="id_Nine_0"><input id="id_Nine_0" name="Nine" type="radio" value="3"/> Strongly Agree</label>
+                    </li>
+                    <li><label for="id_Nine_1"><input id="id_Nine_1" name="Nine" type="radio" value="2"/> Agree</label>
+                    </li>
+                    <li><label for="id_Nine_2"><input id="id_Nine_2" name="Nine" type="radio" value="1"/>
+                        Disagree</label></li>
+                    <li><label for="id_Nine_3"><input id="id_Nine_3" name="Nine" type="radio" value="0"/> Strongly
+                        Disagree</label></li>
+                </ul>
+                </p>
+                <p><label for="id_Ten_0">I know quite a bit about economic issues and personal investing.</label>
+                <ul id="id_Ten">
+                    <li><label for="id_Ten_0"><input id="id_Ten_0" name="Ten" type="radio" value="3"/> Strongly
+                        Agree</label></li>
+                    <li><label for="id_Ten_1"><input id="id_Ten_1" name="Ten" type="radio" value="2"/> Agree</label>
+                    </li>
+                    <li><label for="id_Ten_2"><input id="id_Ten_2" name="Ten" type="radio" value="1"/> Disagree</label>
+                    </li>
+                    <li><label for="id_Ten_3"><input id="id_Ten_3" name="Ten" type="radio" value="0"/> Strongly Disagree</label>
+                    </li>
+                </ul>
+                </p>
+                <p><label for="id_Eleven_0">If your portfolio lost more than 40% of its value in less than six months,
+                    what would you do?</label>
+                <ul id="id_Eleven">
+                    <li><label for="id_Eleven_0"><input id="id_Eleven_0" name="Eleven" type="radio" value="0"/> Sell
+                        immediately</label></li>
+                    <li><label for="id_Eleven_1"><input id="id_Eleven_1" name="Eleven" type="radio" value="1"/> Look to
+                        sell shortly</label></li>
+                    <li><label for="id_Eleven_2"><input id="id_Eleven_2" name="Eleven" type="radio" value="3"/> Buy the
+                        dip</label></li>
+                    <li><label for="id_Eleven_3"><input id="id_Eleven_3" name="Eleven" type="radio" value="2"/> Leave my
+                        positions alone</label></li>
+                </ul>
+                </p>
+                <p><label for="id_Twelve_0">I prefer to give equal weight to losses and gains:</label>
+                <ul id="id_Twelve">
+                    <li><label for="id_Twelve_0"><input id="id_Twelve_0" name="Twelve" type="radio" value="3"/> Strongly
+                        Agree</label></li>
+                    <li><label for="id_Twelve_1"><input id="id_Twelve_1" name="Twelve" type="radio" value="2"/>
+                        Agree</label></li>
+                    <li><label for="id_Twelve_2"><input id="id_Twelve_2" name="Twelve" type="radio" value="1"/> Disagree</label>
+                    </li>
+                    <li><label for="id_Twelve_3"><input id="id_Twelve_3" name="Twelve" type="radio" value="0"/> Strongly
+                        Disagree</label></li>
+                </ul>
+                </p>
+                <a href="#" class="btn btn-xl questSetThreeNext">Next</a>
 
-</div>
-<div class="questSetFour" style="display: none;">
-<p><label for="id_Thirteen_0">Do you need to draw a large amount of money out your portfolio within the next ten years:</label> <ul id="id_Thirteen">
-<li><label for="id_Thirteen_0"><input id="id_Thirteen_0" name="Thirteen" type="radio" value="-3" /> YES</label></li>
-<li><label for="id_Thirteen_1"><input id="id_Thirteen_1" name="Thirteen" type="radio" value="3" /> NO</label></li>
-</ul></p>
-<p><label for="id_Fourteen_0">Do you believe that interest rates relate to the performance of investments:</label> <ul id="id_Fourteen">
-<li><label for="id_Fourteen_0"><input id="id_Fourteen_0" name="Fourteen" type="radio" value="3" /> YES</label></li>
-<li><label for="id_Fourteen_1"><input id="id_Fourteen_1" name="Fourteen" type="radio" value="-3" /> NO</label></li>
-</ul></p>
-<p><label for="id_Fifteen_0">If one investment had expected returns of 20% but could easily have returns of -20%, would you invest in that?</label> <ul id="id_Fifteen">
-<li><label for="id_Fifteen_0"><input id="id_Fifteen_0" name="Fifteen" type="radio" value="3" /> YES</label></li>
-<li><label for="id_Fifteen_1"><input id="id_Fifteen_1" name="Fifteen" type="radio" value="-3" /> NO</label></li>
-</ul></p>
-<p><label for="id_Sixteen_0">I would prefer to invest in a well diversified portfolio that spreads my investment across the major asset classes and understand that this may reduce the potential returns although should help to lower the risk profile:</label> <ul id="id_Sixteen">
-<li><label for="id_Sixteen_0"><input id="id_Sixteen_0" name="Sixteen" type="radio" value="3" /> Strongly Agree</label></li>
-<li><label for="id_Sixteen_1"><input id="id_Sixteen_1" name="Sixteen" type="radio" value="2" /> Agree</label></li>
-<li><label for="id_Sixteen_2"><input id="id_Sixteen_2" name="Sixteen" type="radio" value="1" /> Disagree</label></li>
-<li><label for="id_Sixteen_3"><input id="id_Sixteen_3" name="Sixteen" type="radio" value="0" /> Strongly Disagree</label></li>
-</ul></p>
-    <input class="btn btn-xl submit" type='submit' value='submit'>
-    </div>
- </div>
-</form>
+            </div>
+            <div class="questSetFour" style="display: none;">
+                <p><label for="id_Thirteen_0">Do you need to draw a large amount of money out your portfolio within the
+                    next ten years:</label>
+                <ul id="id_Thirteen">
+                    <li><label for="id_Thirteen_0"><input id="id_Thirteen_0" name="Thirteen" type="radio" value="-3"/>
+                        YES</label></li>
+                    <li><label for="id_Thirteen_1"><input id="id_Thirteen_1" name="Thirteen" type="radio" value="3"/> NO</label>
+                    </li>
+                </ul>
+                </p>
+                <p><label for="id_Fourteen_0">Do you believe that interest rates relate to the performance of
+                    investments:</label>
+                <ul id="id_Fourteen">
+                    <li><label for="id_Fourteen_0"><input id="id_Fourteen_0" name="Fourteen" type="radio" value="3"/>
+                        YES</label></li>
+                    <li><label for="id_Fourteen_1"><input id="id_Fourteen_1" name="Fourteen" type="radio" value="-3"/>
+                        NO</label></li>
+                </ul>
+                </p>
+                <p><label for="id_Fifteen_0">If one investment had expected returns of 20% but could easily have returns
+                    of -20%, would you invest in that?</label>
+                <ul id="id_Fifteen">
+                    <li><label for="id_Fifteen_0"><input id="id_Fifteen_0" name="Fifteen" type="radio" value="3"/>
+                        YES</label></li>
+                    <li><label for="id_Fifteen_1"><input id="id_Fifteen_1" name="Fifteen" type="radio" value="-3"/>
+                        NO</label></li>
+                </ul>
+                </p>
+                <p><label for="id_Sixteen_0">I would prefer to invest in a well diversified portfolio that spreads my
+                    investment across the major asset classes and understand that this may reduce the potential returns
+                    although should help to lower the risk profile:</label>
+                <ul id="id_Sixteen">
+                    <li><label for="id_Sixteen_0"><input id="id_Sixteen_0" name="Sixteen" type="radio" value="3"/>
+                        Strongly Agree</label></li>
+                    <li><label for="id_Sixteen_1"><input id="id_Sixteen_1" name="Sixteen" type="radio" value="2"/> Agree</label>
+                    </li>
+                    <li><label for="id_Sixteen_2"><input id="id_Sixteen_2" name="Sixteen" type="radio" value="1"/>
+                        Disagree</label></li>
+                    <li><label for="id_Sixteen_3"><input id="id_Sixteen_3" name="Sixteen" type="radio" value="0"/>
+                        Strongly Disagree</label></li>
+                </ul>
+                </p>
+                <input class="btn btn-xl submit" type='submit' value='submit'>
+            </div>
+        </div>
+    </form>
 
 {% endblock %}

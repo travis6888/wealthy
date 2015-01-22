@@ -1,22 +1,23 @@
 {% extends "base_dashboard.html" %}
 {% load staticfiles %}
 
-{%  block css%}
-        <link href="{% static 'css/form.css' %}" rel="stylesheet">
+{% block css %}
+    <link href="{% static 'css/form.css' %}" rel="stylesheet">
 
 {% endblock %}
 
 {% block content %}
     <div class="text-center">
-    <h1> Whoops!!! Looks like you missed an important part of the registration!</h1>
-    <h2>Please enter everything in carefully.</h2>
-        </div>
+        <h1> Whoops!!! Looks like you missed an important part of the registration!</h1>
+
+        <h2>Please enter everything in carefully.</h2>
+    </div>
 
     <form method="post" action=".">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <input  class="btn-xl btn btn-default" type="submit" value="Submit">
+        <input class="btn-xl btn btn-default" type="submit" value="Submit">
     </form>
 
 {% endblock %}
