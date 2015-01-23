@@ -312,7 +312,7 @@ $('.getRentPrice').on('click', function () {
         type: 'GET',
         dataType: 'json',
         beforeSend: function () {
-        $('#loading').toggle();
+            $('#loading').toggle();
 
         },
         success: function (zip_response) {
@@ -432,9 +432,9 @@ $('.getHomePrice').on('click', function () {
             type: 'GET',
             dataType: 'json',
             beforeSend: function () {
-        $('#loading').toggle();
+                $('#loading').toggle();
 
-        },
+            },
             success: function (zip_response) {
                 $(function () {
                     $('#housingChart').highcharts({
@@ -534,7 +534,7 @@ $('.getHomePrice').on('click', function () {
                 });
             },
             error: function (error_response) {
-             $('.housingAnalysis').html("<div> We are sorry but an error occured, please reload page and try again</div>")
+                $('.housingAnalysis').html("<div> We are sorry but an error occured, please reload page and try again</div>")
 
             }
         });

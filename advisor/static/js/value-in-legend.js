@@ -8,7 +8,7 @@
         $(chart.container).bind('mousemove', function () {
             var legendOptions = chart.legend.options,
                 hoverPoints = chart.hoverPoints;
-            
+
             if (!hoverPoints && chart.hoverPoint) {
                 hoverPoints = [chart.hoverPoint];
             }
@@ -18,7 +18,7 @@
                 });
                 H.each(chart.legend.allItems, function (item) {
                     item.legendItem.attr({
-                        text: legendOptions.labelFormat ? 
+                        text: legendOptions.labelFormat ?
                             H.format(legendOptions.labelFormat, item) :
                             legendOptions.labelFormatter.call(item)
                     });
@@ -28,5 +28,7 @@
         });
     });
     // Hide the tooltip but allow the crosshair
-    H.Tooltip.prototype.defaultFormatter = function () { return false; };
+    H.Tooltip.prototype.defaultFormatter = function () {
+        return false;
+    };
 }(Highcharts));
