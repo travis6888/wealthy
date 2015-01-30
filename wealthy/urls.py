@@ -30,6 +30,8 @@ urlpatterns = patterns('',
     url(r'^personal_pie_info/$', 'advisor.views.personal_pie_info', name='personal_pie_info'),
     url(r'^faqs/$', 'advisor.views.faqs', name='faqs'),
     url(r'^how_to/$', 'advisor.views.how_to', name='how_to'),
+    url(r'^blog/$', 'blog.views.blog', name='blog'),
+    url(r'^blog/(\d+)/$', 'blog.views.post', name='post'),
 
     url(r'^demo_age/$', 'advisor.views.demo_age', name='demo_age'),
 

@@ -1,0 +1,27 @@
+{% extends 'blog_base.html' %}
+{% block main %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ post.title }}</h2>
+            <div>by {{ post.author }} on {{ post.created }}</div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            {{ post.body }}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-4">
+            {% for tag in post.tags.all %}
+                <span class="label label-info">{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock main %}

@@ -1,11 +1,11 @@
 from django.db import models
 
 # Create your models here.
-from advisor.models import Investor
+# from advisor.models import Investor
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=120)
+    name = models.CharField(max_length=120, blank=True)
     bio = models.TextField()
 
     def __unicode__(self):
