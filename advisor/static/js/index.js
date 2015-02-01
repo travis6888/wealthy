@@ -24,7 +24,7 @@ $(document).ready(function () {
                 dataType: 'json',
 
                 success: function (stock_response) {
-                    $('.portfolioResultsMonth').html("<h3>Your disposable income is : $" + stock_response.disposible + "</h3>" +
+                    $('.portfolioResultsMonth').html("<h3>Your monthly disposable income is: " + ("$" + stock_response.disposible )+ "</h3>" +
                         "<h3>You spend " + (stock_response.percentage_housing * 100).toFixed(2) + " % on housing</h3>");
 
 

@@ -364,3 +364,15 @@ h4{
 .progressCharts{
     margin-top: 20px;
 }
+.blogText {
+    /*background-color: #000000;*/
+    /*opacity: .23;*/
+    border-radius: 20px;
+    /*margin: 10px;*/
+}
+.blogText p{
+    opacity: .89;
+    margin: 10px;
+}
+
+
