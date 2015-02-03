@@ -1,68 +1,79 @@
-.demoAgeInput  {
+.demoAgeInput {
     display: none;
     margin-bottom: 40px;
 
 }
-.ageInputBtn{
+
+.ageInputBtn {
     display: none;
-    padding-top: 30px ;
+    padding-top: 30px;
 }
 
-.demoHide{
+.demoHide {
     display: none;
 }
+
 @import url(//fonts.googleapis.com/css?family=Oswald:400);
 * {
-  margin: 0;
-  padding: 0;
-}
-body {
-  background: #ddd;
-  font-family: "Oswald", "Helvetica Newe", Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-#container{
+body {
+    background: #ddd;
+    font-family: "Oswald", "Helvetica Newe", Helvetica, sans-serif;
+}
+
+#container {
     position: relative;
     margin: auto;
     min-width: 400px;
     height: 400px;
     max-width: 400px
 }
-.highcharts-button{
+
+.highcharts-button {
     display: none;
 }
-rect.highcharts-background{
+
+rect.highcharts-background {
     background-color: #ddd;
 }
-#accordion{
 
+#accordion {
 
 }
-.ui-accordion{
+
+.ui-accordion {
     text-align: center;
     position: relative;
     background-color: #ddd;
 
 }
-.ui-state-default{
+
+.ui-state-default {
     background: none;
 }
 
-.modal{
+.modal {
     min-height: 300px;
     /*margin: 200px;*/
 }
-.modal-content{
+
+.modal-content {
     height: 100%;
     padding: 20px 25px;
 }
-.register-modal-lg{
+
+.register-modal-lg {
     height: 100%;
 }
-ul{
+
+ul {
     list-style-type: none;
 }
-.riskForm{
+
+.riskForm {
     background-color: #ddd;
     opacity: .70;
     width: 50%;
@@ -73,7 +84,6 @@ ul{
     font-size: 1.5rem;
     border: black solid 2px;
 
-
 }
 
 .questSetOne p {
@@ -81,257 +91,316 @@ ul{
     font-family: sans-serif;
 
 }
+
 .questSetOne li {
     color: #000000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 .questSetTwo p {
     color: #000000;
     font-family: sans-serif;
 
 }
+
 .questSetTwo li {
     color: #000000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 }
+
 .questSetThree p {
     color: #000000;
     font-family: sans-serif;
 
 }
+
 .questSetThree li {
     color: #000000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 .questSetFour p {
     color: #000000;
     font-family: sans-serif;
 
 }
+
 .questSetFour li {
     color: #000000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.questSetOneNext{
+
+.questSetOneNext {
     margin-left: auto;
 
 }
-.stockPrices{
+
+.stockPrices {
     margin-top: 40px;
     text-align: center;
 }
-.stPrice{
+
+.stPrice {
     text-align: center;
     display: inline;
 }
+
 .ui-accordion .ui-accordion-content {
     padding-bottom: 0;
     max-height: 150px;
 }
-.homeDataBtn{
+
+.homeDataBtn {
     display: none;
 }
-.housing{
+
+.housing {
     display: none;
 }
-.zestimateWidget{
+
+.zestimateWidget {
     display: none;
 }
-#container{
+
+#container {
     min-width: 300px;
     max-width: 600px;
     height: 300px;
     margin: 0 auto
 }
-.housingAnalysis{
+
+.housingAnalysis {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
     text-align: center;
     padding: 30px;
 }
-.housingAnalysisTitle{
-        display: none;
+
+.housingAnalysisTitle {
+    display: none;
 
 }
-.dashboardBtn{
+
+.dashboardBtn {
     display: none;
 }
-#dashboardBackground{
+
+#dashboardBackground {
     /*opacity: .85;*/
 }
-#dashboardContent{
+
+#dashboardContent {
     /*opacity: .9;*/
 }
-.quotesData div{
+
+.quotesData div {
     color: #000000;
 
 }
-#piechart2{
+
+#piechart2 {
     min-height: 300px;
     min-width: 300px;
     max-height: 400px;
     max-width: 400px;
 }
-#piechart{
+
+#piechart {
     min-height: 400px;
     min-width: 300px;
     max-height: 400px;
     max-width: 400px;
 }
-#pieChartPers{
+
+#pieChartPers {
     min-height: 400px;
     min-width: 300px;
     max-height: 600px;
     max-width: 600px;
 }
-#pieChartPort{
+
+#pieChartPort {
     min-height: 400px;
     min-width: 300px;
     max-height: 600px;
     max-width: 600px;
 }
+
 /*.chart-wrapper {*/
- /*position: relative;*/
-    /*padding-bottom: 40%;*/
-    /*width:45%;*/
-    /*float:left;*/
+/*position: relative;*/
+/*padding-bottom: 40%;*/
+/*width:45%;*/
+/*float:left;*/
 /*}*/
 
 /*.chart-inner {*/
 /*position: absolute;*/
-    /*width: 50%; height: 100%;*/
+/*width: 50%; height: 100%;*/
 /*}*/
 @import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:500);
 
 /*html {*/
-  /*background: #FFFFFF;*/
+/*background: #FFFFFF;*/
 /*}*/
 
 #loading, #loadingProgress, #loadingQuotes, #loadingPort {
-  margin: 50px auto 0;
-  width: 125px;
-  height: 118px;
+    margin: 50px auto 0;
+    width: 125px;
+    height: 118px;
     display: none;
 }
 
 #loading p, #loadingPort p, #loadingProgress p, #loadingQuotes p {
-  position: absolute;
-  z-index: 99;
-  padding: 34px;
-  color: black;
-  font-size: 16px;
-  font-family: 'Alegreya Sans SC', sans-serif;
-  width: 22px;
-  animation: dots 2s steps(2) linear infinite;
-  -webkit-animation: dots 2s steps(2) infinite;
-  -moz-animation: dots 2s steps(2) linear infinite;
-  -o-animation: dots 2s steps(2) linear infinite;
+    position: absolute;
+    z-index: 99;
+    padding: 34px;
+    color: black;
+    font-size: 16px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    width: 22px;
+    animation: dots 2s steps(2) linear infinite;
+    -webkit-animation: dots 2s steps(2) infinite;
+    -moz-animation: dots 2s steps(2) linear infinite;
+    -o-animation: dots 2s steps(2) linear infinite;
 }
 
 @keyframes dots {
-  0%  {width: 22px;}
-  50% {width: 30px;}
-  100% {width: 40px;}
+    0% {
+        width: 22px;
+    }
+    50% {
+        width: 30px;
+    }
+    100% {
+        width: 40px;
+    }
 }
+
 @-webkit-keyframes dots {
-  0%  {width: 22px;}
-  50% {width: 30px;}
-  100% {width: 40px;}
+    0% {
+        width: 22px;
+    }
+    50% {
+        width: 30px;
+    }
+    100% {
+        width: 40px;
+    }
 }
+
 @-moz-keyframes dots {
-  0%  {width: 22px;}
-  50% {width: 30px;}
-  100% {width: 40px;}
+    0% {
+        width: 22px;
+    }
+    50% {
+        width: 30px;
+    }
+    100% {
+        width: 40px;
+    }
 }
+
 @-o-keyframes dots {
-  0%  {width: 22px;}
-  50% {width: 30px;}
-  100% {width: 40px;}
+    0% {
+        width: 22px;
+    }
+    50% {
+        width: 30px;
+    }
+    100% {
+        width: 40px;
+    }
 }
 
 #loading div, #loadingPort div, #loadingProgress div, #loadingQuotes div {
-  height: 100%;
-  margin: 10% auto;
-	border-right: 5px solid #D20000;
-  border-bottom: 5px solid transparent;
-	border-radius: 100%;
-  animation: spin 0.9s linear infinite;
-  -webkit-animation: spin 0.9s linear infinite;
-  -moz-animation: spin 0.9s linear infinite;
-  -o-animation: spin 0.9s linear infinite;
+    height: 100%;
+    margin: 10% auto;
+    border-right: 5px solid #D20000;
+    border-bottom: 5px solid transparent;
+    border-radius: 100%;
+    animation: spin 0.9s linear infinite;
+    -webkit-animation: spin 0.9s linear infinite;
+    -moz-animation: spin 0.9s linear infinite;
+    -o-animation: spin 0.9s linear infinite;
 }
 
 @keyframes spin {
- 0% {
-    transform: rotate(0deg);
-    border-right-color: #D22020;
-  }
-  50% {
-    transform: rotate(180deg);
-    border-right-color: #A27AD7;
-  }
-  100% {
-    transform: rotate(359deg);
-    border-right-color: #D22020;
-  }
+    0% {
+        transform: rotate(0deg);
+        border-right-color: #D22020;
+    }
+    50% {
+        transform: rotate(180deg);
+        border-right-color: #A27AD7;
+    }
+    100% {
+        transform: rotate(359deg);
+        border-right-color: #D22020;
+    }
 }
+
 @-webkit-keyframes spin {
- 0% {
-    -webkit-transform: rotate(0deg);
-    border-right-color: #D22020;
-  }
-  50% {
-    -webkit-transform: rotate(180deg);
-    border-right-color: #A27AD7;
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    border-right-color: #D22020;
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+        border-right-color: #D22020;
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        border-right-color: #A27AD7;
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        border-right-color: #D22020;
+    }
 }
+
 @-moz-keyframes spin {
- 0% {
-    -moz-transform: rotate(0deg);
-    border-right-color: #D22020;
-  }
-  50% {
-    -moz-transform: rotate(180deg);
-    border-right-color: #A27AD7;
-  }
-  100% {
-    -moz-transform: rotate(359deg);
-    border-right-color: #D22020;
-  }
+    0% {
+        -moz-transform: rotate(0deg);
+        border-right-color: #D22020;
+    }
+    50% {
+        -moz-transform: rotate(180deg);
+        border-right-color: #A27AD7;
+    }
+    100% {
+        -moz-transform: rotate(359deg);
+        border-right-color: #D22020;
+    }
 }
+
 @-o-keyframes spin {
- 0% {
-    -o-transform: rotate(0deg);
-    border-right-color: #D22020;
-  }
-  50% {
-    -o-transform: rotate(180deg);
-    border-right-color: #A27AD7;
-  }
-  100% {
-    -o-transform: rotate(359deg);
-    border-right-color: #D22020;
-  }
+    0% {
+        -o-transform: rotate(0deg);
+        border-right-color: #D22020;
+    }
+    50% {
+        -o-transform: rotate(180deg);
+        border-right-color: #A27AD7;
+    }
+    100% {
+        -o-transform: rotate(359deg);
+        border-right-color: #D22020;
+    }
 }
-.updateBtn{
+
+.updateBtn {
     display: none;
 }
-.btn-md{
+
+.btn-md {
     padding: 10px;
     border-color: #fed136;
     border-radius: 3px;
     text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 700;
     color: #fff;
     background-color: #fed136;
 }
+
 .btn-md:hover,
 .btn-md:focus,
 .btn-md:active,
@@ -340,37 +409,44 @@ ul{
     color: #fff;
     background-color: #fec503;
 }
-.stocks{
+
+.stocks {
     margin: 8px;
 }
-h4{
+
+h4 {
     color: #000000;
 }
-#progressChart{
+
+#progressChart {
     min-height: 400px;
     min-width: 500px;
     max-height: 550px;
     max-width: 600px;
 }
 
-.quotesData{
+.quotesData {
     display: none;
     color: #000000;
     font-size: 17px;
 }
-.editProfileModal, .editProfileModal form input, .editProfileModal form{
+
+.editProfileModal, .editProfileModal form input, .editProfileModal form {
     color: #000000;
 }
-.progressCharts{
+
+.progressCharts {
     margin-top: 20px;
 }
+
 .blogText {
     /*background-color: #000000;*/
     /*opacity: .23;*/
     border-radius: 20px;
     /*margin: 10px;*/
 }
-.blogText p{
+
+.blogText p {
     opacity: .89;
     margin: 10px;
 }
