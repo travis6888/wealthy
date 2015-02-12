@@ -34,7 +34,9 @@ def find_invest_month_calc(investor, monies, percent_month):
     investment_clean = '{:20,.2f}'.format(investment_month)
     investing = {'invest': investment_clean}
     return investing
-
+'''
+calculates income from income input field, and tax rate based on the amount of money inputed
+'''
 
 def input_income_calc(investor, income_input, taxes):
     after_taxes = float(income_input) - float(taxes)
@@ -44,6 +46,10 @@ def input_income_calc(investor, income_input, taxes):
     investor.save()
     return json_tax
 
+
+'''
+figures out how much money the portfolio is supposed to be worth at age 65
+'''
 
 def portfolio_return_calc(age, investment, risk_portfolio, investor):
     portfolio_attr = []
