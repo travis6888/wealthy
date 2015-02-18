@@ -308,7 +308,7 @@ $('.getRentPrice').on('click', function () {
     $('.housingQs').toggle('slow');
 
     $.ajax({
-        url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
+        url: 'https://www.quandl.com/api/v1/datasets/ZILLOW/RZIP_MEDIANRENTALPRICE_ALLHOMES_' + zipcode + '.json',
         type: 'GET',
         dataType: 'json',
         beforeSend: function () {
@@ -413,7 +413,7 @@ $('.getHomePrice').on('click', function () {
     var zipcode = document.getElementById("myVar").value;
     var housing = document.getElementById("housingNumber").value;
     $.ajax({
-        url: 'http://www.zillow.com/webservice/GetRateSummary.htm?zws-id=X1-ZWz1b511wdba4r_43hp8&output=json',
+        url: 'https://www.zillow.com/webservice/GetRateSummary.htm?zws-id=X1-ZWz1b511wdba4r_43hp8&output=json',
         type: 'GET',
         dataType: 'jsonp',
         success: function (response) {
@@ -428,7 +428,7 @@ $('.getHomePrice').on('click', function () {
         }
     }).complete(function () {
         $.ajax({
-            url: 'http://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
+            url: 'https://www.quandl.com/api/v1/datasets/ZILLOW/MZIP_MEDIANSOLDPRICE_ALLHOMES_' + zipcode + '.json',
             type: 'GET',
             dataType: 'json',
             beforeSend: function () {
