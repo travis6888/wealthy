@@ -528,7 +528,7 @@ $('.getHomePrice').on('click', function () {
                         percent_change + " %!</div><div>The most recent 30 Year Fixed Mortgage rate is " + thirty + "% and the 15 year Fixed Mortgage rate is " + fifteen + "%" +
                         "A new mortgage on home in your area would cost either $" + thirtyYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 30 year fixed, or $" +
                         fifteenYearMortgagePayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " a month for a 15 year fixed.</div><div>" +
-                        "A new mortgage is  " + housingVersusThirty + "% more/less on a 30 year and " + housingVersusFifteen + "% more/less on 15 year than you pay now!</div>");
+                        " A new mortgage is  " + housingVersusThirty + "% more/less on a 30 year and " + housingVersusFifteen + "% more/less on 15 year than you pay now!</div>");
 
 
                 });

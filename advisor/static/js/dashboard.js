@@ -317,6 +317,8 @@ $(document).ready(function () {
         $('.updateBtn').toggle();
         $('.updateWords').toggle();
         $('.quotesData').toggle();
+        $('.finalText').show();
+
 //                        Create custom pie graph for each portfolio from database.
         $('#pieChartPers').highcharts({
             chart: {
